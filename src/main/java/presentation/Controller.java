@@ -219,6 +219,7 @@ public class Controller {
     private void opcio4() {
         int numAventuras, numOfCharacters, countPJ = 0, personatgeAfegir, iniciativa, roundCounter = 0;
         int i = 0;
+        String fraseBoss;
         List<Personatge> personatgesOrdenats = new ArrayList<>();
         List<Monstre> monstresOrdenats = new ArrayList<>();
 
@@ -300,6 +301,10 @@ public class Controller {
                             int posMenorMonstre = monstreManager.posicioMonstreMenysHP(monstresOrdenats);
                             ui.showMessage("\n" + personatgesOrdenats.get(contadorPersonatge).getNom() + " attacks " + monstresOrdenats.get(posMenorMonstre).getNom() + " with Sword Slash.");
                             ui.AttackMissHitCrit(mal);
+                            // no funciona perk a la fase 2 tots els atacs eran fisics (falta crearho quan creem la resta de pj)
+                            if (monstresOrdenats.get(posMenorMonstre).getTipusDeMal().equals(personatgesOrdenats.get(contadorPersonatge).getTipusDeMal)) {
+                                mal = mal/2;
+                            }
                             monstreManager.monstreRebMal(monstresOrdenats.get(posMenorMonstre), mal);
                             if (monstreManager.estaInconscient(monstresOrdenats.get(posMenorMonstre))) {
                                 ui.showMessage(monstresOrdenats.get(posMenorMonstre).getNom() + " dies.");
@@ -312,15 +317,33 @@ public class Controller {
                             contadorMonstre++;
                         } else {
                             int mal = monstreManager.damageMonstre(monstresOrdenats.get(contadorMonstre));
-                            int dau = (int) (Math.random() * (personatgesOrdenats.size()));
-                            while (personatgeManager.estaInconscient(personatgesOrdenats.get(dau))) {
-                                dau = (int) (Math.random() * (personatgesOrdenats.size()));
-                            }
-                            ui.showMessage("\n" + monstresOrdenats.get(contadorMonstre).getNom() + " attacks " + personatgesOrdenats.get(dau).getNom());
-                            ui.AttackMissHitCrit(mal);
-                            personatgeManager.rebreMalPersonatge(personatgesOrdenats.get(dau), mal);
-                            if (personatgeManager.estaInconscient(personatgesOrdenats.get(dau))) {
-                                ui.showMessage(personatgesOrdenats.get(dau).getNom() + " falls unconscious.");
+                            if (monstresOrdenats.get(contadorMonstre).getNivellDificultat().equals("Boss")) {
+                                fraseBoss = "\n" + monstresOrdenats.get(contadorMonstre).getNom() + " attacks ";
+                                for (int h=0; h<aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().size(); h++) {
+                                    if (!personatgeManager.estaInconscient(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h))) {
+                                        fraseBoss = fraseBoss + aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h).getNom();
+                                        ui.AttackMissHitCrit(mal);
+                                        personatgeManager.rebreMalPersonatge(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h), mal);
+                                    }
+                                }
+                                ui.showMessage(fraseBoss);
+                                for (int h=0; h<aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().size(); h++) {
+                                    if (personatgeManager.estaInconscient(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h))) {
+                                        ui.showMessage(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h).getNom() + " falls unconscious.");
+                                    }
+                                }
+
+                            } else {
+                                int dau = (int) (Math.random() * (personatgesOrdenats.size()));
+                                while (personatgeManager.estaInconscient(personatgesOrdenats.get(dau))) {
+                                    dau = (int) (Math.random() * (personatgesOrdenats.size()));
+                                }
+                                ui.showMessage("\n" + monstresOrdenats.get(contadorMonstre).getNom() + " attacks " + personatgesOrdenats.get(dau).getNom());
+                                ui.AttackMissHitCrit(mal);
+                                personatgeManager.rebreMalPersonatge(personatgesOrdenats.get(dau), mal);
+                                if (personatgeManager.estaInconscient(personatgesOrdenats.get(dau))) {
+                                    ui.showMessage(personatgesOrdenats.get(dau).getNom() + " falls unconscious.");
+                                }
                             }
                             contadorMonstre++;
                         }
