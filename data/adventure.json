@@ -1,0 +1,20 @@
+[
+  {
+    "nom": "f",
+    "combats": [
+      {
+        "monstres": [
+          {
+            "name": "Goblin",
+            "challenge": "Minion",
+            "experience": 2,
+            "hitPoints": 5,
+            "initiative": 0,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          }
+        ]
+      }
+    ]
+  }
+]
