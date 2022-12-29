@@ -158,4 +158,5 @@ public class Personatge {
     public void setIniciativa(int iniciativa) {
         this.iniciativa = iniciativa;
     }
+
 }

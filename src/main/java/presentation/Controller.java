@@ -61,7 +61,7 @@ public class Controller {
     }
 
     private void opcio1() {
-        String nom, player;
+        String nom, player, classe;
         int nivell, cos, ment, esperit;
         int dau1, dau2;
         ui.showMessage("\nTavern keeper: 'Oh, so you are new to this land.'");
@@ -91,9 +91,14 @@ public class Controller {
         esperit = personatgeManager.sumarDausStats(dau1, dau2);
         ui.showMessage("Spirit: You rolled" + esperit + "(" + dau1 + "and " + dau2 + ").");
         esperit = personatgeManager.generarStats(esperit);
+        ui.showMessage("`\nTavern keeper: 'Looking good!");
+        ui.showMessage("'And lastly, ?'");
+        classe = ui.askForString("-> Enter the character's initial class [Adventurer, Cleric, Mage]: ");
+        ui.showMessage("\nTavern keeper: 'Any decent party needs one of those.'");
+        ui.showMessage("'I guess that means you are a " + + " by now, nice!");
         ui.showMessage("The new character " + nom + " has been created.");
 
-        personatgeManager.crearPersonatge(nom, player, nivell, cos, ment, esperit);
+        personatgeManager.crearPersonatge(nom, player, nivell, cos, ment, esperit, classe);
     }
 
 

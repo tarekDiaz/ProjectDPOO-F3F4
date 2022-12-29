@@ -13,9 +13,9 @@ public class PersonatgeManager {
         this.personatgesJsonDAO = personatgesJsonDAO;
     }
 
-    public void crearPersonatge (String nom, String player, int nivell, int cos, int ment, int esperit){
+    public void crearPersonatge (String nom, String player, int nivell, int cos, int ment, int esperit, String classe){
         int exp = (nivell * 100) - 100;
-        Personatge personatge = new Personatge(nom, player, exp, cos, ment, esperit, "Adventurer");
+        Personatge personatge = new Personatge(nom, player, exp, cos, ment, esperit, classe);
         personatgesJsonDAO.nouPersonatge(personatge);
     }
     public void borrarPersonatge (String nom){
