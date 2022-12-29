@@ -10,10 +10,12 @@ public class Guerrer extends Personatge{
     }
 
     @Override
-    public int atacarPersonatge(Personatge personatge) {
-        int mal = (int) (Math.random() * (10)) + 1 + personatge.getCos();
+    public int atacarPersonatge() {
+        int mal = (int) (Math.random() * (10)) + 1 + getCos();
         return mal;
     }
+
+
 
     public int reduirMalFisic (int mal, Monstre monstre) {
         if (monstre.getTipusDeMal().equals("Physical")) {

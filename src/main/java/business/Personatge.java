@@ -159,4 +159,13 @@ public class Personatge {
         this.iniciativa = iniciativa;
     }
 
+    public int atacarPersonatge() {
+        int mal = (int) (Math.random() * (6)) + 1 + getCos();
+        return mal;
+    }
+
+    public int calcularPdvMax () {
+        int calculPdv = (10 + getCos()) * getNivell();
+        return calculPdv;
+    }
 }

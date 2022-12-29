@@ -18,6 +18,13 @@ public class PersonatgeManager {
         Personatge personatge = new Personatge(nom, player, exp, cos, ment, esperit, classe);
         personatgesJsonDAO.nouPersonatge(personatge);
     }
+
+    public void inicialitzaPersonatge (Personatge personatge) {
+        int nivell = (personatge.getExperiencia() / 100) + 1;
+        int pdv = calcularPdvMax(personatge);
+        int inicitiva = calcularIniciativa(personatge);
+        Personatge personatge1 = new Personatge(personatge.getNom(), personatge.getNomJugador(), nivell, personatge.getCos(), personatge.getMent(), personatge.getEsperit(), personatge.getClasse(), personatge.getExperiencia(), pdv, pdv, inicitiva);
+    }
     public void borrarPersonatge (String nom){
         personatgesJsonDAO.borrar(nom);
     }
@@ -89,14 +96,21 @@ public class PersonatgeManager {
         return x;
     }
 
-    public void calcularPdvMax (Personatge personatge) {
-        int calculPdv = (10 + personatge.getCos()) * personatge.getNivell();
-        personatge.setPdvMax(calculPdv);
-        personatge.setPdvActual(calculPdv);
+    //Evolucio PJ
+    /*public void evolucionarPersonatge (Personatge personatge) {
+        if (personatge.getNivell() == 4) {
+
+        }
+    }*/
+
+    public int calcularPdvMax (Personatge personatge) {
+        int pdv = personatge.calcularPdvMax();
+        return pdv;
     }
 
     public int atacarPersonatge(Personatge personatge) {
-        int mal = (int) (Math.random() * (6)) + 1 + personatge.getCos();
+        int mal;
+        mal = personatge.atacarPersonatge();
         return mal;
     }
 
