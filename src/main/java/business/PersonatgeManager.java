@@ -8,23 +8,28 @@ import java.util.List;
 public class PersonatgeManager {
     private PersonatgesJsonDAO personatgesJsonDAO;
 
+    public PersonatgesJsonDAO getPersonatgesJsonDAO() {
+        return personatgesJsonDAO;
+    }
 
     public PersonatgeManager(PersonatgesJsonDAO personatgesJsonDAO) {
         this.personatgesJsonDAO = personatgesJsonDAO;
     }
 
-    public void crearPersonatge (String nom, String player, int nivell, int cos, int ment, int esperit, String classe){
+    public void crearPersonatge (String nom, String player, int nivell, int cos, int ment, int esperit){
         int exp = (nivell * 100) - 100;
-        Personatge personatge = new Personatge(nom, player, exp, cos, ment, esperit, classe);
+        Personatge personatge = new Personatge(nom, player, exp, cos, ment, esperit, "Adventurer");
         personatgesJsonDAO.nouPersonatge(personatge);
     }
 
-    public void inicialitzaPersonatge (Personatge personatge) {
-        int nivell = (personatge.getExperiencia() / 100) + 1;
-        int pdv = calcularPdvMax(personatge);
-        int inicitiva = calcularIniciativa(personatge);
-        Personatge personatge1 = new Personatge(personatge.getNom(), personatge.getNomJugador(), nivell, personatge.getCos(), personatge.getMent(), personatge.getEsperit(), personatge.getClasse(), personatge.getExperiencia(), pdv, pdv, inicitiva);
+    public void inicialitzaPersonatges (List<Personatge> personatges) {
+        for (int i = 0; i < personatges.size(); i++) {
+            personatges.get(i).setNivell((personatges.get(i).getExperiencia() / 100) + 1);
+            calcularPdvMax(personatges.get(i));
+            personatges.get(i).setIniciativa(calcularIniciativa(personatges.get(i)));
+        }
     }
+
     public void borrarPersonatge (String nom){
         personatgesJsonDAO.borrar(nom);
     }
@@ -61,7 +66,7 @@ public class PersonatgeManager {
 
     public int calcularIniciativa (Personatge personatge) {
         int n = (int) (Math.random() * (12)) + 1;
-        int iniciativa = n * personatge.getEsperit();
+        int iniciativa = n + personatge.getEsperit();
         return iniciativa;
     }
 
@@ -96,31 +101,32 @@ public class PersonatgeManager {
         return x;
     }
 
-    //Evolucio PJ
-    /*public void evolucionarPersonatge (Personatge personatge) {
-        if (personatge.getNivell() == 4) {
-
-        }
-    }*/
-
-    public int calcularPdvMax (Personatge personatge) {
-        int pdv = personatge.calcularPdvMax();
-        return pdv;
+    //canviat a la fase 4
+    public void calcularPdvMax (Personatge personatge) {
+        int calculPdv = personatge.calcularPdvMax();
+        personatge.setPdvMax(calculPdv);
+        personatge.setPdvActual(calculPdv);
     }
 
+    //canviat a la fase 4
     public int atacarPersonatge(Personatge personatge) {
         int mal;
         mal = personatge.atacarPersonatge();
         return mal;
     }
 
-    //posiblement calgui unir estaInconcient i rebreMalPersonatge d'alguna manera
-    public void rebreMalPersonatge(Personatge personatge, int mal) {
+    public void rebreMalPersonatge(Personatge personatge, int mal, int dau) {
+        if (dau == 1) {
+            mal = 0;
+        }
+        if (dau == 10) {
+            mal = mal * 2;
+        }
+
         int pdvPostAtac = personatge.getPdvActual() - mal;
+        personatge.setPdvActual(pdvPostAtac);
         if (personatge.getPdvActual() < 0) {
             personatge.setPdvActual(0);
-        } else {
-            personatge.setPdvActual(pdvPostAtac);
         }
     }
 
@@ -135,8 +141,9 @@ public class PersonatgeManager {
         return cura;
     }
 
+    //falta pensar suport de campio
     public void suportPersonatge(Personatge personatge) {
-        int nouEsperit = personatge.getEsperit() + 1;
+        int nouEsperit = personatge.suportPersonatge();
         personatge.setEsperit(nouEsperit);
     }
 

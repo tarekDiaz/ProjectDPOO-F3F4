@@ -1,37 +1,42 @@
 package business;
 
 import com.google.gson.JsonObject;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Personatge {
 
     @SerializedName("name")
+    @Expose
     private String nom;
 
     @SerializedName("player")
+    @Expose
     private String nomJugador;
 
-    private int nivell;
+    @SerializedName("xp")
+    @Expose
+    private int experiencia;
 
     @SerializedName("body")
+    @Expose
     private int cos;
 
     @SerializedName("mind")
+    @Expose
     private int ment;
 
     @SerializedName("spirit")
+    @Expose
     private int esperit;
 
     @SerializedName("class")
+    @Expose
     private String classe;
 
-    @SerializedName("xp")
-    private int experiencia;
-
+    private int nivell;
     private int pdvMax;
-
     private int pdvActual;
-
     private int iniciativa;
 
     public Personatge(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa) {
@@ -167,5 +172,10 @@ public class Personatge {
     public int calcularPdvMax () {
         int calculPdv = (10 + getCos()) * getNivell();
         return calculPdv;
+    }
+
+    public int suportPersonatge() {
+        int nouEsperit = getEsperit() + 1;
+        return nouEsperit;
     }
 }

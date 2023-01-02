@@ -13,12 +13,18 @@ import java.util.List;
 public class MonstresJsonDAO {
     private final String FILE_PATH = "data/monsters.json";
     private FileReader fr;
+    private boolean exsists;
+
+    public boolean getExsists() {
+        return exsists;
+    }
 
     public MonstresJsonDAO() {
         try {
             fr = new FileReader(FILE_PATH);
+            exsists = true;
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            exsists = false;
         }
     }
 
@@ -34,28 +40,7 @@ public class MonstresJsonDAO {
         Type tipoLista = new TypeToken<List<Monstre>>(){}.getType();
         List<Monstre> monstresJsonArray = gson.fromJson(reader, tipoLista);
 
-
-        List<Monstre> monstresList = new ArrayList<>();
-
-        for (int i = 0; i < monstresJsonArray.size(); i++) {
-
-            String nom = monstresJsonArray.get(i).getNom();
-
-            String nivellDificultat = monstresJsonArray.get(i).getNivellDificultat();
-
-            int experiencia = monstresJsonArray.get(i).getExperiencia();
-
-            int pdv = monstresJsonArray.get(i).getPdv();
-
-            int iniciativa = monstresJsonArray.get(i).getIniciativa();
-
-            String tipusDau = monstresJsonArray.get(i).getTipusDau();
-
-            String tipusDeMal = monstresJsonArray.get(i).getTipusDeMal();
-
-
-            monstresList.add(new Monstre(nom, nivellDificultat, experiencia, pdv, iniciativa, tipusDau, tipusDeMal));
-        }
-        return monstresList;
+        return monstresJsonArray;
     }
 }
+

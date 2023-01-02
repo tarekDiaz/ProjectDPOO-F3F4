@@ -49,6 +49,7 @@ public class UiManager {
     }
 
     public void showCharList(List<String> personatges) {
+        System.out.println("");
         for (int i = 0; i < personatges.size(); i++) {
             System.out.println("\t" + (i + 1) + ". " + personatges.get(i));
         }
@@ -62,13 +63,13 @@ public class UiManager {
     }
 
     public void showPartyList(List<Personatge> personatges, int numOfCharacters, int countPJ) {
-        System.out.println("--------------------------------");
+        System.out.println("\n--------------------------------");
         System.out.println("Your party (" + countPJ + " / " + numOfCharacters + "):");
         for (int i = 0; i < numOfCharacters; i++) {
             if (i < countPJ) {
-                System.out.println("\t" + (i+1) + ". " + personatges.get(i));
+                System.out.println("\t" + (i+1) + ". " + personatges.get(i).getNom()    );
             } else {
-                System.out.println("\t" + (i+1) + "Empty");
+                System.out.println("\t" + (i+1) + ". Empty");
             }
         }
         System.out.println("--------------------------------");
@@ -80,17 +81,17 @@ public class UiManager {
         }
     }
 
-    public void AttackMissHitCrit (int mal) {
-        int roll = (int) (Math.random() * (10)) + 1;
+    public void AttackMissHitCrit (int mal, int roll) {
         if (roll == 1) {
-            System.out.println("Fails and deals 0 physical damage");
+            System.out.println("Fails and deals 0 physical damage.");
         }
-        if (roll > 1 || roll < 10) {
-            System.out.println("Hits and deals " + mal + " physical damage");
+        if (roll > 1 && roll < 10) {
+            System.out.println("Hits and deals " + mal + " physical damage.");
         }
         if (roll == 10) {
-            System.out.println("Critical Hit and deals " + mal + " physical damage");
+            System.out.println("Critical Hit and deals " + (mal * 2) + " physical damage.");
         }
     }
 }
+
 

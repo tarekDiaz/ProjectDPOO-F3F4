@@ -14,6 +14,10 @@ public class MonstreManager {
         this.monstresJsonDAO = monstresJsonDAO;
     }
 
+    public MonstresJsonDAO getMonstresJsonDAO() {
+        return monstresJsonDAO;
+    }
+
     public List<String> llistarMonstres(){
         List<Monstre> monstres = monstresJsonDAO.readMonstresFromJson();
         List<String> infoMonstres = new ArrayList<>();
@@ -56,17 +60,25 @@ public class MonstreManager {
         for (int i=1; i<monstres.size(); i++) {
             if ((monstres.get(i).getPdv() < menor && monstres.get(i).getPdv() != 0) || menor == 0) {
                 posMenor = i;
+                menor = monstres.get(i).getPdv();
             }
         }
         return posMenor;
     }
 
-    public void monstreRebMal (Monstre monstre, int mal) {
+    public void monstreRebMal (Monstre monstre, int mal, int dau) {
+        if (dau == 1) {
+            mal = 0;
+        }
+        if (dau == 10) {
+            mal = mal * 2;
+        }
+
         int pdvPostAtac = monstre.getPdv() - mal;
+        monstre.setPdv(pdvPostAtac);
+
         if (monstre.getPdv() < 0) {
             monstre.setPdv(0);
-        } else {
-            monstre.setPdv(pdvPostAtac);
         }
     }
 

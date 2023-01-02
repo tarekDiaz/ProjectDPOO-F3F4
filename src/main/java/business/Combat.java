@@ -13,8 +13,4 @@ public class Combat {
         return monstres;
     }
 
-    public void setMonstre(List<Monstre> monstre) {
-        this.monstres = monstres;
-    }
-
 }

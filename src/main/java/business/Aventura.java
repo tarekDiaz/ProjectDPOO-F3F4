@@ -17,16 +17,8 @@ public class Aventura {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
     public List<Combat> getCombats() {
         return combats;
-    }
-
-    public void setCombats(List<Combat> combats) {
-        this.combats = combats;
     }
 
     public List<Personatge> getPersonatges() {
@@ -37,3 +29,4 @@ public class Aventura {
         this.personatges = personatges;
     }
 }
+

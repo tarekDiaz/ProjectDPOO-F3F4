@@ -17,6 +17,10 @@ public class AventuraManager {
         this.personatgesJsonDAO = personatgesJsonDAO;
     }
 
+    public AventurasJsonDAO getAventurasJsonDAO() {
+        return aventurasJsonDAO;
+    }
+
     public Aventura crearAventura(String nom, List<Combat> combats, int numCombats) {
         Aventura aventura = new Aventura(nom, combats, null);
         for (int i = 0; i < numCombats; i++) {
@@ -37,6 +41,16 @@ public class AventuraManager {
         for (int j=0; j < quantitatMonstres; j++) {
             aventura.combats.get(numCombat).monstres.add(monstre);
         }
+    }
+
+    public boolean checkBossCombat (Aventura aventura, int numCombat) {
+        boolean bossCheck = false;
+        for (int i=0; i < aventura.getCombats().get(numCombat).getMonstre().size(); i++) {
+            if (aventura.getCombats().get(numCombat).getMonstre().get(i).getNivellDificultat().equals("Boss")) {
+                bossCheck = true;
+            }
+        }
+        return bossCheck;
     }
 
     public List<String> generarLlistaMonstres(Combat combat) {
@@ -95,10 +109,7 @@ public class AventuraManager {
     }
     public Aventura retornaAventuraComplerta(int numAventura) {
         List<Aventura> aventuras = aventurasJsonDAO.readAventuraFromJson();
-        Aventura aventura = null;
-
-        aventura = aventuras.get(numAventura-1);
-        return aventura;
+        return aventuras.get(numAventura-1);
     }
 
     /*public void creaLlistaPersonatges (Aventura aventura, int numPersonatges) {
@@ -109,8 +120,11 @@ public class AventuraManager {
 
     public void afegirPersonatgeAventura (Aventura aventura, int numPersonatge) {
         List<Personatge> personatges = personatgesJsonDAO.readPersonatgeFromJson();
+        if (aventura.getPersonatges() == null) {
+            aventura.setPersonatges(new ArrayList<>());
+        }
+        aventura.personatges.add(personatges.get(numPersonatge-1));
 
-        aventura.personatges.add(personatges.get(numPersonatge));
     }
 
     public void ordenarPersonatgesSegonsIniciatives (List<Personatge> personatges, Personatge personatge) {
@@ -128,6 +142,7 @@ public class AventuraManager {
 
     public void ordenarMonstresSegonsIniciatives (List<Monstre> monstres, Monstre monstre) {
 
+        monstre.setIniciativa(monstre.getIniciativa() + ((int) (Math.random() * (12)) + 1));
         monstres.add(monstre);
         if (monstres.size() > 1) {
             Collections.sort(monstres, new Comparator<Monstre>() {
@@ -144,20 +159,20 @@ public class AventuraManager {
 
         for (i=0; i<(personatges.size() + monstres.size()); i++) {
             if (personatges.size() == contadorPersonatges) {
-                llistaOrdenadaFinal.add("- " + monstres.get(contadorMonstres).getIniciativa() + " " + monstres.get(contadorMonstres).getNom());
+                llistaOrdenadaFinal.add("- " + monstres.get(contadorMonstres).getIniciativa() + " \t" + monstres.get(contadorMonstres).getNom());
                 contadorMonstres++;
             } else {
                 if (monstres.size() == contadorMonstres) {
-                    llistaOrdenadaFinal.add("- " + personatges.get(contadorPersonatges).getIniciativa() + " " + personatges.get(contadorPersonatges).getNom());
+                    llistaOrdenadaFinal.add("- " + personatges.get(contadorPersonatges).getIniciativa() + " \t" + personatges.get(contadorPersonatges).getNom());
                     contadorPersonatges++;
                 }
                 else {
-                    if (personatges.get(contadorPersonatges).getIniciativa() > monstres.get(contadorMonstres).getIniciativa()) {
-                        llistaOrdenadaFinal.add("- " + personatges.get(contadorPersonatges).getIniciativa() + " " + personatges.get(contadorPersonatges).getNom());
+                    if (personatges.get(contadorPersonatges).getIniciativa() >= monstres.get(contadorMonstres).getIniciativa()) {
+                        llistaOrdenadaFinal.add("- " + personatges.get(contadorPersonatges).getIniciativa() + " \t" + personatges.get(contadorPersonatges).getNom());
                         contadorPersonatges++;
                     } else {
-                        if (personatges.get(contadorPersonatges).getIniciativa() > monstres.get(contadorMonstres).getIniciativa()) {
-                            llistaOrdenadaFinal.add("- " + monstres.get(contadorMonstres).getIniciativa() + " " + monstres.get(contadorMonstres).getNom());
+                        if (personatges.get(contadorPersonatges).getIniciativa() < monstres.get(contadorMonstres).getIniciativa()) {
+                            llistaOrdenadaFinal.add("- " + monstres.get(contadorMonstres).getIniciativa() + " \t" + monstres.get(contadorMonstres).getNom());
                             contadorMonstres++;
                         }
                     }
@@ -181,11 +196,11 @@ public class AventuraManager {
                     contadorPersonatges++;
                 }
                 else {
-                    if (personatges.get(contadorPersonatges).getIniciativa() > monstres.get(contadorMonstres).getIniciativa()) {
+                    if (personatges.get(contadorPersonatges).getIniciativa() >= monstres.get(contadorMonstres).getIniciativa()) {
                         nomsOrdenats.add(personatges.get(contadorPersonatges).getNom());
                         contadorPersonatges++;
                     } else {
-                        if (personatges.get(contadorPersonatges).getIniciativa() > monstres.get(contadorMonstres).getIniciativa()) {
+                        if (personatges.get(contadorPersonatges).getIniciativa() < monstres.get(contadorMonstres).getIniciativa()) {
                             nomsOrdenats.add(monstres.get(contadorMonstres).getNom());
                             contadorMonstres++;
                         }

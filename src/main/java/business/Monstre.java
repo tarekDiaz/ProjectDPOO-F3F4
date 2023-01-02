@@ -3,8 +3,10 @@ package business;
 import com.google.gson.annotations.SerializedName;
 
 public class Monstre {
+
     @SerializedName("name")
     private String nom;
+
     @SerializedName("challenge")
     private String nivellDificultat;
     @SerializedName("experience")
@@ -32,24 +34,12 @@ public class Monstre {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
     public String getNivellDificultat() {
         return nivellDificultat;
     }
 
-    public void setNivellDificultat(String nivellDificultat) {
-        this.nivellDificultat = nivellDificultat;
-    }
-
     public String getTipusDeMal() {
         return tipusDeMal;
-    }
-
-    public void setTipusDeMal(String tipusDeMal) {
-        this.tipusDeMal = tipusDeMal;
     }
 
     public int getPdv() {
@@ -64,9 +54,6 @@ public class Monstre {
         return experiencia;
     }
 
-    public void setExperiencia(int experiencia) {
-        this.experiencia = experiencia;
-    }
 
     public int getIniciativa() {
         return iniciativa;
@@ -76,8 +63,34 @@ public class Monstre {
         this.iniciativa = iniciativa;
     }
 
+
     public String getTipusDau(){return tipusDau;}
 
-    public void setTipusDau(String tipusDau){ this.tipusDau = tipusDau; }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        Monstre m;
+        if(!(o instanceof Monstre))
+        {
+            return false;
+        }
+
+        else
+        {
+            m=(Monstre)o;
+            if(this.nom.equals(m.getNom()) &&
+                    this.nivellDificultat.equals(m.getNivellDificultat()) &&
+                    this.experiencia == m.getExperiencia() &&
+                    this.pdv == m.getPdv() &&
+                    this.iniciativa == m.getIniciativa() &&
+                    this.tipusDau.equals(m.getTipusDau()) &&
+                    this.tipusDeMal.equals(m.getTipusDeMal()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 

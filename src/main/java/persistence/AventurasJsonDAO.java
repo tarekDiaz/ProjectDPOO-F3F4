@@ -16,11 +16,17 @@ import java.util.List;
 public class AventurasJsonDAO {
     private final String ADVENTURE_PATH = "data/adventure.json";
     private FileReader fr;
+    private boolean exsists;
+
+    public boolean getExsists() {
+        return exsists;
+    }
     public AventurasJsonDAO() {
         try {
             fr = new FileReader(ADVENTURE_PATH);
+            exsists = true;
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            exsists = false;
         }
     }
     public List<Aventura> readAventuraFromJson() {
@@ -31,7 +37,6 @@ public class AventurasJsonDAO {
             throw new RuntimeException(e);
         }
         Gson gson = new Gson();
-
         Type tipoLista = new TypeToken<List<Aventura>>(){}.getType();
         List<Aventura> aventuraJsonArray = gson.fromJson(reader, tipoLista);
 
@@ -39,26 +44,26 @@ public class AventurasJsonDAO {
     }
 
     public void writeAventuraJson(Aventura aventura){
-        try (Writer writer = new FileWriter(ADVENTURE_PATH)){
-            FileReader reader = new FileReader(ADVENTURE_PATH);
-
+        try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+            List<Aventura> aventuraListJson = readAventuraFromJson();
             List<Aventura> aventuraList = new ArrayList<Aventura>();
 
-            List<Aventura> aventuraListJson = readAventuraFromJson();
+
             if (aventuraListJson != null){
                 aventuraList = aventuraListJson;
             }
-
             aventuraList.add(aventura);
 
-            gson.toJson(aventuraList, writer);
+            Writer fw = new FileWriter(ADVENTURE_PATH);
+            gson.toJson(aventuraList, fw);
+            fw.flush();
+            fw.close();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
 
     }
 
