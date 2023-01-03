@@ -1,6 +1,6 @@
 package business;
 
-public class Guerrer extends Personatge{
+public class Guerrer extends Aventurer{
     public Guerrer(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa) {
         super(nom, nomJugador, nivell, cos, ment, esperit, classe, experiencia, pdvMax, pdvActual, iniciativa);
     }

@@ -16,10 +16,11 @@ public class PersonatgeManager {
         this.personatgesJsonDAO = personatgesJsonDAO;
     }
 
-    public void crearPersonatge (String nom, String player, int nivell, int cos, int ment, int esperit){
+    public Personatge crearPersonatge (String nom, String player, int nivell, int cos, int ment, int esperit, String classe){
         int exp = (nivell * 100) - 100;
-        Personatge personatge = new Personatge(nom, player, exp, cos, ment, esperit, "Adventurer");
+        Personatge personatge = new Personatge(nom, player, exp, cos, ment, esperit, classe);
         personatgesJsonDAO.nouPersonatge(personatge);
+        return personatge;
     }
 
     public void inicialitzaPersonatges (List<Personatge> personatges) {
@@ -27,6 +28,34 @@ public class PersonatgeManager {
             personatges.get(i).setNivell((personatges.get(i).getExperiencia() / 100) + 1);
             calcularPdvMax(personatges.get(i));
             personatges.get(i).setIniciativa(calcularIniciativa(personatges.get(i)));
+        }
+    }
+    public void inicialitzaPersonatgesAmbClasse (List<Personatge> personatges) {
+        List<Personatge> copiaLlista = personatges;
+        personatges.clear();
+        for (int i=0; i<copiaLlista.size(); i++) {
+            if (copiaLlista.get(i).getClasse().equals("Aventurer")) {
+                if (copiaLlista.get(i).getNivell() < 4) {
+                    personatges.add(new Aventurer(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa()));
+                }
+                if (copiaLlista.get(i).getNivell() > 3 && copiaLlista.get(i).getNivell() < 8) {
+                    personatges.add(new Guerrer(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa()));
+                }
+                if (copiaLlista.get(i).getNivell() > 7) {
+                    personatges.add(new Campio(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa()));
+                }
+            }
+            if (copiaLlista.get(i).getClasse().equals("Clergue")) {
+                if (copiaLlista.get(i).getNivell() < 5) {
+                    personatges.add(new Clergue(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa()));
+                }
+                if (copiaLlista.get(i).getNivell() > 4) {
+                    personatges.add(new Paladi(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa()));
+                }
+            }
+            if (copiaLlista.get(i).getClasse().equals("Mag")) {
+                personatges.add(new Mag(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa()));
+            }
         }
     }
 
@@ -205,6 +234,32 @@ public class PersonatgeManager {
         return check;
     }
 
+    public String classeDepenentDeLvl(Personatge personatge, int nivell) {
+        String classe = null;
+        if (personatge.getClasse().equals("Aventurer")) {
+            if (personatge.getNivell() < 4) {
+                classe = "Aventurer";
+            }
+            if (personatge.getNivell() > 3 && personatge.getNivell() < 8) {
+                classe = "Guerrer";
+            }
+            if (personatge.getNivell() > 7) {
+                classe = "Campio";
+            }
+        }
+        if (personatge.getClasse().equals("Clergue")) {
+            if (personatge.getNivell() < 5) {
+                classe = "Clergue";
+            }
+            if (personatge.getNivell() > 4) {
+                classe = "Paladi";
+            }
+        }
+        if (personatge.getClasse().equals("Mag")) {
+            classe = "Mag";
+        }
+        return classe;
+    }
 }
 
 

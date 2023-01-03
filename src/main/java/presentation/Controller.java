@@ -81,7 +81,7 @@ public class Controller {
     }
 
     private void opcio1() {
-        String nom, player;
+        String nom, player, classe;
         int nivell, cos, ment, esperit;
         int dau1, dau2;
         ui.showMessage("Tavern keeper: 'Oh, so you are new to this land.'");
@@ -115,9 +115,22 @@ public class Controller {
         ui.showMessage("\t- Body: " + cos);
         ui.showMessage("\t- Mind: " + ment);
         ui.showMessage("\t- Spirit: " + esperit);
-        ui.showMessage("\n The new character " + nom + " has been created.");
+        ui.showMessage("`\nTavern keeper: 'Looking good!");
+        ui.showMessage("'And lastly, ?'\n");
+        classe = ui.askForString("-> Enter the character's initial class [Adventurer, Cleric, Mage]: ");
+        // no se si soc retrasat o que passa pero no aconegueixo fer el while estic tilt
+        while (classe != "Adventurer" && classe != "Cleric" && classe != "Mage") {
+            ui.showMessage("\nEnter a valid class.\n");
+            classe = ui.askForString("-> Enter the character's initial class [Adventurer, Cleric, Mage]: ");
+        }
 
-        personatgeManager.crearPersonatge(nom, player, nivell, cos, ment, esperit);
+        // Per saber a quina classe evoluciona pero aqui no fa falta inicialitzar el personatge amb la seva classe
+        Personatge personatge = personatgeManager.crearPersonatge(nom, player, nivell, cos, ment, esperit, classe);
+        classe = personatgeManager.classeDepenentDeLvl(personatge, nivell);
+
+        ui.showMessage("\nTavern keeper: 'Any decent party needs one of those.'");
+        ui.showMessage("'I guess that means you are a " + classe + " by now, nice!");
+        ui.showMessage("\nThe new character " + nom + " has been created.");
     }
 
 
@@ -315,8 +328,10 @@ public class Controller {
             aventuraManager.afegirPersonatgeAventura(currentAventura, personatgeAfegir);
             countPJ++;
         }while (countPJ < numOfCharacters);
-        // inicialitzo aqui
+        // inicialitzo lvl, pdv i iniciativa
         personatgeManager.inicialitzaPersonatges(currentAventura.getPersonatges());
+        // aqui inicialitzo les classes
+        personatgeManager.inicialitzaPersonatgesAmbClasse(currentAventura.getPersonatges());
 
         ui.showPartyList(currentAventura.getPersonatges(), numOfCharacters, countPJ);
         ui.showMessage("\nTavern keeper: 'Great, good luck on your adventure lads!'\n");
@@ -369,9 +384,9 @@ public class Controller {
                                 ui.showMessage("\n" + personatgesOrdenats.get(contadorPersonatge).getNom() + " attacks " + monstresOrdenats.get(posMenorMonstre).getNom() + " with Sword Slash.");
                                 dau = (int) (Math.random() * (10)) + 1;
                                 //resistencia al mal bosses
-                                if (monstresOrdenats.get(posMenorMonstre).getNivellDificultat().equals("Boss") && monstresOrdenats.get(posMenorMonstre).getTipusDeMal().equals(personatgesOrdenats.get(contadorPersonatge).getTipusDeMal)) {
+                                /*if (monstresOrdenats.get(posMenorMonstre).getNivellDificultat().equals("Boss") && monstresOrdenats.get(posMenorMonstre).getTipusDeMal().equals(personatgesOrdenats.get(contadorPersonatge).getTipusDeMal)) {
                                     mal = mal/2;
-                                }
+                                }*/
                                 monstreManager.monstreRebMal(monstresOrdenats.get(posMenorMonstre), mal, dau);
                                 ui.AttackMissHitCrit(mal, dau);
                                 if (monstreManager.estaInconscient(monstresOrdenats.get(posMenorMonstre))) {

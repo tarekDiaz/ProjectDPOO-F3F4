@@ -1,6 +1,6 @@
 package business;
 
-public class Campio extends Personatge{
+public class Campio extends Guerrer{
 
     public Campio(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa) {
         super(nom, nomJugador, nivell, cos, ment, esperit, classe, experiencia, pdvMax, pdvActual, iniciativa);
