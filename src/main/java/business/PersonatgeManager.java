@@ -23,6 +23,11 @@ public class PersonatgeManager {
         return personatge;
     }
 
+    public List<Personatge> llegirPersonatges(){
+        List<Personatge> personatgesList = personatgesJsonDAO.readPersonatgeFromJson();
+        return personatgesList;
+    }
+
     public void inicialitzaPersonatges (List<Personatge> personatges) {
         for (int i = 0; i < personatges.size(); i++) {
             personatges.get(i).setNivell((personatges.get(i).getExperiencia() / 100) + 1);

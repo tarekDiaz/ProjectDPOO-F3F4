@@ -39,6 +39,9 @@ public class AventurasJsonDAO {
         Gson gson = new Gson();
         Type tipoLista = new TypeToken<List<Aventura>>(){}.getType();
         List<Aventura> aventuraJsonArray = gson.fromJson(reader, tipoLista);
+        if (aventuraJsonArray == null){
+            aventuraJsonArray = new ArrayList<>();
+        }
 
         return aventuraJsonArray;
     }

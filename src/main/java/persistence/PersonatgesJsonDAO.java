@@ -38,6 +38,9 @@ public class PersonatgesJsonDAO {
         Gson gson = new Gson();
         Type tipoLista = new TypeToken<List<Personatge>>(){}.getType();
         List<Personatge> personatgesJsonArray = gson.fromJson(reader, tipoLista);
+        if (personatgesJsonArray == null){
+            personatgesJsonArray = new ArrayList<Personatge>();
+        }
 
         return personatgesJsonArray;
 

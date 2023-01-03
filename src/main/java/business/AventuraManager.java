@@ -83,9 +83,10 @@ public class AventuraManager {
         return infoMonstresCombat;
     }
 
-    public void borrarMonstreCombat (Aventura aventura, int monstreDelete, int numCombat) {
+    public String borrarMonstreCombat (Aventura aventura, int monstreDelete, int numCombat) {
         List<String> infoMonstresCombat = generarLlistaMonstres(aventura.getCombats().get(numCombat));
-        String stringMonstre;
+        String stringMonstre, monstresEliminats;
+        int numeroMonstres = 0;
 
         stringMonstre = infoMonstresCombat.get(monstreDelete-1);
 
@@ -94,10 +95,19 @@ public class AventuraManager {
         for (int i=0; i<aventura.combats.get(numCombat).monstres.size(); i++) {
             if (aventura.combats.get(numCombat).monstres.get(i).getNom().equals(nomMonstre)) {
                 aventura.combats.get(numCombat).monstres.remove(i);
+                numeroMonstres ++;
                 i--;
             }
         }
+
+        return monstresEliminats = numeroMonstres + " " +nomMonstre;
     }
+
+    public List<Aventura> llegirAventures(){
+        List<Aventura> aventuraList = aventurasJsonDAO.readAventuraFromJson();
+        return aventuraList;
+    }
+
     public List<String> llistarAventuras () {
         List<Aventura> aventuras = aventurasJsonDAO.readAventuraFromJson();
         List<String> noms = new ArrayList<>();

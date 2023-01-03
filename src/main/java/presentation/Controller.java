@@ -140,66 +140,71 @@ public class Controller {
         boolean back = true;
 
         ui.showMessage("Tavern keeper: 'Lads! They want to see you!'");
-        ui.showMessage("'Who piques your interest?'\n");
-        while (back) {
-            back = false;
-            player = ui.askForString("-> Enter the name of the Player to filter: ");
-            while (personatgeManager.llistarPersonatgesPlayer(player).isEmpty() && !player.isEmpty()) {
-                player = ui.askForString("\n'That's not a Player's name. Enter a valid one: ");
-            }
-
-            if (player.isEmpty()) {
-                ui.showMessage("\nYou watch as all adventurers get up from their chairs and approach you.");
-                ui.showCharList(personatgeManager.llistarPersonatges());
-                totalNumPersonatge = personatgeManager.llistarPersonatges().size();
-                numPersonatge = ui.askForInteger("Who would you like to meet [0.." + totalNumPersonatge + "]: ");
-                if (numPersonatge == 0) {
-                    back = true;
-                    ui.showMessage("\nTavern keeper: 'You did not want to do this, it's fine, let's just go back.\n");
-                } else {
-                    nomPersonatge = personatgeManager.llistarPersonatges().get(numPersonatge-1);
-                }
-            } else {
-                ui.showMessage("\nYou watch as some adventurers get up from their chairs and approach you.");
-                ui.showCharList(personatgeManager.llistarPersonatgesPlayer(player));
-                totalNumPersonatge = personatgeManager.llistarPersonatgesPlayer(player).size();
-                numPersonatge = ui.askForInteger("Who would you like to meet [0.." + totalNumPersonatge + "]: ");
-                if (numPersonatge == 0) {
-                    back = true;
-                    ui.showMessage("\nTavern keeper: 'You did not want to do this, it's fine, let's just go back.\n");
-                } else {
-                    nomPersonatge = personatgeManager.llistarPersonatgesPlayer(player).get(numPersonatge-1);
-                }
-            }
+        if (personatgeManager.llegirPersonatges().isEmpty()){
+            ui.showMessage("\nThere are no characters available!");
         }
+        else{
+            ui.showMessage("'Who piques your interest?'\n");
+            while (back) {
+                back = false;
+                player = ui.askForString("-> Enter the name of the Player to filter: ");
+                while (personatgeManager.llistarPersonatgesPlayer(player).isEmpty() && !player.isEmpty()) {
+                    player = ui.askForString("\n'That's not a Player's name. Enter a valid one: ");
+                }
 
-        ui.showMessage("\nTavern keeper: 'Hey " + nomPersonatge + " get here; the boss wants to see you!'\n");
-        ui.showMessage("*Name: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom());
-        ui.showMessage("*Player: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNomJugador());
-        ui.showMessage("*Class: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getClasse());
-        int nivell = (personatgeManager.retornaPersonatgeComplert(nomPersonatge).getExperiencia() / 100) + 1;
-        ui.showMessage("*Level: " + nivell);
-        ui.showMessage("*XP: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getExperiencia());
-        ui.showMessage("*Body: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getCos());
-        ui.showMessage("*Mind: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getMent());
-        ui.showMessage("*Spirit: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getEsperit());
-
-        do {
-            ui.showMessage("\n[Enter name to delete, or press enter to cancel]");
-            nomPersonatgeDelete = ui.askForString("Do you want to delete " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom() + "? ");
-            if (nomPersonatgeDelete.isEmpty()) {
-                ui.showMessage("\nTavern keeper: 'That's enough " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom() + ", you can go back with your buddys'");
-            } else {
-                if (!nomPersonatge.equals(nomPersonatgeDelete)) {
-                    ui.showMessage("\nTavern keeper: 'That's not who we are talking about. Make a decision.'");
+                if (player.isEmpty()) {
+                    ui.showMessage("\nYou watch as all adventurers get up from their chairs and approach you.");
+                    ui.showCharList(personatgeManager.llistarPersonatges());
+                    totalNumPersonatge = personatgeManager.llistarPersonatges().size();
+                    numPersonatge = ui.askForInteger("Who would you like to meet [0.." + totalNumPersonatge + "]: ");
+                    if (numPersonatge == 0) {
+                        back = true;
+                        ui.showMessage("\nTavern keeper: 'You did not want to do this, it's fine, let's just go back.\n");
+                    } else {
+                        nomPersonatge = personatgeManager.llistarPersonatges().get(numPersonatge-1);
+                    }
+                } else {
+                    ui.showMessage("\nYou watch as some adventurers get up from their chairs and approach you.");
+                    ui.showCharList(personatgeManager.llistarPersonatgesPlayer(player));
+                    totalNumPersonatge = personatgeManager.llistarPersonatgesPlayer(player).size();
+                    numPersonatge = ui.askForInteger("Who would you like to meet [0.." + totalNumPersonatge + "]: ");
+                    if (numPersonatge == 0) {
+                        back = true;
+                        ui.showMessage("\nTavern keeper: 'You did not want to do this, it's fine, let's just go back.\n");
+                    } else {
+                        nomPersonatge = personatgeManager.llistarPersonatgesPlayer(player).get(numPersonatge-1);
+                    }
                 }
             }
-            if (nomPersonatge.equals(nomPersonatgeDelete)) {
-                ui.showMessage("\nTavern keeper: 'I'm sorry kiddo, but you have to leave.'");
-                ui.showMessage("\nCharacter "+ personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom() + " left the Guild.");
-                personatgeManager.borrarPersonatge(nomPersonatge);
-            }
-        } while ((!nomPersonatge.equals(nomPersonatgeDelete)) && !nomPersonatgeDelete.isEmpty());
+
+            ui.showMessage("\nTavern keeper: 'Hey " + nomPersonatge + " get here; the boss wants to see you!'\n");
+            ui.showMessage("*Name: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom());
+            ui.showMessage("*Player: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNomJugador());
+            ui.showMessage("*Class: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getClasse());
+            int nivell = (personatgeManager.retornaPersonatgeComplert(nomPersonatge).getExperiencia() / 100) + 1;
+            ui.showMessage("*Level: " + nivell);
+            ui.showMessage("*XP: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getExperiencia());
+            ui.showMessage("*Body: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getCos());
+            ui.showMessage("*Mind: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getMent());
+            ui.showMessage("*Spirit: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getEsperit());
+
+            do {
+                ui.showMessage("\n[Enter name to delete, or press enter to cancel]");
+                nomPersonatgeDelete = ui.askForString("Do you want to delete " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom() + "? ");
+                if (nomPersonatgeDelete.isEmpty()) {
+                    ui.showMessage("\nTavern keeper: 'That's enough " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom() + ", you can go back with your buddys'");
+                } else {
+                    if (!nomPersonatge.equals(nomPersonatgeDelete)) {
+                        ui.showMessage("\nTavern keeper: 'That's not who we are talking about. Make a decision.'");
+                    }
+                }
+                if (nomPersonatge.equals(nomPersonatgeDelete)) {
+                    ui.showMessage("\nTavern keeper: 'I'm sorry kiddo, but you have to leave.'");
+                    ui.showMessage("\nCharacter "+ personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom() + " left the Guild.");
+                    personatgeManager.borrarPersonatge(nomPersonatge);
+                }
+            } while ((!nomPersonatge.equals(nomPersonatgeDelete)) && !nomPersonatgeDelete.isEmpty());
+        }
     }
 
     private void opcio3() {
@@ -266,8 +271,8 @@ public class Controller {
                                 monsterDelete = ui.askForInteger("-> Which monster do you want to delete: ");
 
                             }
-                            aventuraManager.borrarMonstreCombat(aventura, monsterDelete, i);
-                            //ultima
+                            String monstresEliminats = aventuraManager.borrarMonstreCombat(aventura, monsterDelete, i);
+                            ui.showMessage("\n" + monstresEliminats +" were removed from the encounter.");
                         } else {
                             ui.showMessage("\nIt's not possible to delete monsters if there are none added.");
                         }
@@ -295,195 +300,201 @@ public class Controller {
         List<String> iniciativesOrdenades = new ArrayList<>();
 
         ui.showMessage("Tavern keeper: 'So, you are looking to go on an adventure?'");
-        ui.showMessage("'Where do you fancy going?'\n");
+        if (aventuraManager.llegirAventures().isEmpty()){
+            ui.showMessage("'Sorry, there are not adventures available!");
+        }
+        else{
+            ui.showMessage("'Where do you fancy going?'\n");
 
-        ui.showMessage("Available adventures:");
-        ui.showMonsterList(aventuraManager.llistarAventuras());
-        ui.showMessage("");
-        numAventuras = ui.askForInteger("-> Choose an adventure: ");
-        while (numAventuras > aventuraManager.llistarAventuras().size()) {
-            ui.showMessage("\nEnter a valid number.\n");
+            ui.showMessage("Available adventures:");
+            ui.showMonsterList(aventuraManager.llistarAventuras());
+            ui.showMessage("");
             numAventuras = ui.askForInteger("-> Choose an adventure: ");
-        }
-        Aventura currentAventura = aventuraManager.retornaAventuraComplerta(numAventuras);
-        ui.showMessage("\nTavern keeper: '" + currentAventura.getNom() + " it is!'" );
-        ui.showMessage("'And how many people shall join you?'\n");
-        numOfCharacters = ui.askForInteger("-> Choose a number of characters [3..5]: ");
-        while (numOfCharacters < 3 || numOfCharacters > 5) {
-            ui.showMessage("\nEnter a valid number.\n");
+            while (numAventuras > aventuraManager.llistarAventuras().size()) {
+                ui.showMessage("\nEnter a valid number.\n");
+                numAventuras = ui.askForInteger("-> Choose an adventure: ");
+            }
+            Aventura currentAventura = aventuraManager.retornaAventuraComplerta(numAventuras);
+            ui.showMessage("\nTavern keeper: '" + currentAventura.getNom() + " it is!'" );
+            ui.showMessage("'And how many people shall join you?'\n");
             numOfCharacters = ui.askForInteger("-> Choose a number of characters [3..5]: ");
-        }
-        ui.showMessage("Tavern keeper: 'Great, " + numOfCharacters + " it is.'");
-        ui.showMessage("'Who among these lads shall join you?'\n");
+            while (numOfCharacters < 3 || numOfCharacters > 5) {
+                ui.showMessage("\nEnter a valid number.\n");
+                numOfCharacters = ui.askForInteger("-> Choose a number of characters [3..5]: ");
+            }
+            ui.showMessage("Tavern keeper: 'Great, " + numOfCharacters + " it is.'");
+            ui.showMessage("'Who among these lads shall join you?'\n");
 
-        do{
+            do{
+                ui.showPartyList(currentAventura.getPersonatges(), numOfCharacters, countPJ);
+                ui.showMessage("Available characters: ");
+                ui.showMonsterList(personatgeManager.llistarPersonatges());
+                personatgeAfegir = ui.askForInteger("\n-> Choose character " + (countPJ+1) + " in your party: ");
+                while (personatgeAfegir > personatgeManager.llistarPersonatges().size() || personatgeAfegir < 1) {
+                    ui.showMessage("\nEnter a valid integer.\n");
+                    personatgeAfegir = ui.askForInteger("-> Choose character " + (countPJ+1) + " in your party: ");
+                }
+                aventuraManager.afegirPersonatgeAventura(currentAventura, personatgeAfegir);
+                countPJ++;
+            }while (countPJ < numOfCharacters);
+            // inicialitzo lvl, pdv i iniciativa
+            personatgeManager.inicialitzaPersonatges(currentAventura.getPersonatges());
+            // aqui inicialitzo les classes
+            personatgeManager.inicialitzaPersonatgesAmbClasse(currentAventura.getPersonatges());
+
             ui.showPartyList(currentAventura.getPersonatges(), numOfCharacters, countPJ);
-            ui.showMessage("Available characters: ");
-            ui.showMonsterList(personatgeManager.llistarPersonatges());
-            personatgeAfegir = ui.askForInteger("\n-> Choose character " + (countPJ+1) + " in your party: ");
-            while (personatgeAfegir > personatgeManager.llistarPersonatges().size() || personatgeAfegir < 1) {
-                ui.showMessage("\nEnter a valid integer.\n");
-                personatgeAfegir = ui.askForInteger("-> Choose character " + (countPJ+1) + " in your party: ");
-            }
-            aventuraManager.afegirPersonatgeAventura(currentAventura, personatgeAfegir);
-            countPJ++;
-        }while (countPJ < numOfCharacters);
-        // inicialitzo lvl, pdv i iniciativa
-        personatgeManager.inicialitzaPersonatges(currentAventura.getPersonatges());
-        // aqui inicialitzo les classes
-        personatgeManager.inicialitzaPersonatgesAmbClasse(currentAventura.getPersonatges());
-
-        ui.showPartyList(currentAventura.getPersonatges(), numOfCharacters, countPJ);
-        ui.showMessage("\nTavern keeper: 'Great, good luck on your adventure lads!'\n");
-        ui.showMessage("The '" + currentAventura.getNom() + "' will start soon...\n");
-        for (i=0; i<currentAventura.getCombats().size() && !dead; i++) {
-            ui.showMessage("-------------------------");
-            ui.showMessage("Starting Encounter " + (i+1) + ": ");
-            for (int j = 0; j < aventuraManager.generarLlistaMonstres2(currentAventura.getCombats().get(i)).size(); j++) {
-                ui.showMessage("\t" + aventuraManager.generarLlistaMonstres2(currentAventura.getCombats().get(i)).get(j));
-            }
-            ui.showMessage("-------------------------\n");
-            ui.showMessage("\n-------------------------");
-            ui.showMessage("*** Preparation stage ***");
-            ui.showMessage("-------------------------");
-            for (int k = 0; k<currentAventura.getPersonatges().size(); k++) {
-                ui.showMessage(currentAventura.getPersonatges().get(k).getNom() + " uses Self-Motivated. Their Spirit increases in +1.");
-                personatgeManager.suportPersonatge(currentAventura.getPersonatges().get(k));
-            }
-            personatgesOrdenats.clear();
-            monstresOrdenats.clear();
-            for (int k = 0; k<currentAventura.getPersonatges().size(); k++) {
-                aventuraManager.ordenarPersonatgesSegonsIniciatives(personatgesOrdenats, currentAventura.getPersonatges().get(k));
-            }
-            for (int k = 0; k<currentAventura.getCombats().get(i).getMonstre().size(); k++) {
-                aventuraManager.ordenarMonstresSegonsIniciatives(monstresOrdenats, currentAventura.getCombats().get(i).getMonstre().get(k));
-            }
-            ui.showMessage("\nRolling iniciative... ");
-            iniciativesOrdenades = aventuraManager.mostrarOrdreIniciativas(personatgesOrdenats, monstresOrdenats);
-            for (int u = 0; u<iniciativesOrdenades.size(); u++) {
-                ui.showMessage("\t" + iniciativesOrdenades.get(u));
-            }
-            ui.showMessage("\n\n--------------------");
-            ui.showMessage("*** Combat stage ***");
-            ui.showMessage("--------------------");
-            while (!personatgeManager.totalPartyUnconscius(personatgesOrdenats) && !monstreManager.totalMonstersUnconscius(monstresOrdenats) && !dead) {
-                roundCounter++;
-                ui.showMessage("\nRound " + roundCounter + ": ");
-                ui.showMessage("Party:");
-                int contadorPersonatge = 0;
-                int contadorMonstre = 0;
-                ui.showBasicList(aventuraManager.showPartyHP(currentAventura.getPersonatges()));
-                for (int p=0; p<(monstresOrdenats.size() + personatgesOrdenats.size()) && !monstreManager.totalMonstersUnconscius(monstresOrdenats) && !personatgeManager.totalPartyUnconscius(personatgesOrdenats); p++) {
-                    if (contadorPersonatge < personatgesOrdenats.size()) {
-                        if (aventuraManager.nomsOrdreIniciativas(personatgesOrdenats, monstresOrdenats).get(p).equals(personatgesOrdenats.get(contadorPersonatge).getNom())) {
-                            if (personatgeManager.estaInconscient(personatgesOrdenats.get(contadorPersonatge))) {
-                                contadorPersonatge++;
-                            } else {
-                                int mal = personatgeManager.atacarPersonatge(personatgesOrdenats.get(contadorPersonatge));
-                                int posMenorMonstre = monstreManager.posicioMonstreMenysHP(monstresOrdenats);
-                                ui.showMessage("\n" + personatgesOrdenats.get(contadorPersonatge).getNom() + " attacks " + monstresOrdenats.get(posMenorMonstre).getNom() + " with Sword Slash.");
-                                dau = (int) (Math.random() * (10)) + 1;
-                                //resistencia al mal bosses
+            ui.showMessage("\nTavern keeper: 'Great, good luck on your adventure lads!'\n");
+            ui.showMessage("The '" + currentAventura.getNom() + "' will start soon...\n");
+            for (i=0; i<currentAventura.getCombats().size() && !dead; i++) {
+                ui.showMessage("-------------------------");
+                ui.showMessage("Starting Encounter " + (i+1) + ": ");
+                for (int j = 0; j < aventuraManager.generarLlistaMonstres2(currentAventura.getCombats().get(i)).size(); j++) {
+                    ui.showMessage("\t" + aventuraManager.generarLlistaMonstres2(currentAventura.getCombats().get(i)).get(j));
+                }
+                ui.showMessage("-------------------------\n");
+                ui.showMessage("\n-------------------------");
+                ui.showMessage("*** Preparation stage ***");
+                ui.showMessage("-------------------------");
+                for (int k = 0; k<currentAventura.getPersonatges().size(); k++) {
+                    ui.showMessage(currentAventura.getPersonatges().get(k).getNom() + " uses Self-Motivated. Their Spirit increases in +1.");
+                    personatgeManager.suportPersonatge(currentAventura.getPersonatges().get(k));
+                }
+                personatgesOrdenats.clear();
+                monstresOrdenats.clear();
+                for (int k = 0; k<currentAventura.getPersonatges().size(); k++) {
+                    aventuraManager.ordenarPersonatgesSegonsIniciatives(personatgesOrdenats, currentAventura.getPersonatges().get(k));
+                }
+                for (int k = 0; k<currentAventura.getCombats().get(i).getMonstre().size(); k++) {
+                    aventuraManager.ordenarMonstresSegonsIniciatives(monstresOrdenats, currentAventura.getCombats().get(i).getMonstre().get(k));
+                }
+                ui.showMessage("\nRolling iniciative... ");
+                iniciativesOrdenades = aventuraManager.mostrarOrdreIniciativas(personatgesOrdenats, monstresOrdenats);
+                for (int u = 0; u<iniciativesOrdenades.size(); u++) {
+                    ui.showMessage("\t" + iniciativesOrdenades.get(u));
+                }
+                ui.showMessage("\n\n--------------------");
+                ui.showMessage("*** Combat stage ***");
+                ui.showMessage("--------------------");
+                while (!personatgeManager.totalPartyUnconscius(personatgesOrdenats) && !monstreManager.totalMonstersUnconscius(monstresOrdenats) && !dead) {
+                    roundCounter++;
+                    ui.showMessage("\nRound " + roundCounter + ": ");
+                    ui.showMessage("Party:");
+                    int contadorPersonatge = 0;
+                    int contadorMonstre = 0;
+                    ui.showBasicList(aventuraManager.showPartyHP(currentAventura.getPersonatges()));
+                    for (int p=0; p<(monstresOrdenats.size() + personatgesOrdenats.size()) && !monstreManager.totalMonstersUnconscius(monstresOrdenats) && !personatgeManager.totalPartyUnconscius(personatgesOrdenats); p++) {
+                        if (contadorPersonatge < personatgesOrdenats.size()) {
+                            if (aventuraManager.nomsOrdreIniciativas(personatgesOrdenats, monstresOrdenats).get(p).equals(personatgesOrdenats.get(contadorPersonatge).getNom())) {
+                                if (personatgeManager.estaInconscient(personatgesOrdenats.get(contadorPersonatge))) {
+                                    contadorPersonatge++;
+                                } else {
+                                    int mal = personatgeManager.atacarPersonatge(personatgesOrdenats.get(contadorPersonatge));
+                                    int posMenorMonstre = monstreManager.posicioMonstreMenysHP(monstresOrdenats);
+                                    ui.showMessage("\n" + personatgesOrdenats.get(contadorPersonatge).getNom() + " attacks " + monstresOrdenats.get(posMenorMonstre).getNom() + " with Sword Slash.");
+                                    dau = (int) (Math.random() * (10)) + 1;
+                                    //resistencia al mal bosses
                                 /*if (monstresOrdenats.get(posMenorMonstre).getNivellDificultat().equals("Boss") && monstresOrdenats.get(posMenorMonstre).getTipusDeMal().equals(personatgesOrdenats.get(contadorPersonatge).getTipusDeMal)) {
                                     mal = mal/2;
                                 }*/
-                                monstreManager.monstreRebMal(monstresOrdenats.get(posMenorMonstre), mal, dau);
-                                ui.AttackMissHitCrit(mal, dau);
-                                if (monstreManager.estaInconscient(monstresOrdenats.get(posMenorMonstre))) {
-                                    ui.showMessage(monstresOrdenats.get(posMenorMonstre).getNom() + " dies.");
-                                }
-                                contadorPersonatge++;
-                            }
-                        }
-                    }
-                    if (contadorMonstre < monstresOrdenats.size()) {
-                        if (aventuraManager.nomsOrdreIniciativas(personatgesOrdenats, monstresOrdenats).get(p).equals(monstresOrdenats.get(contadorMonstre).getNom())) {
-                            if (monstreManager.estaInconscient(monstresOrdenats.get(contadorMonstre))) {
-                                contadorMonstre++;
-                            } else {
-                                int mal = monstreManager.damageMonstre(monstresOrdenats.get(contadorMonstre));
-                                // Si el monstre es boss ataca a tothom
-                                if (monstresOrdenats.get(contadorMonstre).getNivellDificultat().equals("Boss")) {
-                                    fraseBoss = "\n" + monstresOrdenats.get(contadorMonstre).getNom() + " attacks ";
-                                    for (int h=0; h<aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().size(); h++) {
-                                        if (!personatgeManager.estaInconscient(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h))) {
-                                            fraseBoss = fraseBoss + " " + aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h).getNom();
-                                            dau = (int) (Math.random() * (10)) + 1;
-                                            personatgeManager.rebreMalPersonatge(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h), mal, dau);
-                                            ui.AttackMissHitCrit(mal, dau);
-                                        }
-                                    }
-                                    ui.showMessage(fraseBoss);
-                                    for (int h=0; h<aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().size(); h++) {
-                                        if (personatgeManager.estaInconscient(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h))) {
-                                            ui.showMessage(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h).getNom() + " falls unconscious.");
-                                        }
-                                    }
-                                // fins aqui
-                                } else {
-                                    int rollPersonatge = (int) (Math.random() * (personatgesOrdenats.size()));
-                                    while (personatgeManager.estaInconscient(personatgesOrdenats.get(rollPersonatge))) {
-                                        rollPersonatge = (int) (Math.random() * (personatgesOrdenats.size()));
-                                    }
-                                    ui.showMessage("\n" + monstresOrdenats.get(contadorMonstre).getNom() + " attacks " + personatgesOrdenats.get(rollPersonatge).getNom() + ".");
-                                    dau = (int) (Math.random() * (10)) + 1;
-                                    personatgeManager.rebreMalPersonatge(personatgesOrdenats.get(rollPersonatge), mal, dau);
+                                    monstreManager.monstreRebMal(monstresOrdenats.get(posMenorMonstre), mal, dau);
                                     ui.AttackMissHitCrit(mal, dau);
-                                    if (personatgeManager.estaInconscient(personatgesOrdenats.get(rollPersonatge))) {
-                                        ui.showMessage(personatgesOrdenats.get(rollPersonatge).getNom() + " falls unconscious.");
+                                    if (monstreManager.estaInconscient(monstresOrdenats.get(posMenorMonstre))) {
+                                        ui.showMessage(monstresOrdenats.get(posMenorMonstre).getNom() + " dies.");
                                     }
+                                    contadorPersonatge++;
                                 }
-                                contadorMonstre++;
                             }
                         }
-                    }
-                }
-                ui.showMessage("\nEnd of round " + roundCounter + ".");
-                if (monstreManager.totalMonstersUnconscius(monstresOrdenats)) {
-                    ui.showMessage("All enemys are defeated.\n");
-                    ui.showMessage("------------------------");
-                    ui.showMessage("*** Short rest stage ***");
-                    ui.showMessage("------------------------");
-                    int xpObtinguda = 0;
-                    for (int q=0; q<monstresOrdenats.size();q++) {
-                        xpObtinguda = monstresOrdenats.get(q).getExperiencia() + xpObtinguda;
-                    }
-                    for (int q=0; q<personatgesOrdenats.size();q++) {
-                        boolean pujaNivell = personatgeManager.sumarExperiencia(currentAventura.getPersonatges().get(q), xpObtinguda);
-                        if (pujaNivell) {
-                            ui.showMessage(currentAventura.getPersonatges().get(q).getNom() + " gains " + xpObtinguda + " xp. " + currentAventura.getPersonatges().get(q).getNom() + " levels up. They are now lvl " + currentAventura.getPersonatges().get(q).getNivell() + ".");
-                            personatgeManager.calcularPdvMax(currentAventura.getPersonatges().get(q));
-                        } else {
-                            ui.showMessage(currentAventura.getPersonatges().get(q).getNom() + " gains " + xpObtinguda+ " xp.");
-                        }
-                    }
-                    for (int q=0; q<personatgesOrdenats.size();q++) {
-                        for (int n=0; n<currentAventura.getPersonatges().size(); n++) {
-                            if (currentAventura.getPersonatges().get(q).getNom().equals(personatgesOrdenats.get(n).getNom())) {
-                                if (personatgeManager.estaInconscient(personatgesOrdenats.get(n))) {
-                                    ui.showMessage(personatgesOrdenats.get(n).getNom() + " is unconscious.");
+                        if (contadorMonstre < monstresOrdenats.size()) {
+                            if (aventuraManager.nomsOrdreIniciativas(personatgesOrdenats, monstresOrdenats).get(p).equals(monstresOrdenats.get(contadorMonstre).getNom())) {
+                                if (monstreManager.estaInconscient(monstresOrdenats.get(contadorMonstre))) {
+                                    contadorMonstre++;
                                 } else {
-                                    if (personatgesOrdenats.get(n).getPdvActual() == personatgesOrdenats.get(n).getPdvMax()) {
-                                        ui.showMessage(personatgesOrdenats.get(n).getNom() + " uses Bandage time. But it's already full hit points.");
+                                    int mal = monstreManager.damageMonstre(monstresOrdenats.get(contadorMonstre));
+                                    // Si el monstre es boss ataca a tothom
+                                    if (monstresOrdenats.get(contadorMonstre).getNivellDificultat().equals("Boss")) {
+                                        fraseBoss = "\n" + monstresOrdenats.get(contadorMonstre).getNom() + " attacks ";
+                                        for (int h=0; h<aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().size(); h++) {
+                                            if (!personatgeManager.estaInconscient(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h))) {
+                                                fraseBoss = fraseBoss + " " + aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h).getNom();
+                                                dau = (int) (Math.random() * (10)) + 1;
+                                                personatgeManager.rebreMalPersonatge(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h), mal, dau);
+                                                ui.AttackMissHitCrit(mal, dau);
+                                            }
+                                        }
+                                        ui.showMessage(fraseBoss);
+                                        for (int h=0; h<aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().size(); h++) {
+                                            if (personatgeManager.estaInconscient(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h))) {
+                                                ui.showMessage(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h).getNom() + " falls unconscious.");
+                                            }
+                                        }
+                                        // fins aqui
                                     } else {
-                                        int cura = personatgeManager.curarPersonatge(personatgesOrdenats.get(n));
-                                        ui.showMessage(personatgesOrdenats.get(n).getNom() + " uses Bandage time. Heals " + cura + " hit points.");
+                                        int rollPersonatge = (int) (Math.random() * (personatgesOrdenats.size()));
+                                        while (personatgeManager.estaInconscient(personatgesOrdenats.get(rollPersonatge))) {
+                                            rollPersonatge = (int) (Math.random() * (personatgesOrdenats.size()));
+                                        }
+                                        ui.showMessage("\n" + monstresOrdenats.get(contadorMonstre).getNom() + " attacks " + personatgesOrdenats.get(rollPersonatge).getNom() + ".");
+                                        dau = (int) (Math.random() * (10)) + 1;
+                                        personatgeManager.rebreMalPersonatge(personatgesOrdenats.get(rollPersonatge), mal, dau);
+                                        ui.AttackMissHitCrit(mal, dau);
+                                        if (personatgeManager.estaInconscient(personatgesOrdenats.get(rollPersonatge))) {
+                                            ui.showMessage(personatgesOrdenats.get(rollPersonatge).getNom() + " falls unconscious.");
+                                        }
+                                    }
+                                    contadorMonstre++;
+                                }
+                            }
+                        }
+                    }
+                    ui.showMessage("\nEnd of round " + roundCounter + ".");
+                    if (monstreManager.totalMonstersUnconscius(monstresOrdenats)) {
+                        ui.showMessage("All enemys are defeated.\n");
+                        ui.showMessage("------------------------");
+                        ui.showMessage("*** Short rest stage ***");
+                        ui.showMessage("------------------------");
+                        int xpObtinguda = 0;
+                        for (int q=0; q<monstresOrdenats.size();q++) {
+                            xpObtinguda = monstresOrdenats.get(q).getExperiencia() + xpObtinguda;
+                        }
+                        for (int q=0; q<personatgesOrdenats.size();q++) {
+                            boolean pujaNivell = personatgeManager.sumarExperiencia(currentAventura.getPersonatges().get(q), xpObtinguda);
+                            if (pujaNivell) {
+                                ui.showMessage(currentAventura.getPersonatges().get(q).getNom() + " gains " + xpObtinguda + " xp. " + currentAventura.getPersonatges().get(q).getNom() + " levels up. They are now lvl " + currentAventura.getPersonatges().get(q).getNivell() + ".");
+                                personatgeManager.calcularPdvMax(currentAventura.getPersonatges().get(q));
+                            } else {
+                                ui.showMessage(currentAventura.getPersonatges().get(q).getNom() + " gains " + xpObtinguda+ " xp.");
+                            }
+                        }
+                        for (int q=0; q<personatgesOrdenats.size();q++) {
+                            for (int n=0; n<currentAventura.getPersonatges().size(); n++) {
+                                if (currentAventura.getPersonatges().get(q).getNom().equals(personatgesOrdenats.get(n).getNom())) {
+                                    if (personatgeManager.estaInconscient(personatgesOrdenats.get(n))) {
+                                        ui.showMessage(personatgesOrdenats.get(n).getNom() + " is unconscious.");
+                                    } else {
+                                        if (personatgesOrdenats.get(n).getPdvActual() == personatgesOrdenats.get(n).getPdvMax()) {
+                                            ui.showMessage(personatgesOrdenats.get(n).getNom() + " uses Bandage time. But it's already full hit points.");
+                                        } else {
+                                            int cura = personatgeManager.curarPersonatge(personatgesOrdenats.get(n));
+                                            ui.showMessage(personatgesOrdenats.get(n).getNom() + " uses Bandage time. Heals " + cura + " hit points.");
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                    if (personatgeManager.totalPartyUnconscius(personatgesOrdenats)) {
+                        ui.showMessage("\nTavern keeper: 'Lad, wake up. Yes, your party fell unconscious.'");
+                        ui.showMessage("'Don't worry, you are safe back at the Tavern.'");
+                        dead = true;
+                    }
                 }
-                if (personatgeManager.totalPartyUnconscius(personatgesOrdenats)) {
-                    ui.showMessage("\nTavern keeper: 'Lad, wake up. Yes, your party fell unconscious.'");
-                    ui.showMessage("'Don't worry, you are safe back at the Tavern.'");
-                    dead = true;
-                }
-            }
 
-        }
-        if (monstreManager.totalMonstersUnconscius(monstresOrdenats) && i == currentAventura.getCombats().size()) {
-            ui.showMessage("\nCongratulations, your party completed '" + currentAventura.getNom() + "'");
+            }
+            if (monstreManager.totalMonstersUnconscius(monstresOrdenats) && i == currentAventura.getCombats().size()) {
+                ui.showMessage("\nCongratulations, your party completed '" + currentAventura.getNom() + "'");
+            }
         }
     }
+
 }
