@@ -99,8 +99,7 @@ public class PersonatgeManager {
     }
 
     public int calcularIniciativa (Personatge personatge) {
-        int n = (int) (Math.random() * (12)) + 1;
-        int iniciativa = n + personatge.getEsperit();
+        int iniciativa = personatge.calcularIniciativa();
         return iniciativa;
     }
 
@@ -165,13 +164,7 @@ public class PersonatgeManager {
     }
 
     public int curarPersonatge(Personatge personatge) {
-        int cura = (int) (Math.random() * (8)) + 1 + personatge.getMent();
-        int pdvPostCura = personatge.getPdvActual() + cura;
-        if (pdvPostCura > personatge.getPdvMax()) {
-            personatge.setPdvActual(personatge.getPdvMax());
-        } else {
-            personatge.setPdvActual(pdvPostCura);
-        }
+        int cura = personatge.curarPersonatge();
         return cura;
     }
 

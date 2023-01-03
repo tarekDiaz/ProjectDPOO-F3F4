@@ -178,4 +178,21 @@ public class Personatge {
         int nouEsperit = getEsperit() + 1;
         return nouEsperit;
     }
+
+    public int curarPersonatge() {
+        int cura = (int) (Math.random() * (8)) + 1 + getMent();
+        int pdvPostCura = getPdvActual() + cura;
+        if (pdvPostCura > getPdvMax()) {
+            setPdvActual(getPdvMax());
+        } else {
+            setPdvActual(pdvPostCura);
+        }
+        return cura;
+    }
+
+    public int calcularIniciativa () {
+        int n = (int) (Math.random() * (12)) + 1;
+        int iniciativa = n + getEsperit();
+        return iniciativa;
+    }
 }

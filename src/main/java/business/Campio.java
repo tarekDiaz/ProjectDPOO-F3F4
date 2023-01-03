@@ -21,4 +21,11 @@ public class Campio extends Guerrer{
         int nouEsperit = getEsperit() + 1;
         return nouEsperit;
     }
+
+    @Override
+    public int curarPersonatge() {
+        int cura = getPdvMax() - getPdvActual();
+        setPdvActual(getPdvMax());
+        return cura;
+    }
 }
