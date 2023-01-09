@@ -81,6 +81,12 @@ public class UiManager {
         }
     }
 
+    public void showListNoT (List<String> llista) {
+        for (int i=0; i<llista.size(); i++) {
+            System.out.println(llista.get(i));
+        }
+    }
+
     public void AttackMissHitCrit (int mal, int roll) {
         if (roll == 1) {
             System.out.println("Fails and deals 0 physical damage.");

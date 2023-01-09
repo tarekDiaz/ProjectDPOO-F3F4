@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Personatge {
 
     @SerializedName("name")
@@ -174,9 +176,9 @@ public class Personatge {
         return calculPdv;
     }
 
-    public int suportPersonatge() {
-        int nouEsperit = getEsperit() + 1;
-        return nouEsperit;
+    public void suportPersonatge(List<Personatge> personatges, List<String> frase) {
+        this.setEsperit(getEsperit()+1);
+        frase.add(this.getNom() + " uses Self-Motivated. Their Spirit increases in +1.");
     }
 
     public int curarPersonatge() {

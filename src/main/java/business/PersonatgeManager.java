@@ -36,10 +36,11 @@ public class PersonatgeManager {
         }
     }
     public void inicialitzaPersonatgesAmbClasse (List<Personatge> personatges) {
-        List<Personatge> copiaLlista = personatges;
+        List<Personatge> copiaLlista = new ArrayList<>(personatges);
+        //copiaLlista = personatges;
         personatges.clear();
         for (int i=0; i<copiaLlista.size(); i++) {
-            if (copiaLlista.get(i).getClasse().equals("Aventurer")) {
+            if (copiaLlista.get(i).getClasse().equals("Adventurer")) {
                 if (copiaLlista.get(i).getNivell() < 4) {
                     personatges.add(new Aventurer(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa()));
                 }
@@ -50,7 +51,7 @@ public class PersonatgeManager {
                     personatges.add(new Campio(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa()));
                 }
             }
-            if (copiaLlista.get(i).getClasse().equals("Clergue")) {
+            if (copiaLlista.get(i).getClasse().equals("Cleric")) {
                 if (copiaLlista.get(i).getNivell() < 5) {
                     personatges.add(new Clergue(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa()));
                 }
@@ -58,7 +59,7 @@ public class PersonatgeManager {
                     personatges.add(new Paladi(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa()));
                 }
             }
-            if (copiaLlista.get(i).getClasse().equals("Mag")) {
+            if (copiaLlista.get(i).getClasse().equals("Mage")) {
                 personatges.add(new Mag(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa()));
             }
         }
@@ -169,9 +170,12 @@ public class PersonatgeManager {
     }
 
     //falta pensar suport de campio
-    public void suportPersonatge(Personatge personatge) {
-        int nouEsperit = personatge.suportPersonatge();
-        personatge.setEsperit(nouEsperit);
+    public List<String> suportPersonatge(List<Personatge> personatges) {
+        List<String> frase = new ArrayList<>();
+        for (int k = 0; k<personatges.size(); k++) {
+            personatges.get(k).suportPersonatge(personatges, frase);
+        }
+        return frase;
     }
 
     public Personatge retornaPersonatgeComplert(String nomPersonatge) {

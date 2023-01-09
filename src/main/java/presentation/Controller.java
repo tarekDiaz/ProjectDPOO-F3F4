@@ -355,10 +355,10 @@ public class Controller {
                 ui.showMessage("\n-------------------------");
                 ui.showMessage("*** Preparation stage ***");
                 ui.showMessage("-------------------------");
-                for (int k = 0; k<currentAventura.getPersonatges().size(); k++) {
-                    ui.showMessage(currentAventura.getPersonatges().get(k).getNom() + " uses Self-Motivated. Their Spirit increases in +1.");
-                    personatgeManager.suportPersonatge(currentAventura.getPersonatges().get(k));
-                }
+
+                List<String> frasesPreparation = personatgeManager.suportPersonatge(currentAventura.getPersonatges());
+                ui.showListNoT(frasesPreparation);
+
                 personatgesOrdenats.clear();
                 monstresOrdenats.clear();
                 for (int k = 0; k<currentAventura.getPersonatges().size(); k++) {

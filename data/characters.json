@@ -2,7 +2,7 @@
   {
     "name": "Amrod",
     "player": "SonsOfFeanor",
-    "xp": 229,
+    "xp": 930,
     "body": 2,
     "mind": 0,
     "spirit": 0,
@@ -15,7 +15,7 @@
     "body": 2,
     "mind": 0,
     "spirit": 1,
-    "class": "Adventurer"
+    "class": "Cleric"
   },
   {
     "name": "Curufin",
@@ -142,5 +142,5 @@
     "mind": 1,
     "spirit": 0,
     "class": "Adventurer"
-  },
+  }
 ]

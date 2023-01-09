@@ -1,5 +1,7 @@
 package business;
 
+import java.util.List;
+
 public class Campio extends Guerrer{
 
     public Campio(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa) {
@@ -17,9 +19,11 @@ public class Campio extends Guerrer{
     }
     @Override
     //falta pensar suport de campio
-    public int suportPersonatge() {
-        int nouEsperit = getEsperit() + 1;
-        return nouEsperit;
+    public void suportPersonatge(List<Personatge> personatges, List<String> frase) {
+        for (int k = 0; k<personatges.size(); k++) {
+            personatges.get(k).setEsperit(getEsperit() + 1);
+        }
+        frase.add(this.getNom() + " uses Motivational speech. Everyone's Spirit increases in +1.");
     }
 
     @Override

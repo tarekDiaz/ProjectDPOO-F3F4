@@ -43,7 +43,6 @@ public class PersonatgesJsonDAO {
         }
 
         return personatgesJsonArray;
-
     }
 
     public void nouPersonatge(Personatge personatge) {

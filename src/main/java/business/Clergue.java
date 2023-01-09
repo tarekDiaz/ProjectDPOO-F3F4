@@ -1,5 +1,8 @@
 package business;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Clergue extends Personatge{
 
     public Clergue(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa) {
@@ -19,9 +22,12 @@ public class Clergue extends Personatge{
 
     @Override
     //Mateix problema que amb campio
-    public int suportPersonatge() {
-        int nouMent = getMent() + 1;
-        return nouMent;
+    public void suportPersonatge(List<Personatge> personatges, List<String> frase) {
+        for (int k = 0; k<personatges.size(); k++) {
+            personatges.get(k).setMent(getMent() + 1);
+        }
+        frase.add(this.getNom() + " uses Prayer of good luck. Everyone's Mind increases in +1.");
+
     }
 
 }
