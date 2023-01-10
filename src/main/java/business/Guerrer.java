@@ -17,7 +17,7 @@ public class Guerrer extends Aventurer{
 
 
 
-    public int reduirMalFisic (int mal, Monstre monstre) {
+    public int reduirMal (int mal, Monstre monstre) {
         if (monstre.getTipusDeMal().equals("Physical")) {
             mal = mal/2;
         }

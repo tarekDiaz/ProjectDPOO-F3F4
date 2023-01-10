@@ -18,12 +18,17 @@ public class Campio extends Guerrer{
         return calculPdv;
     }
     @Override
-    //falta pensar suport de campio
     public void suportPersonatge(List<Personatge> personatges, List<String> frase) {
         for (int k = 0; k<personatges.size(); k++) {
             personatges.get(k).setEsperit(getEsperit() + 1);
         }
         frase.add(this.getNom() + " uses Motivational speech. Everyone's Spirit increases in +1.");
+    }
+    @Override
+    public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
+        int cura = this.getPdvMax() - this.getPdvActual();
+        this.setPdvActual(getPdvMax());
+        frase.add(this.getNom() + " uses Improved Bandage Time. Heals " + cura + " hit points.");
     }
 
     @Override

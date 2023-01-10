@@ -27,7 +27,51 @@ public class Clergue extends Personatge{
             personatges.get(k).setMent(getMent() + 1);
         }
         frase.add(this.getNom() + " uses Prayer of good luck. Everyone's Mind increases in +1.");
+    }
 
+    @Override
+    public int curarPersonatge() {
+        int cura = (int) (Math.random() * (10)) + 1 + getMent();
+        int pdvPostCura = getPdvActual() + cura;
+        if (pdvPostCura > getPdvMax()) {
+            setPdvActual(getPdvMax());
+        } else {
+            setPdvActual(pdvPostCura);
+        }
+        return cura;
+    }
+
+    @Override
+    public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
+        int cura = (int) (Math.random() * (10)) + 1 + this.getMent();
+        int pdvPostCura = this.getPdvActual() + cura;
+        if (pdvPostCura > this.getPdvMax()) {
+            this.setPdvActual(getPdvMax());
+        } else {
+            this.setPdvActual(pdvPostCura);
+        }
+        frase.add(this.getNom() + " uses Prayer of self healing. Heals " + cura + " hit points.");
+    }
+
+    public void accioBatalla(List<Personatge> personatges, List<Monstre> monstres, List<String> frase) {
+        boolean healingDone = false;
+
+        for (int i=0; i<personatges.size() && !healingDone;i++) {
+            if (personatges.get(i).getPdvActual() < (personatges.get(i).getPdvMax() / 2)) {
+                int cura = (int) (Math.random() * (10)) + 1 + getMent();
+                int pdvPostCura = getPdvActual() + cura;
+                if (pdvPostCura > getPdvMax()) {
+                    personatges.get(i).setPdvActual(getPdvMax());
+                } else {
+                    personatges.get(i).setPdvActual(pdvPostCura);
+                }
+                frase.add(this.getNom() + " uses Prayer of healing. Heals " + cura + " hit points to " + personatges.get(i).getNom() + ".");
+                healingDone = true;
+            }
+        }
+        if (!healingDone) {
+
+        }
     }
 
 }

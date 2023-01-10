@@ -466,22 +466,9 @@ public class Controller {
                                 ui.showMessage(currentAventura.getPersonatges().get(q).getNom() + " gains " + xpObtinguda+ " xp.");
                             }
                         }
-                        for (int q=0; q<personatgesOrdenats.size();q++) {
-                            for (int n=0; n<currentAventura.getPersonatges().size(); n++) {
-                                if (currentAventura.getPersonatges().get(q).getNom().equals(personatgesOrdenats.get(n).getNom())) {
-                                    if (personatgeManager.estaInconscient(personatgesOrdenats.get(n))) {
-                                        ui.showMessage(personatgesOrdenats.get(n).getNom() + " is unconscious.");
-                                    } else {
-                                        if (personatgesOrdenats.get(n).getPdvActual() == personatgesOrdenats.get(n).getPdvMax()) {
-                                            ui.showMessage(personatgesOrdenats.get(n).getNom() + " uses Bandage time. But it's already full hit points.");
-                                        } else {
-                                            int cura = personatgeManager.curarPersonatge(personatgesOrdenats.get(n));
-                                            ui.showMessage(personatgesOrdenats.get(n).getNom() + " uses Bandage time. Heals " + cura + " hit points.");
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        ui.showMessage("");
+                        List<String> frasesDescans = personatgeManager.descansCurt(currentAventura.getPersonatges(), personatgesOrdenats);
+                        ui.showListNoT(frasesDescans);
                     }
                     if (personatgeManager.totalPartyUnconscius(personatgesOrdenats)) {
                         ui.showMessage("\nTavern keeper: 'Lad, wake up. Yes, your party fell unconscious.'");

@@ -60,7 +60,7 @@ public class PersonatgeManager {
                 }
             }
             if (copiaLlista.get(i).getClasse().equals("Mage")) {
-                personatges.add(new Mag(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa()));
+                personatges.add(new Mag(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa(), 0));
             }
         }
     }
@@ -169,7 +169,6 @@ public class PersonatgeManager {
         return cura;
     }
 
-    //falta pensar suport de campio
     public List<String> suportPersonatge(List<Personatge> personatges) {
         List<String> frase = new ArrayList<>();
         for (int k = 0; k<personatges.size(); k++) {
@@ -177,6 +176,24 @@ public class PersonatgeManager {
         }
         return frase;
     }
+
+    public List<String> descansCurt(List<Personatge> personatgesAventura, List<Personatge> personatgesOrdenats) {
+        List<String> frase = new ArrayList<>();
+
+        for (int q=0; q<personatgesOrdenats.size();q++) {
+            for (int n = 0; n < personatgesAventura.size(); n++) {
+                if (personatgesAventura.get(q).getNom().equals(personatgesOrdenats.get(n).getNom())) {
+                    if (estaInconscient(personatgesOrdenats.get(n))) {
+                        frase.add(personatgesOrdenats.get(n).getNom() + " is unconscious.");
+                    } else {
+                        personatgesOrdenats.get(n).curaDescansCurt(personatgesOrdenats, frase);
+                    }
+                }
+            }
+        }
+        return frase;
+    }
+
 
     public Personatge retornaPersonatgeComplert(String nomPersonatge) {
         List<Personatge> personatges = personatgesJsonDAO.readPersonatgeFromJson();

@@ -192,6 +192,17 @@ public class Personatge {
         return cura;
     }
 
+    public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
+        int cura = (int) (Math.random() * (8)) + 1 + this.getMent();
+        int pdvPostCura = this.getPdvActual() + cura;
+        if (pdvPostCura > this.getPdvMax()) {
+            this.setPdvActual(getPdvMax());
+        } else {
+            this.setPdvActual(pdvPostCura);
+        }
+        frase.add(this.getNom() + " uses Bandage Time. Heals " + cura + " hit points.");
+    }
+
     public int calcularIniciativa () {
         int n = (int) (Math.random() * (12)) + 1;
         int iniciativa = n + getEsperit();
