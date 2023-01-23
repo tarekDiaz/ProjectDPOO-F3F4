@@ -28,7 +28,7 @@ public class PersonatgesJsonDAO {
         }
     }
 
-    public static List<Personatge> readPersonatgeFromJson() {
+    public List<Personatge> readPersonatgeFromJson() {
         FileReader reader = null;
         try {
             reader = new FileReader("data/characters.json");

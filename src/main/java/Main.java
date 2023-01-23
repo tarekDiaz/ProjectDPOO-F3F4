@@ -1,12 +1,30 @@
 import business.*;
-import persistence.AventurasJsonDAO;
-import persistence.MonstresJsonDAO;
-import persistence.PersonatgesJsonDAO;
+import persistence.*;
 import presentation.*;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        PersonatgesJsonDAO personatgesJsonDAO = new PersonatgesJsonDAO();
+        AventurasAPIDAO aventurasAPIDAO = new AventurasAPIDAO();
+        MonstresAPIDAO monstresAPIDAO = new MonstresAPIDAO();
+        PersonatgesAPIDAO personatgesAPIDAO = new PersonatgesAPIDAO();
+
+        Personatge personatgeprova = new Personatge("tadia", "tarek", 2, 1, 2, 3, "Adventurer", 200, 100, 50, 20);
+
+        personatgesAPIDAO.nouPersonatge(personatgeprova);
+
+        personatgesAPIDAO.borrar("tadia");
+
+        List<Monstre> monstres = monstresAPIDAO.readMonstresFromJson();
+
+        List<Aventura> aventuras = aventurasAPIDAO.readAventuraFromJson();
+
+        List<Personatge> personatges = personatgesAPIDAO.readPersonatgeFromJson();
+
+
+
+        /*PersonatgesJsonDAO personatgesJsonDAO = new PersonatgesJsonDAO();
         MonstresJsonDAO monstresJsonDAO = new MonstresJsonDAO();
         AventurasJsonDAO aventurasJsonDAO = new AventurasJsonDAO();
         PersonatgeManager personatgeManager = new PersonatgeManager(personatgesJsonDAO);
@@ -15,6 +33,7 @@ public class Main {
         UiManager uiManager = new UiManager();
         Controller controller = new Controller(uiManager, personatgeManager, monstreManager, aventuraManager);
         controller.run();
+         */
     }
 
 

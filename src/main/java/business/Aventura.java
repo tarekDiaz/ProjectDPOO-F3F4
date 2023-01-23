@@ -1,9 +1,14 @@
 package business;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serial;
 import java.util.List;
 
 public class Aventura {
+    @SerializedName("nameAdventure")
     String nom;
+    @SerializedName("combats")
     List<Combat> combats;
     List<Personatge> personatges;
 
