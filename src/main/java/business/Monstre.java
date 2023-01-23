@@ -92,5 +92,21 @@ public class Monstre {
         }
         return false;
     }
+
+    public void monstreRebMal (int mal, int dau) {
+        if (dau == 1) {
+            mal = 0;
+        }
+        if (dau == 10) {
+            mal = mal * 2;
+        }
+
+        int pdvPostAtac = getPdv() - mal;
+        setPdv(pdvPostAtac);
+
+        if (getPdv() < 0) {
+            setPdv(0);
+        }
+    }
 }
 

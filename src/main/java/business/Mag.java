@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Mag extends Personatge{
 
-    int escut;
+    private int escut;
 
     public Mag(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa, int escut) {
         super(nom, nomJugador, nivell, cos, ment, esperit, classe, experiencia, pdvMax, pdvActual, iniciativa);
@@ -39,5 +39,11 @@ public class Mag extends Personatge{
     @Override
     public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
         frase.add(this.getNom() + " is reading a book");
+    }
+    @Override
+    public List<String> writePartyHP (List<String> llista) {
+        llista.add("- " + getNom() + "   " + getPdvActual() + " / " + getPdvMax() + " hit points (Shield: " + getEscut() + ")");
+
+        return llista;
     }
 }

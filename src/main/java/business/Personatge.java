@@ -208,4 +208,32 @@ public class Personatge {
         int iniciativa = n + getEsperit();
         return iniciativa;
     }
+
+    public List<String> writePartyHP (List<String> llista) {
+        llista.add("- " + getNom() + "   " + getPdvActual() + " / " + getPdvMax() + " hit points");
+
+        return llista;
+    }
+
+    public String accioBatalla(List<Personatge> personatges, List<Monstre> monstres, String frase, int posMenorMonstre) {
+        int mal = atacarPersonatge();
+        frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with Not on my watch.";
+
+        int dau = (int) (Math.random() * (10)) + 1;
+        //resistencia al mal bosses
+        /*if (monstresOrdenats.get(posMenorMonstre).getNivellDificultat().equals("Boss") && monstresOrdenats.get(posMenorMonstre).getTipusDeMal().equals(personatgesOrdenats.get(contadorPersonatge).getTipusDeMal)) {
+            mal = mal/2;
+        }*/
+        monstres.get(posMenorMonstre).monstreRebMal(mal, dau);
+        if (dau == 1) {
+            frase = frase + "\nFails and deals 0 physical damage.";
+        }
+        if (dau > 1 && dau < 10) {
+            frase = frase + "\nHits and deals " + mal + " physical damage.";
+        }
+        if (dau == 10) {
+            frase = frase + "\nCritical Hit and deals " + (mal * 2) + " physical damage.";
+        }
+        return frase;
+    }
 }

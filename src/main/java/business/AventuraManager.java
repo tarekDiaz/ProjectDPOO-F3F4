@@ -225,7 +225,7 @@ public class AventuraManager {
         List<String> llista = new ArrayList<>();
 
         for (int i=0; i<personatges.size(); i++) {
-            llista.add("- " + personatges.get(i).getNom() + "   " + personatges.get(i).getPdvActual() + " / " + personatges.get(i).getPdvMax() + " hit points");
+            personatges.get(i).writePartyHP(llista);
         }
         return llista;
     }
@@ -234,19 +234,11 @@ public class AventuraManager {
         aventurasJsonDAO.writeAventuraJson(aventura);
     }
 
-    /*public void accioDurantCombat (Aventura aventura, List<Personatge> personatges, List<Monstre> monstres) {
-        int mal = personatgeManager.atacarPersonatge(personatgesOrdenats.get(contadorPersonatge));
-        int posMenorMonstre = monstreManager.posicioMonstreMenysHP(monstresOrdenats);
-        ui.showMessage("\n" + personatgesOrdenats.get(contadorPersonatge).getNom() + " attacks " + monstresOrdenats.get(posMenorMonstre).getNom() + " with Sword Slash.");
-        dau = (int) (Math.random() * (10)) + 1;
-        //resistencia al mal bosses
-                                if (monstresOrdenats.get(posMenorMonstre).getNivellDificultat().equals("Boss") && monstresOrdenats.get(posMenorMonstre).getTipusDeMal().equals(personatgesOrdenats.get(contadorPersonatge).getTipusDeMal)) {
-                                    mal = mal/2;
-                                }
-        monstreManager.monstreRebMal(monstresOrdenats.get(posMenorMonstre), mal, dau);
-        ui.AttackMissHitCrit(mal, dau);
-        if (monstreManager.estaInconscient(monstresOrdenats.get(posMenorMonstre))) {
-            ui.showMessage(monstresOrdenats.get(posMenorMonstre).getNom() + " dies.");
-        }
-    }*/
+    public String accioDurantCombat (List<Personatge> personatges, List<Monstre> monstres, int contadorPersonatge, int posMenorMonstre) {
+        String frase =  null;
+
+        frase = personatges.get(contadorPersonatge).accioBatalla(personatges, monstres, frase, posMenorMonstre);
+
+        return frase;
+    }
 }

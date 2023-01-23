@@ -67,19 +67,7 @@ public class MonstreManager {
     }
 
     public void monstreRebMal (Monstre monstre, int mal, int dau) {
-        if (dau == 1) {
-            mal = 0;
-        }
-        if (dau == 10) {
-            mal = mal * 2;
-        }
-
-        int pdvPostAtac = monstre.getPdv() - mal;
-        monstre.setPdv(pdvPostAtac);
-
-        if (monstre.getPdv() < 0) {
-            monstre.setPdv(0);
-        }
+        monstre.monstreRebMal(mal, dau);
     }
 
     public boolean estaInconscient (Monstre monstre) {

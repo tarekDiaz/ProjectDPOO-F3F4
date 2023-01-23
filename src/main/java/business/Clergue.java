@@ -53,7 +53,7 @@ public class Clergue extends Personatge{
         frase.add(this.getNom() + " uses Prayer of self healing. Heals " + cura + " hit points.");
     }
 
-    public void accioBatalla(List<Personatge> personatges, List<Monstre> monstres, List<String> frase) {
+    public String accioBatalla(List<Personatge> personatges, List<Monstre> monstres, String frase, int posMenorMonstre) {
         boolean healingDone = false;
 
         for (int i=0; i<personatges.size() && !healingDone;i++) {
@@ -65,13 +65,31 @@ public class Clergue extends Personatge{
                 } else {
                     personatges.get(i).setPdvActual(pdvPostCura);
                 }
-                frase.add(this.getNom() + " uses Prayer of healing. Heals " + cura + " hit points to " + personatges.get(i).getNom() + ".");
+                frase = "\n" + this.getNom() + " uses Prayer of healing. Heals " + cura + " hit points to " + personatges.get(i).getNom() + ".";
                 healingDone = true;
             }
         }
         if (!healingDone) {
+            int mal = atacarPersonatge();
+            frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with Not on my watch.";
 
+            int dau = (int) (Math.random() * (10)) + 1;
+            //resistencia al mal bosses
+            /*if (monstresOrdenats.get(posMenorMonstre).getNivellDificultat().equals("Boss") && monstresOrdenats.get(posMenorMonstre).getTipusDeMal().equals(personatgesOrdenats.get(contadorPersonatge).getTipusDeMal)) {
+                mal = mal/2;
+            }*/
+            monstres.get(posMenorMonstre).monstreRebMal(mal, dau);
+            if (dau == 1) {
+                frase = frase + "\nFails and deals 0 physical damage.";
+            }
+            if (dau > 1 && dau < 10) {
+                frase = frase + "\nHits and deals " + mal + " physical damage.";
+            }
+            if (dau == 10) {
+                frase = frase + "\nCritical Hit and deals " + (mal * 2) + " physical damage.";
+            }
         }
+        return frase;
     }
 
 }
