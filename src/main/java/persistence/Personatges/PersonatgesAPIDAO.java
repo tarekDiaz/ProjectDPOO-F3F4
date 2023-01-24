@@ -1,9 +1,10 @@
-package persistence;
+package persistence.Personatges;
 
 
 import business.Personatge;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import persistence.ApiHelper;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonatgesAPIDAO {
+public class PersonatgesAPIDAO implements PersonatgesDAO{
 
     private final String PERSONATGE_URL = "https://balandrau.salle.url.edu/dpoo/S1-Project_46/characters";
     private ApiHelper ap;
@@ -41,7 +42,7 @@ public class PersonatgesAPIDAO {
 
     }
 
-    public List<Personatge> readPersonatgeFromJson() {
+    public List<Personatge> readPersonatge() {
 
         try {
             String personatgesString = ap.getFromUrl(PERSONATGE_URL);

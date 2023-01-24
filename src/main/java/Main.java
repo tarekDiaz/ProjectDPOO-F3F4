@@ -1,8 +1,11 @@
 import business.*;
-import persistence.*;
+import persistence.Aventuras.AventurasAPIDAO;
+import persistence.Aventuras.AventurasJsonDAO;
+import persistence.Monstres.MonstresAPIDAO;
+import persistence.Monstres.MonstresJsonDAO;
+import persistence.Personatges.PersonatgesAPIDAO;
+import persistence.Personatges.PersonatgesJsonDAO;
 import presentation.*;
-
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,9 +1,7 @@
 package business;
 
-import persistence.MonstresJsonDAO;
-import persistence.PersonatgesJsonDAO;
+import persistence.Monstres.MonstresJsonDAO;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +17,7 @@ public class MonstreManager {
     }
 
     public List<String> llistarMonstres(){
-        List<Monstre> monstres = monstresJsonDAO.readMonstresFromJson();
+        List<Monstre> monstres = monstresJsonDAO.readMonstres();
         List<String> infoMonstres = new ArrayList<>();
 
         String nom, dificultat;
@@ -32,7 +30,7 @@ public class MonstreManager {
     }
 
     public Monstre retornaMonstreComplert(int posicio) {
-        List<Monstre> monstres = monstresJsonDAO.readMonstresFromJson();
+        List<Monstre> monstres = monstresJsonDAO.readMonstres();
         Monstre monstre = null;
 
         monstre = monstres.get(posicio-1);

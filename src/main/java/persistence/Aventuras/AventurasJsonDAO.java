@@ -1,11 +1,8 @@
-package persistence;
+package persistence.Aventuras;
 
 import business.Aventura;
-import business.Personatge;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
@@ -29,7 +26,7 @@ public class AventurasJsonDAO {
             exsists = false;
         }
     }
-    public List<Aventura> readAventuraFromJson() {
+    public List<Aventura> readAventura() {
         FileReader reader = null;
         try {
             reader = new FileReader(ADVENTURE_PATH);
@@ -46,11 +43,11 @@ public class AventurasJsonDAO {
         return aventuraJsonArray;
     }
 
-    public void writeAventuraJson(Aventura aventura){
+    public void writeAventura(Aventura aventura){
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-            List<Aventura> aventuraListJson = readAventuraFromJson();
+            List<Aventura> aventuraListJson = readAventura();
             List<Aventura> aventuraList = new ArrayList<Aventura>();
 
 

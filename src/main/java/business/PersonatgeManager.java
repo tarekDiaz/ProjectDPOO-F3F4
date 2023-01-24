@@ -1,8 +1,7 @@
 package business;
-import persistence.PersonatgesJsonDAO;
+import persistence.Personatges.PersonatgesJsonDAO;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class PersonatgeManager {
@@ -24,7 +23,7 @@ public class PersonatgeManager {
     }
 
     public List<Personatge> llegirPersonatges(){
-        List<Personatge> personatgesList = personatgesJsonDAO.readPersonatgeFromJson();
+        List<Personatge> personatgesList = personatgesJsonDAO.readPersonatge();
         return personatgesList;
     }
 
@@ -196,7 +195,7 @@ public class PersonatgeManager {
 
 
     public Personatge retornaPersonatgeComplert(String nomPersonatge) {
-        List<Personatge> personatges = personatgesJsonDAO.readPersonatgeFromJson();
+        List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
         Personatge personatge = null;
 
         for (int i = 0; i < personatges.size(); i++) {
@@ -208,7 +207,7 @@ public class PersonatgeManager {
     }
 
     public List<String> llistarPersonatges() {
-        List<Personatge> personatges = personatgesJsonDAO.readPersonatgeFromJson();
+        List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
         List<String> noms = new ArrayList<>();
 
         for (int i = 0; i < personatges.size(); i++) {
@@ -218,7 +217,7 @@ public class PersonatgeManager {
     }
 
     public List<String> llistarPersonatgesPlayer(String player) {
-        List<Personatge> personatges = personatgesJsonDAO.readPersonatgeFromJson();
+        List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
         List<String> noms = new ArrayList<>();
 
         for (int i = 0; i < personatges.size(); i++) {
@@ -246,7 +245,7 @@ public class PersonatgeManager {
 
     public boolean checkPersonatgesSize () {
         boolean check = true;
-        List<Personatge> personatges = personatgesJsonDAO.readPersonatgeFromJson();
+        List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
         if (personatges.size() < 3) {
             check = false;
         }

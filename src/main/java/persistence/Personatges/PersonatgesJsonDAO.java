@@ -1,4 +1,4 @@
-package persistence;
+package persistence.Personatges;
 
 import business.Personatge;
 import com.google.gson.*;
@@ -9,7 +9,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonatgesJsonDAO {
+public class PersonatgesJsonDAO implements PersonatgesDAO{
     private final String FILE_PATH = "data/characters.json";
     private FileReader fr;
 
@@ -28,7 +28,7 @@ public class PersonatgesJsonDAO {
         }
     }
 
-    public List<Personatge> readPersonatgeFromJson() {
+    public List<Personatge> readPersonatge() {
         FileReader reader = null;
         try {
             reader = new FileReader("data/characters.json");
@@ -49,7 +49,7 @@ public class PersonatgesJsonDAO {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 
-            List<Personatge> personatgesJSON = readPersonatgeFromJson();
+            List<Personatge> personatgesJSON = readPersonatge();
 
             personatgesJSON.add(personatge);
 
@@ -67,7 +67,7 @@ public class PersonatgesJsonDAO {
 
     public void borrar(String nom){
         try {
-            List<Personatge> personatgesJson = readPersonatgeFromJson();
+            List<Personatge> personatgesJson = readPersonatge();
 
             for (int i = 0; i < personatgesJson.size(); i++) {
                 if(personatgesJson.get(i).getNom().equals(nom)){

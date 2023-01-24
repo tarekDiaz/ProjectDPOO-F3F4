@@ -1,4 +1,4 @@
-package persistence;
+package persistence.Aventuras;
 
 import business.Aventura;
 import business.Personatge;
@@ -6,12 +6,13 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import persistence.ApiHelper;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class AventurasAPIDAO {
+public class AventurasAPIDAO implements AventurasDAO{
 
     private final String ADVENTURE_URL = "https://balandrau.salle.url.edu/dpoo/S1-Project_46/adventures";
     private ApiHelper ap;
@@ -27,7 +28,7 @@ public class AventurasAPIDAO {
     public AventurasAPIDAO(){
 
     }
-    public List<Aventura> readAventuraFromJson() {
+    public List<Aventura> readAventura() {
         try {
             String personatgesString = ap.getFromUrl(ADVENTURE_URL);
 
@@ -45,7 +46,7 @@ public class AventurasAPIDAO {
 
     }
 
-    public void writeAventuraJson (Aventura aventura){
+    public void writeAventura (Aventura aventura){
         Gson gson = new Gson();
 
         String aventuraJSON = gson.toJson(aventura);
