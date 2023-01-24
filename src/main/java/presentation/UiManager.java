@@ -1,6 +1,6 @@
 package presentation;
 
-import business.Personatge;
+import business.Personatge.Personatge;
 
 import java.util.*;
 

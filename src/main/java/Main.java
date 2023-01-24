@@ -1,4 +1,6 @@
-import business.*;
+import business.Aventura.AventuraManager;
+import business.Monstre.MonstreManager;
+import business.Personatge.PersonatgeManager;
 import persistence.Aventuras.AventurasAPIDAO;
 import persistence.Aventuras.AventurasDAO;
 import persistence.Aventuras.AventurasJsonDAO;
@@ -10,10 +12,9 @@ import persistence.Personatges.PersonatgesDAO;
 import persistence.Personatges.PersonatgesJsonDAO;
 import presentation.*;
 
-import java.io.IOException;
-
 public class Main {
     public static void main(String[] args) {
+
         PersonatgesDAO personatgesDAO;
         MonstresDAO monstresDAO;
         AventurasDAO aventurasDAO;

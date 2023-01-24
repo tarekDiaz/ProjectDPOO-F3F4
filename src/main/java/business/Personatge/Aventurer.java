@@ -1,6 +1,4 @@
-package business;
-
-import java.util.List;
+package business.Personatge;
 
 public class Aventurer extends Personatge{
     public Aventurer(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa, String tipusDeMal) {

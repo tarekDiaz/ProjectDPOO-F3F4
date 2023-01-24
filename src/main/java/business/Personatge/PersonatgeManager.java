@@ -1,5 +1,5 @@
-package business;
-import persistence.Personatges.PersonatgesJsonDAO;
+package business.Personatge;
+import business.Monstre.Monstre;
 import persistence.Personatges.PersonatgesDAO;
 
 import java.util.ArrayList;

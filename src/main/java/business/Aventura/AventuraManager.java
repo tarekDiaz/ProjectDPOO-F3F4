@@ -1,11 +1,10 @@
-package business;
+package business.Aventura;
 
+import business.Monstre.Monstre;
+import business.Personatge.Personatge;
 import persistence.Aventuras.AventurasDAO;
-import persistence.Aventuras.AventurasJsonDAO;
 import persistence.Monstres.MonstresDAO;
-import persistence.Monstres.MonstresJsonDAO;
 import persistence.Personatges.PersonatgesDAO;
-import persistence.Personatges.PersonatgesJsonDAO;
 
 import java.util.*;
 

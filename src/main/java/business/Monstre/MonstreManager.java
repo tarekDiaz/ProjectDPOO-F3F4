@@ -1,7 +1,6 @@
-package business;
+package business.Monstre;
 
 import persistence.Monstres.MonstresDAO;
-import persistence.Monstres.MonstresJsonDAO;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,6 @@
-package business;
+package business.Personatge;
 
+import business.Monstre.Monstre;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

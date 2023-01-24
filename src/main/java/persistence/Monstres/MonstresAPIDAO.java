@@ -1,7 +1,6 @@
 package persistence.Monstres;
 
-import business.Monstre;
-import business.Personatge;
+import business.Monstre.Monstre;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;

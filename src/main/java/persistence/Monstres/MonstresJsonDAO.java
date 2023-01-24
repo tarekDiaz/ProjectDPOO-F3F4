@@ -1,6 +1,6 @@
 package persistence.Monstres;
 
-import business.Monstre;
+import business.Monstre.Monstre;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 

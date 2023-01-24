@@ -1,4 +1,6 @@
-package business;
+package business.Personatge;
+
+import business.Monstre.Monstre;
 
 import java.util.List;
 

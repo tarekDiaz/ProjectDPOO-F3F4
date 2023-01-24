@@ -1,6 +1,6 @@
 package persistence.Aventuras;
 
-import business.Aventura;
+import business.Aventura.Aventura;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
