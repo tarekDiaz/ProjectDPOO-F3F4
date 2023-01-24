@@ -45,7 +45,7 @@ public class UiManager {
         System.out.println("Welcome to Simple LSRPG.\n");
         System.out.println("Do you want to use your local or cloud data?");
         System.out.println("\t1) Local data");
-        System.out.println("\t1) Cloud data");
+        System.out.println("\t1) Cloud data\n");
 
         opcio = this.askForInteger("-> Answer:");
 
@@ -53,7 +53,7 @@ public class UiManager {
             System.out.println("Invalid number!");
             opcio = this.askForInteger("-> Answer:");
         }
-
+        System.out.println("\nLoading data...");
         return opcio;
     }
 
