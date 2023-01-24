@@ -21,15 +21,37 @@ public class Controller {
         this.aventuraManager = aventuraManager;
     }
 
-    public void run() {
+    public void loadData(){
         int opcio;
+        boolean loaded = false;
+
         ui.showMessage(
                 "   ____  _               __       __    ____ ___   ___   _____\n" +
                         "  / __/ (_)__ _   ___   / /___   / /   / __// _ \\ / _ \\ / ___/\n" +
                         " _\\ \\  / //  ' \\ / _ \\ / // -_) / /__ _\\ \\ / , _// ___// (_ / \n" +
                         "/___/ /_//_/_/_// .__//_/ \\__/ /____//___//_/|_|/_/    \\___/  \n" +
                         "               /_/\n");
-        ui.showMessage("Welcome to Simple LSRPG.\n" + "\nLoading data...");
+        ui.showMessage("Welcome to Simple LSRPG.\n");
+        ui.showMessage("Do you want to use your local or cloud data?");
+        ui.showMessage("\t1) Local data");
+        ui.showMessage("\t1) Cloud data");
+
+        opcio = ui.askForInteger("-> Answer:");
+
+        switch (opcio){
+            case 1:
+                ui.showMessage("Loading data...");
+
+                break;
+            case 2:
+                ui.showMessage("Loading data...");
+
+                break;
+            default:
+                ui.showMessage("Choose a correct option");
+                break;
+        }
+
         if (!personatgeManager.getPersonatgesJsonDAO().getExsists() || !monstreManager.getMonstresJsonDAO().getExsists() || !aventuraManager.getAventurasJsonDAO().getExsists()){
             if(!personatgeManager.getPersonatgesJsonDAO().getExsists()){
                 ui.showMessage("Error: The charachters.json file can't be accessed.");
@@ -40,15 +62,25 @@ public class Controller {
             if(!aventuraManager.getAventurasJsonDAO().getExsists()){
                 ui.showMessage("Error: The adventure.json file can't be accessed.");
             }
-        }else{
-            ui.showMessage("Data was successfully loaded.");
-            do {
-                ui.showMessage("");
-                ui.menuPrincipal(personatgeManager.checkPersonatgesSize());
-                opcio = ui.askForInteger("\nYour answer: ");
-                executeMenuPrincipal(opcio);
-            } while (opcio != 5);
         }
+
+        do{
+
+
+        }while(!loaded);
+
+        ui.showMessage("Data was successfully loaded.");
+    }
+
+
+    public void run() {
+        int opcio;
+        do {
+            ui.showMessage("");
+            ui.menuPrincipal(personatgeManager.checkPersonatgesSize());
+            opcio = ui.askForInteger("\nYour answer: ");
+            executeMenuPrincipal(opcio);
+        } while (opcio != 5);
     }
 
     private void executeMenuPrincipal(int option) {
