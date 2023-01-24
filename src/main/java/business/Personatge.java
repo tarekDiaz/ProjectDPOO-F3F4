@@ -41,7 +41,9 @@ public class Personatge {
     private int pdvActual;
     private int iniciativa;
 
-    public Personatge(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa) {
+    private String tipusDeMal;
+
+    public Personatge(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa, String tipusDeMal) {
         this.nom = nom;
         this.nomJugador = nomJugador;
         this.nivell = nivell;
@@ -53,6 +55,7 @@ public class Personatge {
         this.pdvMax = pdvMax;
         this.pdvActual = pdvActual;
         this.iniciativa = iniciativa;
+        this.tipusDeMal = tipusDeMal;
     }
 
     public Personatge(String nom, String nomJugador, int experiencia, int cos, int ment, int esperit, String classe) {
@@ -166,6 +169,20 @@ public class Personatge {
         this.iniciativa = iniciativa;
     }
 
+
+    public String getTipusDeMal() {
+        return tipusDeMal;
+    }
+
+    public void setTipusDeMal(String tipusDeMal) {
+        this.tipusDeMal = tipusDeMal;
+    }
+
+    public int reduirMal (int mal, Monstre monstre) {
+
+        return mal;
+    }
+
     public int atacarPersonatge() {
         int mal = (int) (Math.random() * (6)) + 1 + getCos();
         return mal;
@@ -183,17 +200,12 @@ public class Personatge {
 
     public int curarPersonatge() {
         int cura = (int) (Math.random() * (8)) + 1 + getMent();
-        int pdvPostCura = getPdvActual() + cura;
-        if (pdvPostCura > getPdvMax()) {
-            setPdvActual(getPdvMax());
-        } else {
-            setPdvActual(pdvPostCura);
-        }
+
         return cura;
     }
 
     public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
-        int cura = (int) (Math.random() * (8)) + 1 + this.getMent();
+        int cura = curarPersonatge();
         int pdvPostCura = this.getPdvActual() + cura;
         if (pdvPostCura > this.getPdvMax()) {
             this.setPdvActual(getPdvMax());
@@ -215,24 +227,30 @@ public class Personatge {
         return llista;
     }
 
-    public String accioBatalla(List<Personatge> personatges, List<Monstre> monstres, String frase, int posMenorMonstre) {
-        int mal = atacarPersonatge();
-        frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with Not on my watch.";
+    public String retornaNomAtac () {
+        String nomAtac = "Sword Slash";
+
+        return nomAtac;
+    }
+
+    public String accioBatalla(List<Personatge> personatges, List<Monstre> monstres, String frase, int posMenorMonstre, int posMajorMonstre) {
+        int mal = this.atacarPersonatge();
+        frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with " + this.retornaNomAtac() + ".";
 
         int dau = (int) (Math.random() * (10)) + 1;
         //resistencia al mal bosses
-        /*if (monstresOrdenats.get(posMenorMonstre).getNivellDificultat().equals("Boss") && monstresOrdenats.get(posMenorMonstre).getTipusDeMal().equals(personatgesOrdenats.get(contadorPersonatge).getTipusDeMal)) {
+        if (monstres.get(posMenorMonstre).getNivellDificultat().equals("Boss") && monstres.get(posMenorMonstre).getTipusDeMal().equals(this.getTipusDeMal())) {
             mal = mal/2;
-        }*/
+        }
         monstres.get(posMenorMonstre).monstreRebMal(mal, dau);
         if (dau == 1) {
-            frase = frase + "\nFails and deals 0 physical damage.";
+            frase = frase + "\nFails and deals 0 " + getTipusDeMal() + " damage.";
         }
         if (dau > 1 && dau < 10) {
-            frase = frase + "\nHits and deals " + mal + " physical damage.";
+            frase = frase + "\nHits and deals " + mal + " " + getTipusDeMal() + " damage.";
         }
         if (dau == 10) {
-            frase = frase + "\nCritical Hit and deals " + (mal * 2) + " physical damage.";
+            frase = frase + "\nCritical Hit and deals " + (mal * 2) + " " + getTipusDeMal() + " damage.";
         }
         return frase;
     }

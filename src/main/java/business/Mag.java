@@ -6,8 +6,8 @@ public class Mag extends Personatge{
 
     private int escut;
 
-    public Mag(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa, int escut) {
-        super(nom, nomJugador, nivell, cos, ment, esperit, classe, experiencia, pdvMax, pdvActual, iniciativa);
+    public Mag(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa, int escut, String tipusDeMal) {
+        super(nom, nomJugador, nivell, cos, ment, esperit, classe, experiencia, pdvMax, pdvActual, iniciativa, tipusDeMal);
         this.escut = escut;
     }
 
@@ -31,6 +31,17 @@ public class Mag extends Personatge{
     }
 
     @Override
+    public int reduirMal (int mal, Monstre monstre) {
+        if (monstre.getTipusDeMal().equals(this.getTipusDeMal())) {
+            mal = mal - getNivell();
+            if (mal < 0) {
+                mal = 0;
+            }
+        }
+        return mal;
+    }
+
+    @Override
     public void suportPersonatge(List<Personatge> personatges, List<String> frase) {
         int escut = ((int) (Math.random() * (6)) + this.getMent()) * this.getNivell();
         this.setEscut(escut);
@@ -45,5 +56,60 @@ public class Mag extends Personatge{
         llista.add("- " + getNom() + "   " + getPdvActual() + " / " + getPdvMax() + " hit points (Shield: " + getEscut() + ")");
 
         return llista;
+    }
+
+    @Override
+    public String accioBatalla(List<Personatge> personatges, List<Monstre> monstres, String frase, int posMenorMonstre, int posMajorMonstre) {
+        int monstresVius = 0;
+
+        for (int i=0; i<monstres.size();i++) {
+            if (monstres.get(i).getPdv() != 0) {
+                monstresVius++;
+            }
+        }
+        if (monstresVius >= 3) {
+            int mal = (int) (Math.random() * (4)) + 1 + getMent();;
+            frase = "\n" + getNom() + " attacks all non-dead enemies with Fireball.";
+
+            int dau = (int) (Math.random() * (10)) + 1;
+            for (int j=0; j<monstres.size();j++) {
+                if (monstres.get(j).getPdv() != 0) {
+                    if (monstres.get(j).getNivellDificultat().equals("Boss") && monstres.get(j).getTipusDeMal().equals(this.getTipusDeMal())) {
+                        mal = mal/2;
+                    }
+                    monstres.get(j).monstreRebMal(mal, dau);
+                }
+            }
+            if (dau == 1) {
+                frase = frase + "\nFails and deals 0 " + getTipusDeMal() + " damage.";
+            }
+            if (dau > 1 && dau < 10) {
+                frase = frase + "\nHits and deals " + mal + " " + getTipusDeMal() + " damage.";
+            }
+            if (dau == 10) {
+                frase = frase + "\nCritical Hit and deals " + (mal * 2) + " " + getTipusDeMal() + " damage.";
+            }
+        } else {
+            int mal = (int) (Math.random() * (6)) + 1 + getMent();;
+            frase = "\n" + getNom() + " attacks " + monstres.get(posMajorMonstre).getNom() + " with Arcane Missile.";
+
+            int dau = (int) (Math.random() * (10)) + 1;
+
+            if (monstres.get(posMajorMonstre).getNivellDificultat().equals("Boss") && monstres.get(posMajorMonstre).getTipusDeMal().equals(this.getTipusDeMal())) {
+                mal = mal/2;
+            }
+            monstres.get(posMajorMonstre).monstreRebMal(mal, dau);
+
+            if (dau == 1) {
+                frase = frase + "\nFails and deals 0 " + getTipusDeMal() + " damage.";
+            }
+            if (dau > 1 && dau < 10) {
+                frase = frase + "\nHits and deals " + mal + " " + getTipusDeMal() + " damage.";
+            }
+            if (dau == 10) {
+                frase = frase + "\nCritical Hit and deals " + (mal * 2) + " " + getTipusDeMal() + " damage.";
+            }
+        }
+        return frase;
     }
 }

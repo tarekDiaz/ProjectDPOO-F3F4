@@ -66,6 +66,17 @@ public class MonstreManager {
         return posMenor;
     }
 
+    public int posicioMonstreMesHP (List<Monstre> monstres) {
+        int posMajor = 0, major = monstres.get(0).getPdv();
+        for (int i=1; i<monstres.size(); i++) {
+            if (monstres.get(i).getPdv() > major) {
+                posMajor = i;
+                major = monstres.get(i).getPdv();
+            }
+        }
+        return posMajor;
+    }
+
     public void monstreRebMal (Monstre monstre, int mal, int dau) {
         monstre.monstreRebMal(mal, dau);
     }

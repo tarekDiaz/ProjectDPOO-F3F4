@@ -234,10 +234,10 @@ public class AventuraManager {
         aventurasJsonDAO.writeAventuraJson(aventura);
     }
 
-    public String accioDurantCombat (List<Personatge> personatges, List<Monstre> monstres, int contadorPersonatge, int posMenorMonstre) {
+    public String accioDurantCombat (List<Personatge> personatges, List<Monstre> monstres, int contadorPersonatge, int posMenorMonstre, int posMajorMonstre) {
         String frase =  null;
 
-        frase = personatges.get(contadorPersonatge).accioBatalla(personatges, monstres, frase, posMenorMonstre);
+        frase = personatges.get(contadorPersonatge).accioBatalla(personatges, monstres, frase, posMenorMonstre, posMajorMonstre);
 
         return frase;
     }
