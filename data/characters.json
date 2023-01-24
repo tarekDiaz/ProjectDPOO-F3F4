@@ -169,5 +169,14 @@
     "mind": 1,
     "spirit": 1,
     "class": "Cleric"
+  },
+  {
+    "name": "sdfafds",
+    "player": "dfs",
+    "xp": 100,
+    "body": 1,
+    "mind": 0,
+    "spirit": 1,
+    "class": "Adventurer"
   }
 ]

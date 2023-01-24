@@ -21,6 +21,7 @@ public class Controller {
         this.aventuraManager = aventuraManager;
     }
 
+    /*
     public void loadData(){
         int opcio;
         boolean loaded = false;
@@ -71,7 +72,7 @@ public class Controller {
 
         ui.showMessage("Data was successfully loaded.");
     }
-
+*/
 
     public void run() {
         int opcio;

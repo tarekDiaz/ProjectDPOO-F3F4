@@ -10,7 +10,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AventurasJsonDAO {
+public class AventurasJsonDAO implements AventurasDAO{
     private final String ADVENTURE_PATH = "data/adventure.json";
     private FileReader fr;
     private boolean exsists;
