@@ -443,7 +443,7 @@ public class Controller {
                                             if (!personatgeManager.estaInconscient(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h))) {
                                                 fraseBoss = fraseBoss + " " + aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h).getNom();
                                                 dau = (int) (Math.random() * (10)) + 1;
-                                                personatgeManager.rebreMalPersonatge(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h), mal, dau);
+                                                personatgeManager.rebreMalPersonatge(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h), mal, dau, monstresOrdenats.get(contadorMonstre));
                                                 ui.AttackMissHitCrit(mal, dau);
                                             }
                                         }
@@ -461,7 +461,7 @@ public class Controller {
                                         }
                                         ui.showMessage("\n" + monstresOrdenats.get(contadorMonstre).getNom() + " attacks " + personatgesOrdenats.get(rollPersonatge).getNom() + ".");
                                         dau = (int) (Math.random() * (10)) + 1;
-                                        personatgeManager.rebreMalPersonatge(personatgesOrdenats.get(rollPersonatge), mal, dau);
+                                        personatgeManager.rebreMalPersonatge(personatgesOrdenats.get(rollPersonatge), mal, dau, monstresOrdenats.get(contadorMonstre));
                                         ui.AttackMissHitCrit(mal, dau);
                                         if (personatgeManager.estaInconscient(personatgesOrdenats.get(rollPersonatge))) {
                                             ui.showMessage(personatgesOrdenats.get(rollPersonatge).getNom() + " falls unconscious.");

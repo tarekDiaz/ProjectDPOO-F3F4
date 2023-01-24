@@ -148,13 +148,15 @@ public class PersonatgeManager {
         return mal;
     }
 
-    public void rebreMalPersonatge(Personatge personatge, int mal, int dau) {
+    public void rebreMalPersonatge(Personatge personatge, int mal, int dau, Monstre monstre) {
         if (dau == 1) {
             mal = 0;
         }
         if (dau == 10) {
             mal = mal * 2;
         }
+
+        mal = personatge.reduirMal(mal, monstre);
 
         int pdvPostAtac = personatge.getPdvActual() - mal;
         personatge.setPdvActual(pdvPostAtac);
