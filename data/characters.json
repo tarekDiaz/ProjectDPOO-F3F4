@@ -142,5 +142,32 @@
     "mind": 1,
     "spirit": 0,
     "class": "Adventurer"
+  },
+  {
+    "name": "God",
+    "player": "Jordi",
+    "xp": 500,
+    "body": 0,
+    "mind": 1,
+    "spirit": 1,
+    "class": "Adventurer"
+  },
+  {
+    "name": "JorxMage",
+    "player": "Jordi",
+    "xp": 700,
+    "body": 0,
+    "mind": 0,
+    "spirit": 1,
+    "class": "Mage"
+  },
+  {
+    "name": "JorxCleric",
+    "player": "Jordi",
+    "xp": 300,
+    "body": 1,
+    "mind": 1,
+    "spirit": 1,
+    "class": "Cleric"
   }
 ]
