@@ -1,5 +1,7 @@
 package business;
 
+import java.util.List;
+
 public class Guerrer extends Aventurer{
     public Guerrer(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa, String tipusDeMal) {
         super(nom, nomJugador, nivell, cos, ment, esperit, classe, experiencia, pdvMax, pdvActual, iniciativa, tipusDeMal);
@@ -28,5 +30,18 @@ public class Guerrer extends Aventurer{
         String nomAtac = "Improved Sword Slash";
 
         return nomAtac;
+    }
+
+    @Override
+    public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
+        Personatge evolucio = null;
+        String frase = null;
+        if (this.getNivell() == 8) {
+            evolucio = new Campio(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), this.getClasse(), this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());
+            personatges.add(posPersonatge + 1, evolucio);
+            personatges.remove(posPersonatge);
+            frase = this.getNom() + " evolves to Champion!";
+        }
+        return frase;
     }
 }

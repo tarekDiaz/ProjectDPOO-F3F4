@@ -241,4 +241,10 @@ public class AventuraManager {
 
         return frase;
     }
+
+    public String evolucionaPersonatges(List<Personatge> personatges, Personatge personatge, int posPersonatge) {
+
+        String frase = personatge.evolucionarPersonatge(personatges, posPersonatge);
+        return frase;
+    }
 }

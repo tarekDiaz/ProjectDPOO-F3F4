@@ -93,4 +93,17 @@ public class Clergue extends Personatge{
         return frase;
     }
 
+    @Override
+    public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
+        Personatge evolucio = null;
+        String frase = null;
+        if (this.getNivell() == 5) {
+            evolucio = new Paladi(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), this.getClasse(), this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());
+            personatges.add(posPersonatge + 1, evolucio);
+            personatges.remove(posPersonatge);
+            frase = this.getNom() + " evolves to Paladin!";
+        }
+        return frase;
+    }
+
 }

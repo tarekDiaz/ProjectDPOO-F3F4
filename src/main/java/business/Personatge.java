@@ -254,4 +254,16 @@ public class Personatge {
         }
         return frase;
     }
+
+    public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
+        Personatge evolucio = null;
+        String frase = null;
+        if (this.getNivell() == 4) {
+            evolucio = new Guerrer(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), this.getClasse(), this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());
+            personatges.add(posPersonatge + 1, evolucio);
+            personatges.remove(posPersonatge);
+            frase = this.getNom() + " evolves to Warrior!";
+        }
+        return frase;
+    }
 }

@@ -151,7 +151,7 @@ public class Controller {
         ui.showMessage("'And lastly, ?'\n");
         classe = ui.askForString("-> Enter the character's initial class [Adventurer, Cleric, Mage]: ");
         // no se si soc retrasat o que passa pero no aconegueixo fer el while estic tilt
-        while (classe != "Adventurer" && classe != "Cleric" && classe != "Mage") {
+        while (!classe.equals("Adventurer") && !classe.equals("Cleric")  && !classe.equals("Mage")) {
             ui.showMessage("\nEnter a valid class.\n");
             classe = ui.askForString("-> Enter the character's initial class [Adventurer, Cleric, Mage]: ");
         }
@@ -487,6 +487,10 @@ public class Controller {
                             if (pujaNivell) {
                                 ui.showMessage(currentAventura.getPersonatges().get(q).getNom() + " gains " + xpObtinguda + " xp. " + currentAventura.getPersonatges().get(q).getNom() + " levels up. They are now lvl " + currentAventura.getPersonatges().get(q).getNivell() + ".");
                                 personatgeManager.calcularPdvMax(currentAventura.getPersonatges().get(q));
+                                String fraseEvo = aventuraManager.evolucionaPersonatges(currentAventura.getPersonatges(), currentAventura.getPersonatges().get(q), q);
+                                if (fraseEvo != null) {
+                                    ui.showMessage(fraseEvo);
+                                }
                             } else {
                                 ui.showMessage(currentAventura.getPersonatges().get(q).getNom() + " gains " + xpObtinguda+ " xp.");
                             }
