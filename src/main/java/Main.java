@@ -14,19 +14,23 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
+        PersonatgesDAO personatgesDAO;
+        MonstresDAO monstresDAO;
+        AventurasDAO aventurasDAO;
 
         UiManager uiManager = new UiManager();
 
+        int opcio = uiManager.start();
 
-        AventurasDAO aventurasDAO = new AventurasAPIDAO();
-        MonstresDAO monstresDAO = new MonstresAPIDAO();
-        PersonatgesDAO personatgesDAO = new PersonatgesAPIDAO();
-
-
-        //PersonatgesDAO personatgesDAO = new PersonatgesJsonDAO();
-        //MonstresDAO monstresDAO = new MonstresJsonDAO();
-        //AventurasDAO aventurasDAO = new AventurasJsonDAO();
-        //controller.loadData();
+        if (opcio == 1){
+            personatgesDAO = new PersonatgesJsonDAO();
+            monstresDAO = new MonstresJsonDAO();
+            aventurasDAO = new AventurasJsonDAO();
+        }else{
+                aventurasDAO = new AventurasAPIDAO();
+                monstresDAO = new MonstresAPIDAO();
+                personatgesDAO = new PersonatgesAPIDAO();
+        }
 
         PersonatgeManager personatgeManager = new PersonatgeManager(personatgesDAO);
         MonstreManager monstreManager = new MonstreManager(monstresDAO);

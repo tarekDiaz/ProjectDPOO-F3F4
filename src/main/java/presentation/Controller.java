@@ -42,17 +42,14 @@ public class Controller {
         switch (opcio){
             case 1:
                 ui.showMessage("Loading data...");
-
                 break;
             case 2:
                 ui.showMessage("Loading data...");
-
                 break;
             default:
                 ui.showMessage("Choose a correct option");
                 break;
         }
-
         if (!personatgeManager.getPersonatgesJsonDAO().getExsists() || !monstreManager.getMonstresJsonDAO().getExsists() || !aventuraManager.getAventurasJsonDAO().getExsists()){
             if(!personatgeManager.getPersonatgesJsonDAO().getExsists()){
                 ui.showMessage("Error: The charachters.json file can't be accessed.");
@@ -64,12 +61,6 @@ public class Controller {
                 ui.showMessage("Error: The adventure.json file can't be accessed.");
             }
         }
-
-        do{
-
-
-        }while(!loaded);
-
         ui.showMessage("Data was successfully loaded.");
     }
 */

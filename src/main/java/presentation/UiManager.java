@@ -33,6 +33,34 @@ public class UiManager {
         return scanner.nextLine();
     }
 
+    public int start(){
+        int opcio;
+        System.out.println(
+            "   ____  _               __       __    ____ ___   ___   _____\n" +
+                    "  / __/ (_)__ _   ___   / /___   / /   / __// _ \\ / _ \\ / ___/\n" +
+                    " _\\ \\  / //  ' \\ / _ \\ / // -_) / /__ _\\ \\ / , _// ___// (_ / \n" +
+                    "/___/ /_//_/_/_// .__//_/ \\__/ /____//___//_/|_|/_/    \\___/  \n" +
+                    "               /_/\n");
+
+        System.out.println("Welcome to Simple LSRPG.\n");
+        System.out.println("Do you want to use your local or cloud data?");
+        System.out.println("\t1) Local data");
+        System.out.println("\t1) Cloud data");
+
+        opcio = this.askForInteger("-> Answer:");
+
+        while(opcio != 1 && opcio != 2){
+            System.out.println("Invalid number!");
+            opcio = this.askForInteger("-> Answer:");
+        }
+
+        return opcio;
+    }
+
+
+
+
+
     public void menuPrincipal(boolean checkPersonatges) {
         System.out.println("The tavern keeper looks at you and says: ");
         System.out.println("Welcome adventurer! How can i help you?\n");
