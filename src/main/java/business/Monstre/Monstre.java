@@ -108,5 +108,13 @@ public class Monstre {
             setPdv(0);
         }
     }
+
+    public boolean estaInconscient () {
+        boolean inconscient = false;
+        if (this.getPdv() == 0) {
+            inconscient = true;
+        }
+        return inconscient;
+    }
 }
 

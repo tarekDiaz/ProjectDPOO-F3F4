@@ -82,10 +82,7 @@ public class MonstreManager {
     }
 
     public boolean estaInconscient (Monstre monstre) {
-        boolean inconscient = false;
-        if (monstre.getPdv() == 0) {
-            inconscient = true;
-        }
+        boolean inconscient = monstre.estaInconscient();
         return inconscient;
     }
 

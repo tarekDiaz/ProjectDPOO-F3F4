@@ -44,14 +44,18 @@ public class Clergue extends Personatge{
 
     @Override
     public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
+        String fraseaux = "";
         int cura = curarPersonatge();
+        if (this.getPdvActual() == this.getPdvMax()) {
+            fraseaux = " But was already full hp.";
+        }
         int pdvPostCura = this.getPdvActual() + cura;
         if (pdvPostCura > this.getPdvMax()) {
             this.setPdvActual(getPdvMax());
         } else {
             this.setPdvActual(pdvPostCura);
         }
-        frase.add(this.getNom() + " uses Prayer of self healing. Heals " + cura + " hit points.");
+        frase.add(this.getNom() + " uses Prayer of self healing. Heals " + cura + " hit points." + fraseaux);
     }
 
     @Override
@@ -89,6 +93,9 @@ public class Clergue extends Personatge{
             }
             if (dau == 10) {
                 frase = frase + "\nCritical Hit and deals " + (mal * 2) + " " + getTipusDeMal() + " damage.";
+            }
+            if (monstres.get(posMenorMonstre).estaInconscient()) {
+                frase = frase + "\n" + monstres.get(posMenorMonstre).getNom() + " dies.";
             }
         }
         return frase;

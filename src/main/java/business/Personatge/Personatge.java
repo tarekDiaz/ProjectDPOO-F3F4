@@ -206,14 +206,35 @@ public class Personatge {
     }
 
     public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
+        String fraseaux = "";
         int cura = curarPersonatge();
+        if (this.getPdvActual() == this.getPdvMax()) {
+            fraseaux = " But was already full hp.";
+        }
         int pdvPostCura = this.getPdvActual() + cura;
         if (pdvPostCura > this.getPdvMax()) {
             this.setPdvActual(getPdvMax());
         } else {
             this.setPdvActual(pdvPostCura);
         }
-        frase.add(this.getNom() + " uses Bandage Time. Heals " + cura + " hit points.");
+        frase.add(this.getNom() + " uses Bandage Time. Heals " + cura + " hit points." + fraseaux);
+    }
+
+    public void rebreMalPersonatge(int mal, int dau, Monstre monstre) {
+        if (dau == 1) {
+            mal = 0;
+        }
+        if (dau == 10) {
+            mal = mal * 2;
+        }
+
+        mal = this.reduirMal(mal, monstre);
+
+        int pdvPostAtac = this.getPdvActual() - mal;
+        this.setPdvActual(pdvPostAtac);
+        if (this.getPdvActual() < 0) {
+            this.setPdvActual(0);
+        }
     }
 
     public int calcularIniciativa () {
@@ -252,6 +273,9 @@ public class Personatge {
         }
         if (dau == 10) {
             frase = frase + "\nCritical Hit and deals " + (mal * 2) + " " + getTipusDeMal() + " damage.";
+        }
+        if (monstres.get(posMenorMonstre).estaInconscient()) {
+            frase = frase + "\n" + monstres.get(posMenorMonstre).getNom() + " dies.";
         }
         return frase;
     }

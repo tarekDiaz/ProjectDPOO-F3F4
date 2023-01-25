@@ -152,20 +152,7 @@ public class PersonatgeManager {
     }
 
     public void rebreMalPersonatge(Personatge personatge, int mal, int dau, Monstre monstre) {
-        if (dau == 1) {
-            mal = 0;
-        }
-        if (dau == 10) {
-            mal = mal * 2;
-        }
-
-        mal = personatge.reduirMal(mal, monstre);
-
-        int pdvPostAtac = personatge.getPdvActual() - mal;
-        personatge.setPdvActual(pdvPostAtac);
-        if (personatge.getPdvActual() < 0) {
-            personatge.setPdvActual(0);
-        }
+        personatge.rebreMalPersonatge(mal, dau, monstre);
     }
 
     public int curarPersonatge(Personatge personatge) {
@@ -190,7 +177,7 @@ public class PersonatgeManager {
                     if (estaInconscient(personatgesOrdenats.get(n))) {
                         frase.add(personatgesOrdenats.get(n).getNom() + " is unconscious.");
                     } else {
-                        personatgesOrdenats.get(n).curaDescansCurt(personatgesOrdenats, frase);
+                        personatgesAventura.get(q).curaDescansCurt(personatgesAventura, frase);
                     }
                 }
             }

@@ -44,14 +44,48 @@ public class Mag extends Personatge{
     }
 
     @Override
+    public void rebreMalPersonatge(int mal, int dau, Monstre monstre) {
+        if (dau == 1) {
+            mal = 0;
+        }
+        if (dau == 10) {
+            mal = mal * 2;
+        }
+
+        mal = this.reduirMal(mal, monstre);
+
+        if (this.getEscut() > 0) {
+            if (mal < this.getEscut()) {
+                int escutPostAtac = this.getEscut() - mal;
+                this.setEscut(escutPostAtac);
+            }
+            else {
+                int malExtra = mal - this.getEscut();
+                this.setEscut(0);
+                this.setPdvActual(this.getPdvActual()-malExtra);
+                if (this.getPdvActual() < 0) {
+                    this.setPdvActual(0);
+                }
+            }
+        }
+        else {
+            int pdvPostAtac = this.getPdvActual() - mal;
+            this.setPdvActual(pdvPostAtac);
+            if (this.getPdvActual() < 0) {
+                this.setPdvActual(0);
+            }
+        }
+    }
+
+    @Override
     public void suportPersonatge(List<Personatge> personatges, List<String> frase) {
-        int escut = ((int) (Math.random() * (6)) + this.getMent()) * this.getNivell();
+        int escut = ((int) (Math.random() * (6)) + 1 + this.getMent()) * this.getNivell();
         this.setEscut(escut);
         frase.add(this.getNom() + " uses Mage shield. Shield recharges to " + escut + ".");
     }
     @Override
     public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
-        frase.add(this.getNom() + " is reading a book");
+        frase.add(this.getNom() + " is reading a book.");
     }
     @Override
     public List<String> writePartyHP (List<String> llista) {
@@ -63,6 +97,7 @@ public class Mag extends Personatge{
     @Override
     public String accioBatalla(List<Personatge> personatges, List<Monstre> monstres, String frase, int posMenorMonstre, int posMajorMonstre) {
         int monstresVius = 0;
+        String fraseaux = "";
 
         for (int i=0; i<monstres.size();i++) {
             if (monstres.get(i).getPdv() != 0) {
@@ -80,6 +115,9 @@ public class Mag extends Personatge{
                         mal = mal/2;
                     }
                     monstres.get(j).monstreRebMal(mal, dau);
+                    if (monstres.get(j).estaInconscient()) {
+                        fraseaux = fraseaux + "\n" + monstres.get(j).getNom() + " dies.";
+                    }
                 }
             }
             if (dau == 1) {
@@ -91,6 +129,7 @@ public class Mag extends Personatge{
             if (dau == 10) {
                 frase = frase + "\nCritical Hit and deals " + (mal * 2) + " " + getTipusDeMal() + " damage.";
             }
+            frase = frase + fraseaux;
         } else {
             int mal = (int) (Math.random() * (6)) + 1 + getMent();;
             frase = "\n" + getNom() + " attacks " + monstres.get(posMajorMonstre).getNom() + " with Arcane Missile.";
@@ -110,6 +149,9 @@ public class Mag extends Personatge{
             }
             if (dau == 10) {
                 frase = frase + "\nCritical Hit and deals " + (mal * 2) + " " + getTipusDeMal() + " damage.";
+            }
+            if (monstres.get(posMajorMonstre).estaInconscient()) {
+                frase = frase + "\n" + monstres.get(posMajorMonstre).getNom() + " dies.";
             }
         }
         return frase;

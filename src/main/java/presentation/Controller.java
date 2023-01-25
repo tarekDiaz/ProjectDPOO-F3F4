@@ -419,9 +419,9 @@ public class Controller {
                                     int posMenorMonstre = monstreManager.posicioMonstreMenysHP(monstresOrdenats);
                                     int posMajorMonstre = monstreManager.posicioMonstreMesHP(monstresOrdenats);
                                     ui.showMessage(aventuraManager.accioDurantCombat(personatgesOrdenats, monstresOrdenats, contadorPersonatge, posMenorMonstre, posMajorMonstre));
-                                    if (monstreManager.estaInconscient(monstresOrdenats.get(posMenorMonstre))) {
+                                    /*if (monstreManager.estaInconscient(monstresOrdenats.get(posMenorMonstre))) {
                                         ui.showMessage(monstresOrdenats.get(posMenorMonstre).getNom() + " dies.");
-                                    }
+                                    }*/
                                     contadorPersonatge++;
                                 }
                             }
@@ -440,7 +440,7 @@ public class Controller {
                                                 fraseBoss = fraseBoss + " " + aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h).getNom();
                                                 dau = (int) (Math.random() * (10)) + 1;
                                                 personatgeManager.rebreMalPersonatge(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h), mal, dau, monstresOrdenats.get(contadorMonstre));
-                                                ui.AttackMissHitCrit(mal, dau);
+                                                ui.AttackMissHitCrit(mal, dau, monstresOrdenats.get(contadorMonstre).getTipusDeMal());
                                             }
                                         }
                                         ui.showMessage(fraseBoss);
@@ -458,7 +458,7 @@ public class Controller {
                                         ui.showMessage("\n" + monstresOrdenats.get(contadorMonstre).getNom() + " attacks " + personatgesOrdenats.get(rollPersonatge).getNom() + ".");
                                         dau = (int) (Math.random() * (10)) + 1;
                                         personatgeManager.rebreMalPersonatge(personatgesOrdenats.get(rollPersonatge), mal, dau, monstresOrdenats.get(contadorMonstre));
-                                        ui.AttackMissHitCrit(mal, dau);
+                                        ui.AttackMissHitCrit(mal, dau, monstresOrdenats.get(contadorMonstre).getTipusDeMal());
                                         if (personatgeManager.estaInconscient(personatgesOrdenats.get(rollPersonatge))) {
                                             ui.showMessage(personatgesOrdenats.get(rollPersonatge).getNom() + " falls unconscious.");
                                         }

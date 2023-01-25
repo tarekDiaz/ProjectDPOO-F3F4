@@ -26,9 +26,13 @@ public class Campio extends Guerrer{
     }
     @Override
     public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
+        String fraseaux = "";
         int cura = this.getPdvMax() - this.getPdvActual();
+        if (this.getPdvActual() == this.getPdvMax()) {
+            fraseaux = " because was already full hp";
+        }
         this.setPdvActual(getPdvMax());
-        frase.add(this.getNom() + " uses Improved Bandage Time. Heals " + cura + " hit points.");
+        frase.add(this.getNom() + " uses Improved Bandage Time. Heals " + cura + " hit points" + fraseaux + ".");
     }
 
     @Override

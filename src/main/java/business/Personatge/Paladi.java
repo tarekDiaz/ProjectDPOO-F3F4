@@ -91,6 +91,9 @@ public class Paladi extends Clergue{
             if (dau == 10) {
                 frase = frase + "\nCritical Hit and deals " + (mal * 2) + " " + getTipusDeMal() + " damage.";
             }
+            if (monstres.get(posMenorMonstre).estaInconscient()) {
+                frase = frase + "\n" + monstres.get(posMenorMonstre).getNom() + " dies.";
+            }
         }
         return frase;
     }
