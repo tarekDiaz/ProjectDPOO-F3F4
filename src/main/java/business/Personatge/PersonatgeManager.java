@@ -1,17 +1,20 @@
-package business;
-import persistence.Personatges.PersonatgesJsonDAO;
+package business.Personatge;
+import business.Monstre.Monstre;
+import persistence.Personatges.PersonatgesDAO;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PersonatgeManager {
-    private PersonatgesJsonDAO personatgesJsonDAO;
+    private PersonatgesDAO personatgesJsonDAO;
 
+    /*
     public PersonatgesJsonDAO getPersonatgesJsonDAO() {
         return personatgesJsonDAO;
     }
+     */
 
-    public PersonatgeManager(PersonatgesJsonDAO personatgesJsonDAO) {
+    public PersonatgeManager(PersonatgesDAO personatgesJsonDAO) {
         this.personatgesJsonDAO = personatgesJsonDAO;
     }
 

@@ -1,31 +1,43 @@
-import business.*;
+import business.Aventura.AventuraManager;
+import business.Monstre.MonstreManager;
+import business.Personatge.PersonatgeManager;
 import persistence.Aventuras.AventurasAPIDAO;
+import persistence.Aventuras.AventurasDAO;
 import persistence.Aventuras.AventurasJsonDAO;
 import persistence.Monstres.MonstresAPIDAO;
+import persistence.Monstres.MonstresDAO;
 import persistence.Monstres.MonstresJsonDAO;
 import persistence.Personatges.PersonatgesAPIDAO;
+import persistence.Personatges.PersonatgesDAO;
 import persistence.Personatges.PersonatgesJsonDAO;
 import presentation.*;
 
 public class Main {
     public static void main(String[] args) {
 
-        AventurasAPIDAO aventurasAPIDAO = new AventurasAPIDAO();
-        MonstresAPIDAO monstresAPIDAO = new MonstresAPIDAO();
-        PersonatgesAPIDAO personatgesAPIDAO = new PersonatgesAPIDAO();
+        PersonatgesDAO personatgesDAO;
+        MonstresDAO monstresDAO;
+        AventurasDAO aventurasDAO;
 
-
-        PersonatgesJsonDAO personatgesJsonDAO = new PersonatgesJsonDAO();
-        MonstresJsonDAO monstresJsonDAO = new MonstresJsonDAO();
-        AventurasJsonDAO aventurasJsonDAO = new AventurasJsonDAO();
-        //controller.loadData();
-
-        PersonatgeManager personatgeManager = new PersonatgeManager(personatgesJsonDAO);
-        MonstreManager monstreManager = new MonstreManager(monstresJsonDAO);
-        AventuraManager aventuraManager = new AventuraManager(aventurasJsonDAO, monstresJsonDAO, personatgesJsonDAO);
         UiManager uiManager = new UiManager();
-        Controller controller = new Controller(uiManager, personatgeManager, monstreManager, aventuraManager);
 
+        int opcio = uiManager.start();
+
+        if (opcio == 1){
+            personatgesDAO = new PersonatgesJsonDAO();
+            monstresDAO = new MonstresJsonDAO();
+            aventurasDAO = new AventurasJsonDAO();
+        }else{
+                aventurasDAO = new AventurasAPIDAO();
+                monstresDAO = new MonstresAPIDAO();
+                personatgesDAO = new PersonatgesAPIDAO();
+        }
+
+        PersonatgeManager personatgeManager = new PersonatgeManager(personatgesDAO);
+        MonstreManager monstreManager = new MonstreManager(monstresDAO);
+        AventuraManager aventuraManager = new AventuraManager(aventurasDAO, monstresDAO, personatgesDAO);
+
+        Controller controller = new Controller(uiManager, personatgeManager, monstreManager, aventuraManager);
         controller.run();
 
     }

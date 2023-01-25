@@ -1,6 +1,6 @@
 package persistence.Aventuras;
 
-import business.Aventura;
+import business.Aventura.Aventura;
 
 import java.util.List;
 

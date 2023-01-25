@@ -1,6 +1,6 @@
 package persistence.Monstres;
 
-import business.Monstre;
+import business.Monstre.Monstre;
 
 import java.util.List;
 

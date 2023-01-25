@@ -1,6 +1,6 @@
 package persistence.Personatges;
 
-import business.Personatge;
+import business.Personatge.Personatge;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 

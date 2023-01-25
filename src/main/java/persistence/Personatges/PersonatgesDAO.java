@@ -1,6 +1,6 @@
 package persistence.Personatges;
 
-import business.Personatge;
+import business.Personatge.Personatge;
 
 import java.util.List;
 

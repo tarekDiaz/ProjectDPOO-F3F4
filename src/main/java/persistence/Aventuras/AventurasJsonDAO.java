@@ -1,6 +1,6 @@
 package persistence.Aventuras;
 
-import business.Aventura;
+import business.Aventura.Aventura;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -10,7 +10,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AventurasJsonDAO {
+public class AventurasJsonDAO implements AventurasDAO{
     private final String ADVENTURE_PATH = "data/adventure.json";
     private FileReader fr;
     private boolean exsists;

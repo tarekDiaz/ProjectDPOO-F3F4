@@ -1,4 +1,4 @@
-package business;
+package business.Personatge;
 
 import java.util.List;
 

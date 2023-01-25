@@ -1,20 +1,22 @@
-package business;
+package business.Monstre;
 
-import persistence.Monstres.MonstresJsonDAO;
+import persistence.Monstres.MonstresDAO;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MonstreManager {
-    private MonstresJsonDAO monstresJsonDAO;
+    private MonstresDAO monstresJsonDAO;
 
-    public MonstreManager(MonstresJsonDAO monstresJsonDAO) {
+    public MonstreManager(MonstresDAO monstresJsonDAO) {
         this.monstresJsonDAO = monstresJsonDAO;
     }
 
+    /*
     public MonstresJsonDAO getMonstresJsonDAO() {
         return monstresJsonDAO;
     }
+     */
 
     public List<String> llistarMonstres(){
         List<Monstre> monstres = monstresJsonDAO.readMonstres();

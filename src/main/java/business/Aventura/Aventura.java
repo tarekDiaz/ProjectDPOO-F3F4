@@ -1,8 +1,8 @@
-package business;
+package business.Aventura;
 
+import business.Personatge.Personatge;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serial;
 import java.util.List;
 
 public class Aventura {

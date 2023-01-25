@@ -1,25 +1,28 @@
-package business;
+package business.Aventura;
 
-import persistence.Aventuras.AventurasJsonDAO;
-import persistence.Monstres.MonstresJsonDAO;
-import persistence.Personatges.PersonatgesJsonDAO;
+import business.Monstre.Monstre;
+import business.Personatge.Personatge;
+import persistence.Aventuras.AventurasDAO;
+import persistence.Monstres.MonstresDAO;
+import persistence.Personatges.PersonatgesDAO;
 
 import java.util.*;
 
 public class AventuraManager {
-    private AventurasJsonDAO aventurasJsonDAO;
-    private MonstresJsonDAO monstresJsonDAO;
-    private PersonatgesJsonDAO personatgesJsonDAO;
+    private AventurasDAO aventurasJsonDAO;
+    private MonstresDAO monstresJsonDAO;
+    private PersonatgesDAO personatgesJsonDAO;
 
-    public AventuraManager(AventurasJsonDAO aventurasJsonDAO, MonstresJsonDAO monstresJsonDAO, PersonatgesJsonDAO personatgesJsonDAO) {
+    public AventuraManager(AventurasDAO aventurasJsonDAO, MonstresDAO monstresJsonDAO, PersonatgesDAO personatgesJsonDAO) {
         this.aventurasJsonDAO = aventurasJsonDAO;
         this.monstresJsonDAO = monstresJsonDAO;
         this.personatgesJsonDAO = personatgesJsonDAO;
     }
 
-    public AventurasJsonDAO getAventurasJsonDAO() {
+    /*public AventurasDAO getAventurasJsonDAO() {
         return aventurasJsonDAO;
     }
+     */
 
     public Aventura crearAventura(String nom, List<Combat> combats, int numCombats) {
         Aventura aventura = new Aventura(nom, combats, null);

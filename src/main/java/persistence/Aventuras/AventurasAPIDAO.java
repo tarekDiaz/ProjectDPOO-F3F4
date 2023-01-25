@@ -1,7 +1,6 @@
 package persistence.Aventuras;
 
-import business.Aventura;
-import business.Personatge;
+import business.Aventura.Aventura;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;

@@ -1,5 +1,6 @@
-package business;
+package business.Aventura;
 
+import business.Monstre.Monstre;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

@@ -1,6 +1,7 @@
-package business;
+package business.Personatge;
 
-import java.util.ArrayList;
+import business.Monstre.Monstre;
+
 import java.util.List;
 
 public class Clergue extends Personatge{

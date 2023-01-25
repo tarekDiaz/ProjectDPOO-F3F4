@@ -1,10 +1,14 @@
 package presentation;
 
-import business.*;
+import business.Aventura.Aventura;
+import business.Aventura.AventuraManager;
+import business.Monstre.Monstre;
+import business.Monstre.MonstreManager;
+import business.Personatge.Personatge;
+import business.Personatge.PersonatgeManager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 public class Controller {
     private UiManager ui;
@@ -21,6 +25,7 @@ public class Controller {
         this.aventuraManager = aventuraManager;
     }
 
+    /*
     public void loadData(){
         int opcio;
         boolean loaded = false;
@@ -41,17 +46,14 @@ public class Controller {
         switch (opcio){
             case 1:
                 ui.showMessage("Loading data...");
-
                 break;
             case 2:
                 ui.showMessage("Loading data...");
-
                 break;
             default:
                 ui.showMessage("Choose a correct option");
                 break;
         }
-
         if (!personatgeManager.getPersonatgesJsonDAO().getExsists() || !monstreManager.getMonstresJsonDAO().getExsists() || !aventuraManager.getAventurasJsonDAO().getExsists()){
             if(!personatgeManager.getPersonatgesJsonDAO().getExsists()){
                 ui.showMessage("Error: The charachters.json file can't be accessed.");
@@ -63,15 +65,9 @@ public class Controller {
                 ui.showMessage("Error: The adventure.json file can't be accessed.");
             }
         }
-
-        do{
-
-
-        }while(!loaded);
-
         ui.showMessage("Data was successfully loaded.");
     }
-
+*/
 
     public void run() {
         int opcio;
