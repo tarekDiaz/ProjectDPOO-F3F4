@@ -5,6 +5,7 @@ import business.Personatge.Personatge;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import persistence.ApiHelper;
+import persistence.PersistenceException;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -23,8 +24,12 @@ public class PersonatgesAPIDAO implements PersonatgesDAO{
         }
     }
 
-    public PersonatgesAPIDAO(){
-
+    public PersonatgesAPIDAO() throws PersistenceException {
+        try{
+            ap.getFromUrl(PERSONATGE_URL);
+        }catch (IOException e){
+            throw new PersistenceException("Couldn't connect to the remote server.", e);
+        }
     }
 
     public void nouPersonatge(Personatge personatge){

@@ -3,6 +3,7 @@ package persistence.Monstres;
 import business.Monstre.Monstre;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import persistence.PersistenceException;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,18 +13,13 @@ import java.util.List;
 public class MonstresJsonDAO implements MonstresDAO{
     private final String FILE_PATH = "data/monsters.json";
     private FileReader fr;
-    private boolean exsists;
 
-    public boolean getExsists() {
-        return exsists;
-    }
 
-    public MonstresJsonDAO() {
+    public MonstresJsonDAO() throws PersistenceException {
         try {
             fr = new FileReader(FILE_PATH);
-            exsists = true;
         } catch (FileNotFoundException e) {
-            exsists = false;
+            throw new PersistenceException("Error: The monsters.json file can't be accessed.", e);
         }
     }
 

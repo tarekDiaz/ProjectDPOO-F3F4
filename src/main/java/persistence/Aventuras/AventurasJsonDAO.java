@@ -4,6 +4,7 @@ import business.Aventura.Aventura;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import persistence.PersistenceException;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -13,17 +14,12 @@ import java.util.List;
 public class AventurasJsonDAO implements AventurasDAO{
     private final String ADVENTURE_PATH = "data/adventure.json";
     private FileReader fr;
-    private boolean exsists;
 
-    public boolean getExsists() {
-        return exsists;
-    }
-    public AventurasJsonDAO() {
+    public AventurasJsonDAO() throws PersistenceException {
         try {
             fr = new FileReader(ADVENTURE_PATH);
-            exsists = true;
         } catch (FileNotFoundException e) {
-            exsists = false;
+            throw new PersistenceException("Error: The adventure.json file can't be accessed.", e);
         }
     }
     public List<Aventura> readAventura() {

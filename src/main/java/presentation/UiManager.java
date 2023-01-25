@@ -45,7 +45,7 @@ public class UiManager {
         System.out.println("Welcome to Simple LSRPG.\n");
         System.out.println("Do you want to use your local or cloud data?");
         System.out.println("\t1) Local data");
-        System.out.println("\t1) Cloud data\n");
+        System.out.println("\t2) Cloud data\n");
 
         opcio = this.askForInteger("-> Answer:");
 
