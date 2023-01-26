@@ -419,9 +419,6 @@ public class Controller {
                                     int posMenorMonstre = monstreManager.posicioMonstreMenysHP(monstresOrdenats);
                                     int posMajorMonstre = monstreManager.posicioMonstreMesHP(monstresOrdenats);
                                     ui.showMessage(aventuraManager.accioDurantCombat(personatgesOrdenats, monstresOrdenats, contadorPersonatge, posMenorMonstre, posMajorMonstre));
-                                    /*if (monstreManager.estaInconscient(monstresOrdenats.get(posMenorMonstre))) {
-                                        ui.showMessage(monstresOrdenats.get(posMenorMonstre).getNom() + " dies.");
-                                    }*/
                                     contadorPersonatge++;
                                 }
                             }
