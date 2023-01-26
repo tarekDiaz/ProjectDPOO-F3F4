@@ -109,17 +109,6 @@ public class Mag extends Personatge{
             frase = "\n" + getNom() + " attacks all non-dead enemies with Fireball.";
 
             int dau = (int) (Math.random() * (10)) + 1;
-            for (int j=0; j<monstres.size();j++) {
-                if (monstres.get(j).getPdv() != 0) {
-                    if (monstres.get(j).getNivellDificultat().equals("Boss") && monstres.get(j).getTipusDeMal().equals(this.getTipusDeMal())) {
-                        mal = mal/2;
-                    }
-                    monstres.get(j).monstreRebMal(mal, dau);
-                    if (monstres.get(j).estaInconscient()) {
-                        fraseaux = fraseaux + "\n" + monstres.get(j).getNom() + " dies.";
-                    }
-                }
-            }
             if (dau == 1) {
                 frase = frase + "\nFails and deals 0 " + getTipusDeMal() + " damage.";
             }
@@ -129,6 +118,18 @@ public class Mag extends Personatge{
             if (dau == 10) {
                 frase = frase + "\nCritical Hit and deals " + (mal * 2) + " " + getTipusDeMal() + " damage.";
             }
+
+            for (int j=0; j<monstres.size();j++) {
+                if (monstres.get(j).getPdv() != 0) {
+
+                    monstres.get(j).monstreRebMal(mal, dau, this.getTipusDeMal());
+
+                    if (monstres.get(j).estaInconscient()) {
+                        fraseaux = fraseaux + "\n" + monstres.get(j).getNom() + " dies.";
+                    }
+                }
+            }
+
             frase = frase + fraseaux;
         } else {
             int mal = (int) (Math.random() * (6)) + 1 + getMent();;
@@ -136,10 +137,7 @@ public class Mag extends Personatge{
 
             int dau = (int) (Math.random() * (10)) + 1;
 
-            if (monstres.get(posMajorMonstre).getNivellDificultat().equals("Boss") && monstres.get(posMajorMonstre).getTipusDeMal().equals(this.getTipusDeMal())) {
-                mal = mal/2;
-            }
-            monstres.get(posMajorMonstre).monstreRebMal(mal, dau);
+            monstres.get(posMajorMonstre).monstreRebMal(mal, dau, this.getTipusDeMal());
 
             if (dau == 1) {
                 frase = frase + "\nFails and deals 0 " + getTipusDeMal() + " damage.";

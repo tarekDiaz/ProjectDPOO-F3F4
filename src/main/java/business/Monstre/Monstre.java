@@ -1,6 +1,9 @@
 package business.Monstre;
 
+import business.Personatge.Personatge;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class Monstre {
 
@@ -93,7 +96,7 @@ public class Monstre {
         return false;
     }
 
-    public void monstreRebMal (int mal, int dau) {
+    public void monstreRebMal (int mal, int dau, String tipusDeMalAtac) {
         if (dau == 1) {
             mal = 0;
         }
@@ -115,6 +118,34 @@ public class Monstre {
             inconscient = true;
         }
         return inconscient;
+    }
+
+    public String atacarFaseCombat(List<Monstre> monstres, List<Personatge> personatges, int contadorMonstre, int mal) {
+        String frase;
+        int dau = 0;
+
+        int rollPersonatge = (int) (Math.random() * (personatges.size()));
+        while (personatges.get(rollPersonatge).estaInconscient()) {
+            rollPersonatge = (int) (Math.random() * (personatges.size()));
+        }
+        frase = "\n" + monstres.get(contadorMonstre).getNom() + " attacks " + personatges.get(rollPersonatge).getNom() + ".";
+        dau = (int) (Math.random() * (10)) + 1;
+        personatges.get(rollPersonatge).rebreMalPersonatge(mal, dau, monstres.get(contadorMonstre));
+
+        if (dau == 1) {
+            frase =  frase + "\nFails and deals 0 " + monstres.get(contadorMonstre).getTipusDeMal() + " damage.";
+        }
+        if (dau > 1 && dau < 10) {
+            frase =  frase + "\nHits and deals " + mal + "" + monstres.get(contadorMonstre).getTipusDeMal() +" damage.";
+        }
+        if (dau == 10) {
+            frase =  frase + "\nCritical Hit and deals " + (mal * 2) + "" + monstres.get(contadorMonstre).getTipusDeMal() + " damage.";
+        }
+
+        if (personatges.get(rollPersonatge).estaInconscient()) {
+            frase = frase + "\n" + personatges.get(rollPersonatge).getNom() + " falls unconscious.";
+        }
+        return frase;
     }
 }
 

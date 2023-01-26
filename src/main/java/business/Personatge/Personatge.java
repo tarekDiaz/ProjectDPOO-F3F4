@@ -260,11 +260,9 @@ public class Personatge {
         frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with " + this.retornaNomAtac() + ".";
 
         int dau = (int) (Math.random() * (10)) + 1;
-        //resistencia al mal bosses
-        if (monstres.get(posMenorMonstre).getNivellDificultat().equals("Boss") && monstres.get(posMenorMonstre).getTipusDeMal().equals(this.getTipusDeMal())) {
-            mal = mal/2;
-        }
-        monstres.get(posMenorMonstre).monstreRebMal(mal, dau);
+
+        monstres.get(posMenorMonstre).monstreRebMal(mal, dau, this.getTipusDeMal());
+
         if (dau == 1) {
             frase = frase + "\nFails and deals 0 " + getTipusDeMal() + " damage.";
         }
@@ -290,5 +288,15 @@ public class Personatge {
             frase = this.getNom() + " evolves to Warrior!";
         }
         return frase;
+    }
+
+    public boolean estaInconscient() {
+        boolean x = false;
+
+        if (this.getPdvActual() == 0) {
+            x = true;
+        }
+
+        return x;
     }
 }

@@ -429,37 +429,7 @@ public class Controller {
                                     contadorMonstre++;
                                 } else {
                                     int mal = monstreManager.damageMonstre(monstresOrdenats.get(contadorMonstre));
-                                    // Si el monstre es boss ataca a tothom
-                                    if (monstresOrdenats.get(contadorMonstre).getNivellDificultat().equals("Boss")) {
-                                        fraseBoss = "\n" + monstresOrdenats.get(contadorMonstre).getNom() + " attacks ";
-                                        for (int h=0; h<aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().size(); h++) {
-                                            if (!personatgeManager.estaInconscient(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h))) {
-                                                fraseBoss = fraseBoss + " " + aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h).getNom();
-                                                dau = (int) (Math.random() * (10)) + 1;
-                                                personatgeManager.rebreMalPersonatge(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h), mal, dau, monstresOrdenats.get(contadorMonstre));
-                                                ui.AttackMissHitCrit(mal, dau, monstresOrdenats.get(contadorMonstre).getTipusDeMal());
-                                            }
-                                        }
-                                        ui.showMessage(fraseBoss);
-                                        for (int h=0; h<aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().size(); h++) {
-                                            if (personatgeManager.estaInconscient(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h))) {
-                                                ui.showMessage(aventuraManager.retornaAventuraComplerta(numAventuras).getPersonatges().get(h).getNom() + " falls unconscious.");
-                                            }
-                                        }
-                                        // fins aqui
-                                    } else {
-                                        int rollPersonatge = (int) (Math.random() * (personatgesOrdenats.size()));
-                                        while (personatgeManager.estaInconscient(personatgesOrdenats.get(rollPersonatge))) {
-                                            rollPersonatge = (int) (Math.random() * (personatgesOrdenats.size()));
-                                        }
-                                        ui.showMessage("\n" + monstresOrdenats.get(contadorMonstre).getNom() + " attacks " + personatgesOrdenats.get(rollPersonatge).getNom() + ".");
-                                        dau = (int) (Math.random() * (10)) + 1;
-                                        personatgeManager.rebreMalPersonatge(personatgesOrdenats.get(rollPersonatge), mal, dau, monstresOrdenats.get(contadorMonstre));
-                                        ui.AttackMissHitCrit(mal, dau, monstresOrdenats.get(contadorMonstre).getTipusDeMal());
-                                        if (personatgeManager.estaInconscient(personatgesOrdenats.get(rollPersonatge))) {
-                                            ui.showMessage(personatgesOrdenats.get(rollPersonatge).getNom() + " falls unconscious.");
-                                        }
-                                    }
+                                    monstreManager.atacarFaseCombat(monstresOrdenats, personatgesOrdenats, contadorMonstre, mal);
                                     contadorMonstre++;
                                 }
                             }

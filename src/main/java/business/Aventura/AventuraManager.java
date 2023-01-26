@@ -19,11 +19,6 @@ public class AventuraManager {
         this.personatgesJsonDAO = personatgesJsonDAO;
     }
 
-    /*public AventurasDAO getAventurasJsonDAO() {
-        return aventurasJsonDAO;
-    }
-     */
-
     public Aventura crearAventura(String nom, List<Combat> combats, int numCombats) {
         Aventura aventura = new Aventura(nom, combats, null);
         for (int i = 0; i < numCombats; i++) {
@@ -103,7 +98,7 @@ public class AventuraManager {
             }
         }
 
-        return monstresEliminats = numeroMonstres + " " +nomMonstre;
+        return monstresEliminats = numeroMonstres + " " + nomMonstre;
     }
 
     public List<Aventura> llegirAventures(){
@@ -124,12 +119,6 @@ public class AventuraManager {
         List<Aventura> aventuras = aventurasJsonDAO.readAventura();
         return aventuras.get(numAventura-1);
     }
-
-    /*public void creaLlistaPersonatges (Aventura aventura, int numPersonatges) {
-        for (int i=0; i<numPersonatges; i++) {
-            aventura.personatges.add();
-        }
-    }*/
 
     public void afegirPersonatgeAventura (Aventura aventura, int numPersonatge) {
         List<Personatge> personatges = personatgesJsonDAO.readPersonatge();

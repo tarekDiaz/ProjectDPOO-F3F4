@@ -8,12 +8,6 @@ import java.util.List;
 public class PersonatgeManager {
     private PersonatgesDAO personatgesJsonDAO;
 
-    /*
-    public PersonatgesJsonDAO getPersonatgesJsonDAO() {
-        return personatgesJsonDAO;
-    }
-     */
-
     public PersonatgeManager(PersonatgesDAO personatgesJsonDAO) {
         this.personatgesJsonDAO = personatgesJsonDAO;
     }
@@ -39,7 +33,6 @@ public class PersonatgeManager {
     }
     public void inicialitzaPersonatgesAmbClasse (List<Personatge> personatges) {
         List<Personatge> copiaLlista = new ArrayList<>(personatges);
-        //copiaLlista = personatges;
         personatges.clear();
         for (int i=0; i<copiaLlista.size(); i++) {
             if (copiaLlista.get(i).getClasse().equals("Adventurer")) {
@@ -107,11 +100,7 @@ public class PersonatgeManager {
     }
 
     public boolean estaInconscient(Personatge personatge) {
-        boolean x = false;
-
-        if (personatge.getPdvActual() == 0) {
-            x = true;
-        }
+        boolean x = personatge.estaInconscient();
 
         return x;
     }
@@ -137,27 +126,10 @@ public class PersonatgeManager {
         return x;
     }
 
-    //canviat a la fase 4
     public void calcularPdvMax (Personatge personatge) {
         int calculPdv = personatge.calcularPdvMax();
         personatge.setPdvMax(calculPdv);
         personatge.setPdvActual(calculPdv);
-    }
-
-    //canviat a la fase 4
-    public int atacarPersonatge(Personatge personatge) {
-        int mal;
-        mal = personatge.atacarPersonatge();
-        return mal;
-    }
-
-    public void rebreMalPersonatge(Personatge personatge, int mal, int dau, Monstre monstre) {
-        personatge.rebreMalPersonatge(mal, dau, monstre);
-    }
-
-    public int curarPersonatge(Personatge personatge) {
-        int cura = personatge.curarPersonatge();
-        return cura;
     }
 
     public List<String> suportPersonatge(List<Personatge> personatges) {

@@ -1,5 +1,6 @@
 package business.Monstre;
 
+import business.Personatge.Personatge;
 import persistence.Monstres.MonstresDAO;
 
 import java.util.ArrayList;
@@ -11,12 +12,6 @@ public class MonstreManager {
     public MonstreManager(MonstresDAO monstresJsonDAO) {
         this.monstresJsonDAO = monstresJsonDAO;
     }
-
-    /*
-    public MonstresJsonDAO getMonstresJsonDAO() {
-        return monstresJsonDAO;
-    }
-     */
 
     public List<String> llistarMonstres(){
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
@@ -77,10 +72,6 @@ public class MonstreManager {
         return posMajor;
     }
 
-    public void monstreRebMal (Monstre monstre, int mal, int dau) {
-        monstre.monstreRebMal(mal, dau);
-    }
-
     public boolean estaInconscient (Monstre monstre) {
         boolean inconscient = monstre.estaInconscient();
         return inconscient;
@@ -96,5 +87,13 @@ public class MonstreManager {
         int dau = (int) (Math.random() * (numeroInt)) + 1;
 
         return dau;
+    }
+
+    public String atacarFaseCombat(List<Monstre> monstres, List<Personatge> personatges, int contadorMonstre, int mal) {
+        String frase;
+
+        frase = monstres.get(contadorMonstre).atacarFaseCombat(monstres, personatges, contadorMonstre, mal);
+
+        return frase;
     }
 }
