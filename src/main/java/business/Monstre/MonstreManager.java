@@ -96,4 +96,17 @@ public class MonstreManager {
 
         return frase;
     }
+
+    public void inicialitzarBosses(List<Monstre> monstres) {
+        List<Monstre> copiaLlista = new ArrayList<>(monstres);
+        monstres.clear();
+        for (int i=0; i<copiaLlista.size(); i++) {
+            if (copiaLlista.get(i).getNivellDificultat().equals("Boss")) {
+                monstres.add(new Boss(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNivellDificultat(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdv(), copiaLlista.get(i).getIniciativa(), copiaLlista.get(i).getTipusDau(), copiaLlista.get(i).getTipusDeMal()));
+            }
+            else {
+                monstres.add(new Monstre(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNivellDificultat(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdv(), copiaLlista.get(i).getIniciativa(), copiaLlista.get(i).getTipusDau(), copiaLlista.get(i).getTipusDeMal()));
+            }
+        }
+    }
 }

@@ -136,10 +136,10 @@ public class Monstre {
             frase =  frase + "\nFails and deals 0 " + monstres.get(contadorMonstre).getTipusDeMal() + " damage.";
         }
         if (dau > 1 && dau < 10) {
-            frase =  frase + "\nHits and deals " + mal + "" + monstres.get(contadorMonstre).getTipusDeMal() +" damage.";
+            frase =  frase + "\nHits and deals " + mal + " " + monstres.get(contadorMonstre).getTipusDeMal() +" damage.";
         }
         if (dau == 10) {
-            frase =  frase + "\nCritical Hit and deals " + (mal * 2) + "" + monstres.get(contadorMonstre).getTipusDeMal() + " damage.";
+            frase =  frase + "\nCritical Hit and deals " + (mal * 2) + " " + monstres.get(contadorMonstre).getTipusDeMal() + " damage.";
         }
 
         if (personatges.get(rollPersonatge).estaInconscient()) {

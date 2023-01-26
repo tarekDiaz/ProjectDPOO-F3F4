@@ -319,9 +319,8 @@ public class Controller {
 
     }
     private void opcio4() {
-        int numAventuras, numOfCharacters, countPJ = 0, personatgeAfegir, iniciativa, roundCounter = 0;
-        int i = 0, dau;
-        String fraseBoss;
+        int numAventuras, numOfCharacters, countPJ = 0, personatgeAfegir, roundCounter = 0;
+        int i = 0;
         boolean dead = false;
         List<Personatge> personatgesOrdenats = new ArrayList<>();
         List<Monstre> monstresOrdenats = new ArrayList<>();
@@ -374,6 +373,9 @@ public class Controller {
             ui.showMessage("\nTavern keeper: 'Great, good luck on your adventure lads!'\n");
             ui.showMessage("The '" + currentAventura.getNom() + "' will start soon...\n");
             for (i=0; i<currentAventura.getCombats().size() && !dead; i++) {
+
+                monstreManager.inicialitzarBosses(currentAventura.getCombats().get(i).getMonstre());
+
                 ui.showMessage("-------------------------");
                 ui.showMessage("Starting Encounter " + (i+1) + ": ");
                 for (int j = 0; j < aventuraManager.generarLlistaMonstres2(currentAventura.getCombats().get(i)).size(); j++) {
@@ -429,7 +431,7 @@ public class Controller {
                                     contadorMonstre++;
                                 } else {
                                     int mal = monstreManager.damageMonstre(monstresOrdenats.get(contadorMonstre));
-                                    monstreManager.atacarFaseCombat(monstresOrdenats, personatgesOrdenats, contadorMonstre, mal);
+                                    ui.showMessage(monstreManager.atacarFaseCombat(monstresOrdenats, personatgesOrdenats, contadorMonstre, mal));
                                     contadorMonstre++;
                                 }
                             }

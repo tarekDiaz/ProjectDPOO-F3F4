@@ -110,5 +110,135 @@
         ]
       }
     ]
+  },
+  {
+    "nameAdventure": "AdventureWithBoss",
+    "combats": [
+      {
+        "monsters": [
+          {
+            "name": "Sauron",
+            "challenge": "Boss",
+            "experience": 148,
+            "hitPoints": 89,
+            "initiative": 3,
+            "damageDice": "d20",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Crebain",
+            "challenge": "Minion",
+            "experience": 5,
+            "hitPoints": 7,
+            "initiative": 1,
+            "damageDice": "d6",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Snuffler",
+            "challenge": "Minion",
+            "experience": 2,
+            "hitPoints": 6,
+            "initiative": 0,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Snuffler",
+            "challenge": "Minion",
+            "experience": 2,
+            "hitPoints": 6,
+            "initiative": 0,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Orc Shaman",
+            "challenge": "Minion",
+            "experience": 5,
+            "hitPoints": 7,
+            "initiative": 1,
+            "damageDice": "d8",
+            "damageType": "Magical"
+          },
+          {
+            "name": "Orc",
+            "challenge": "Minion",
+            "experience": 3,
+            "hitPoints": 9,
+            "initiative": -1,
+            "damageDice": "d6",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Orc",
+            "challenge": "Minion",
+            "experience": 3,
+            "hitPoints": 9,
+            "initiative": -1,
+            "damageDice": "d6",
+            "damageType": "Physical"
+          }
+        ]
+      },
+      {
+        "monsters": [
+          {
+            "name": "Morgoth",
+            "challenge": "Boss",
+            "experience": 168,
+            "hitPoints": 100,
+            "initiative": 4,
+            "damageDice": "d20",
+            "damageType": "Psychical"
+          },
+          {
+            "name": "Mirkwood Spider",
+            "challenge": "Minion",
+            "experience": 5,
+            "hitPoints": 9,
+            "initiative": 1,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Mirkwood Spider",
+            "challenge": "Minion",
+            "experience": 5,
+            "hitPoints": 9,
+            "initiative": 1,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Uruk",
+            "challenge": "Minion",
+            "experience": 5,
+            "hitPoints": 10,
+            "initiative": 1,
+            "damageDice": "d8",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Ogre",
+            "challenge": "Minion",
+            "experience": 9,
+            "hitPoints": 21,
+            "initiative": -1,
+            "damageDice": "d10",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Ogre",
+            "challenge": "Minion",
+            "experience": 9,
+            "hitPoints": 21,
+            "initiative": -1,
+            "damageDice": "d10",
+            "damageType": "Physical"
+          }
+        ]
+      }
+    ]
   }
 ]

@@ -15,27 +15,27 @@ public class Boss extends Monstre{
         int dau = 0;
         boolean accedit = false;
 
-        fraseBoss = "\n" + monstres.get(contadorMonstre).getNom() + " attacks ";
+        fraseBoss = "\n" + monstres.get(contadorMonstre).getNom() + " attacks";
+        dau = (int) (Math.random() * (10)) + 1;
         for (int h=0; h<personatges.size(); h++) {
             if (!personatges.get(h).estaInconscient()) {
                 fraseBoss = fraseBoss + " " + personatges.get(h).getNom() + ",";
-                dau = (int) (Math.random() * (10)) + 1;
                 personatges.get(h).rebreMalPersonatge(mal, dau, monstres.get(contadorMonstre));
                 accedit = true;
             }
         }
         if (accedit) {
-            fraseBoss.substring(fraseBoss.length()-1);
+            fraseBoss = fraseBoss.substring(0, (fraseBoss.length()-1));
         }
 
         if (dau == 1) {
             fraseBoss =  fraseBoss + ".\nFails and deals 0 " + monstres.get(contadorMonstre).getTipusDeMal() + " damage.";
         }
         if (dau > 1 && dau < 10) {
-            fraseBoss =  fraseBoss + ".\nHits and deals " + mal + "" + monstres.get(contadorMonstre).getTipusDeMal() +" damage.";
+            fraseBoss =  fraseBoss + ".\nHits and deals " + mal + " " + monstres.get(contadorMonstre).getTipusDeMal() +" damage.";
         }
         if (dau == 10) {
-            fraseBoss =  fraseBoss + ".\nCritical Hit and deals " + (mal * 2) + "" + monstres.get(contadorMonstre).getTipusDeMal() + " damage.";
+            fraseBoss =  fraseBoss + ".\nCritical Hit and deals " + (mal * 2) + " " + monstres.get(contadorMonstre).getTipusDeMal() + " damage.";
         }
         for (int h=0; h<personatges.size(); h++) {
             if (personatges.get(h).estaInconscient()) {
