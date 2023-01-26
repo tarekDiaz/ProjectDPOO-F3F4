@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import persistence.ApiHelper;
+import persistence.PersistenceException;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -24,7 +25,12 @@ public class MonstresAPIDAO implements MonstresDAO{
         }
     }
 
-    public MonstresAPIDAO() {
+    public MonstresAPIDAO() throws PersistenceException {
+        try{
+            ap.getFromUrl(MONSTRES_URL);
+        }catch (IOException e){
+            throw new PersistenceException("Couldn't connect to the remote server.", e);
+        }
     }
 
     public List<Monstre> readMonstres() {
