@@ -27,7 +27,6 @@ public class Clergue extends Personatge{
     }
 
     @Override
-    //Mateix problema que amb campio
     public void suportPersonatge(List<Personatge> personatges, List<String> frase) {
         for (int k = 0; k<personatges.size(); k++) {
             personatges.get(k).setMent(getMent() + 1);

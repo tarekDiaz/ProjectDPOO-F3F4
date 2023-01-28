@@ -114,18 +114,6 @@ public class UiManager {
             System.out.println(llista.get(i));
         }
     }
-
-    public void AttackMissHitCrit (int mal, int roll, String damageType) {
-        if (roll == 1) {
-            System.out.println("Fails and deals 0 " + damageType + " damage.");
-        }
-        if (roll > 1 && roll < 10) {
-            System.out.println("Hits and deals " + mal + "" + damageType +" damage.");
-        }
-        if (roll == 10) {
-            System.out.println("Critical Hit and deals " + (mal * 2) + "" + damageType + " damage.");
-        }
-    }
 }
 
 

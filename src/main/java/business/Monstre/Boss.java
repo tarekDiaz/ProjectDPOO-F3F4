@@ -42,7 +42,7 @@ public class Boss extends Monstre{
                 fraseBoss = fraseBoss + "\n" + personatges.get(h).getNom() + " falls unconscious.";
             }
         }
-        return fraseBoss;
+            return fraseBoss;
     }
 
     @Override
