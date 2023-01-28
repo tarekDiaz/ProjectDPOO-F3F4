@@ -11,7 +11,9 @@ import persistence.PersistenceException;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
-
+/**
+ * Classe que accedeix a les dades dels monstres a través de l'API
+ */
 public class MonstresAPIDAO implements MonstresDAO{
 
     private final String MONSTRES_URL = "https://balandrau.salle.url.edu/dpoo/shared/monsters";
@@ -24,7 +26,10 @@ public class MonstresAPIDAO implements MonstresDAO{
             throw new RuntimeException(e);
         }
     }
-
+    /**
+     * Mètode constructor de la classe
+     * @throws PersistenceException la classe no es crea correctament perquè no es pot accedir a la API
+     */
     public MonstresAPIDAO() throws PersistenceException {
         try{
             ap.getFromUrl(MONSTRES_URL);
@@ -33,6 +38,10 @@ public class MonstresAPIDAO implements MonstresDAO{
         }
     }
 
+    /**
+     * Mètode que llegeix i retorna els monstres que es troben a l'API
+     * @return llista de classe Monstre dels monstres
+     */
     public List<Monstre> readMonstres() {
 
         try {
@@ -48,7 +57,5 @@ public class MonstresAPIDAO implements MonstresDAO{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 }

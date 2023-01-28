@@ -10,11 +10,17 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que accedeix a les dades dels personatges a través del fitxer Json
+ */
 public class PersonatgesJsonDAO implements PersonatgesDAO{
     private final String FILE_PATH = "data/characters.json";
     private FileReader fr;
 
-
+    /**
+     * Mètode constructor de la classe
+     * @throws PersistenceException la classe no es crea correctament perquè no es pot accedir al fitxer
+     */
     public PersonatgesJsonDAO() throws PersistenceException {
         try {
             fr = new FileReader(FILE_PATH);
@@ -22,7 +28,10 @@ public class PersonatgesJsonDAO implements PersonatgesDAO{
             throw new PersistenceException("Error: The characters.json file can't be accessed.", e);
         }
     }
-
+    /**
+     * Mètode que llegeix i retorna la llista de personatges guardats al fitxer Json
+     * @return llista de tipus Personatge amb els personatges del fitxer
+     */
     public List<Personatge> readPersonatge() {
         FileReader reader = null;
         try {
@@ -39,7 +48,10 @@ public class PersonatgesJsonDAO implements PersonatgesDAO{
 
         return personatgesJsonArray;
     }
-
+    /**
+     * Mètode que afegeix un nou personatge al fitxer Json
+     * @param personatge personatge que es vol afegir
+     */
     public void nouPersonatge(Personatge personatge) {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
