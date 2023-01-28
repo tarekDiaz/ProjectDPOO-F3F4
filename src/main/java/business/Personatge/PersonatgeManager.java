@@ -5,13 +5,29 @@ import persistence.Personatges.PersonatgesDAO;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que utilitza els personatges i treballa amb ells
+ */
 public class PersonatgeManager {
     private PersonatgesDAO personatgesJsonDAO;
 
+    /**
+     * Mètode constructor de la classe
+     * @param personatgesJsonDAO personatges de persistència
+     */
     public PersonatgeManager(PersonatgesDAO personatgesJsonDAO) {
         this.personatgesJsonDAO = personatgesJsonDAO;
     }
 
+    /**
+     * Mètode que crea un nou personatge i l'envia a la classe de persistència per a guardar-lo
+     * @param nom nom del personatge
+     * @param player nom del jugador
+     * @param nivell nivell del personatge
+     * @param cos estadística cos del personatge
+     * @param ment estadística ment del personatge
+     * @param esperit estadística esperit del personatge
+     */
     public Personatge crearPersonatge (String nom, String player, int nivell, int cos, int ment, int esperit, String classe){
         int exp = (nivell * 100) - 100;
         Personatge personatge = new Personatge(nom, player, exp, cos, ment, esperit, classe);
@@ -19,11 +35,20 @@ public class PersonatgeManager {
         return personatge;
     }
 
+    /**
+     * Mètode que retorna una llista amb tots els personatges del Json
+     * @return Retorna una llista amb tots els personatges del Json
+     */
     public List<Personatge> llegirPersonatges(){
         List<Personatge> personatgesList = personatgesJsonDAO.readPersonatge();
         return personatgesList;
     }
 
+    /**
+     * Mètode que inicialitza els personatges. Els hi posa el nivell, els punts de vida màxims i la iniciativa ja que
+     * aquestes caracteristiques no es troben a la informació de persistència.
+     * @param personatges la llista de personatges del programa que es volen inicialitzar
+     */
     public void inicialitzaPersonatges (List<Personatge> personatges) {
         for (int i = 0; i < personatges.size(); i++) {
             personatges.get(i).setNivell((personatges.get(i).getExperiencia() / 100) + 1);
@@ -31,6 +56,11 @@ public class PersonatgeManager {
             personatges.get(i).setIniciativa(calcularIniciativa(personatges.get(i)));
         }
     }
+
+    /**
+     * Mètode que comprova quins personatges són de cada classe i els inicialitza (canvia de classe Personatge a la classe corresponent)
+     * @param personatges Llista de personatges
+     */
     public void inicialitzaPersonatgesAmbClasse (List<Personatge> personatges) {
         List<Personatge> copiaLlista = new ArrayList<>(personatges);
         personatges.clear();
@@ -60,20 +90,39 @@ public class PersonatgeManager {
         }
     }
 
+    /**
+     * Mètode que envia el nom del personatge a la classe de persistència per borrar un personatge
+     * @param nom nom del personatge a borrar
+     */
     public void borrarPersonatge (String nom){
         personatgesJsonDAO.borrar(nom);
     }
 
+    /**
+     * Mètode que genera un número aleatori del 1 al 6
+     * @return el numero random que ha sortit
+     */
     public int tirarDauStats () {
         int dau = (int) (Math.random() * (6)) + 1;
         return dau;
     }
 
+    /**
+     * Mètode que suma els nombres de dos daus
+     * @param dau1 nombre del dau 1
+     * @param dau2 nombre del dau 2
+     * @return
+     */
     public int sumarDausStats(int dau1, int dau2) {
         int stat = dau1 + dau2;
         return stat;
     }
 
+    /**
+     * Mètode que genera el nombre de les estadístiques inicials del personatge a partir de la suma dels daus
+     * @param sumaDaus numero de la suma dels daus
+     * @return numero final de la estadística del personatge
+     */
     public int generarStats(int sumaDaus) {
         int estadistica = 0;
         if (sumaDaus == 2) {
@@ -94,17 +143,33 @@ public class PersonatgeManager {
         return estadistica;
     }
 
+    /**
+     * Mètode que crida al mètode de personatge que calcula la iniciativa
+     * @param personatge personatge que es vol calcular la iniciativa
+     * @return numero de la iniciativa
+     */
     public int calcularIniciativa (Personatge personatge) {
         int iniciativa = personatge.calcularIniciativa();
         return iniciativa;
     }
 
+    /**
+     * Mètode que crida al mètode de personatge que comprova si està inconcient o no
+     * @param personatge personatge al que es vol comprovar
+     * @return boolean que serà true si esta inconcient i false si no ho està.
+     */
     public boolean estaInconscient(Personatge personatge) {
         boolean x = personatge.estaInconscient();
 
         return x;
     }
 
+    /**
+     * Mètode que suma l'experiència d'un personatge i comprova si ha pujat de nivell o no.
+     * @param personatge personatge al qual es vol sumar l'experiència.
+     * @param experienciaMonstre experiència que li dona el monstre
+     * @return un boolean que es true quan un personatge ha pujat de nivell
+     */
     public boolean sumarExperiencia(Personatge personatge, int experienciaMonstre) {
         int nivellPrevi = personatge.getNivell();
         boolean x = false;
@@ -126,12 +191,21 @@ public class PersonatgeManager {
         return x;
     }
 
+    /**
+     * Mètode que calcula els punts de vida màxims d'un personatge i els actualitza
+     * @param personatge personatge al que es vol calcular
+     */
     public void calcularPdvMax (Personatge personatge) {
         int calculPdv = personatge.calcularPdvMax();
         personatge.setPdvMax(calculPdv);
         personatge.setPdvActual(calculPdv);
     }
 
+    /**
+     * Mètode que crida al mètode de personatge que realitza l'acció de suport
+     * @param personatges Llista de personatges
+     * @return Retorna la frase generada per l'acció
+     */
     public List<String> suportPersonatge(List<Personatge> personatges) {
         List<String> frase = new ArrayList<>();
         for (int k = 0; k<personatges.size(); k++) {
@@ -140,6 +214,12 @@ public class PersonatgeManager {
         return frase;
     }
 
+    /**
+     * Mètode que crida al mètode de personatge que realitza l'acció del descans curt si el personatge no està inconscient
+     * @param personatgesAventura Llista de personatges de l'aventura
+     * @param personatgesOrdenats Llista de persoantges de l'aventura ordenats
+     * @return Retorna la frase generada per l'acció
+     */
     public List<String> descansCurt(List<Personatge> personatgesAventura, List<Personatge> personatgesOrdenats) {
         List<String> frase = new ArrayList<>();
 
@@ -157,7 +237,11 @@ public class PersonatgeManager {
         return frase;
     }
 
-
+    /**
+     * Retorna un personatge del Json
+     * @param nomPersonatge Nom del personatge a retornar
+     * @return Personatge complert
+     */
     public Personatge retornaPersonatgeComplert(String nomPersonatge) {
         List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
         Personatge personatge = null;
@@ -170,6 +254,10 @@ public class PersonatgeManager {
         return personatge;
     }
 
+    /**
+     * Mètode que retorna una llista amb els noms de tots els personatges de persistència
+     * @return Retorna una llista de noms
+     */
     public List<String> llistarPersonatges() {
         List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
         List<String> noms = new ArrayList<>();
@@ -180,6 +268,11 @@ public class PersonatgeManager {
         return noms;
     }
 
+    /**
+     * Mètode que retorna una llista amb els noms dels personatges d'un jugador en concret
+     * @param player Nom del jugador
+     * @return Retorna una llista de noms
+     */
     public List<String> llistarPersonatgesPlayer(String player) {
         List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
         List<String> noms = new ArrayList<>();
@@ -192,6 +285,11 @@ public class PersonatgeManager {
         return noms;
     }
 
+    /**
+     * Mètode que comprova si tots els personatges estan inconscients
+     * @param personatges Llista de personatges
+     * @return Retorna un boolean depenent de si tots els personatges estan morts o no
+     */
     public boolean totalPartyUnconscius (List<Personatge> personatges) {
         int mort = 0;
         boolean TPU = false;
@@ -207,6 +305,10 @@ public class PersonatgeManager {
         return TPU;
     }
 
+    /**
+     * Mètode que revisa que el nombre de personatges a persistencia sigui major o igual a tres
+     * @return Retorna un boolean depenent de si el nombre de personatges es major o igual a tres o no
+     */
     public boolean checkPersonatgesSize () {
         boolean check = true;
         List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
@@ -216,6 +318,12 @@ public class PersonatgeManager {
         return check;
     }
 
+    /**
+     * Mètode que retorna un String amb la classe del personatge
+     * @param personatge
+     * @param nivell
+     * @return
+     */
     public String classeDepenentDeLvl(Personatge personatge, int nivell) {
         String classe = null;
         if (personatge.getClasse().equals("Aventurer")) {

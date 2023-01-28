@@ -8,17 +8,33 @@ import persistence.Personatges.PersonatgesDAO;
 
 import java.util.*;
 
+/**
+ * Classe que utilitza Aventures, monstres i personatges i treballa amb elles
+ */
 public class AventuraManager {
     private AventurasDAO aventurasJsonDAO;
     private MonstresDAO monstresJsonDAO;
     private PersonatgesDAO personatgesJsonDAO;
 
+    /**
+     * Mètode Constructor
+     * @param aventurasJsonDAO Aventures de persistència
+     * @param monstresJsonDAO Monstres de persistència
+     * @param personatgesJsonDAO Personatges de persistència
+     */
     public AventuraManager(AventurasDAO aventurasJsonDAO, MonstresDAO monstresJsonDAO, PersonatgesDAO personatgesJsonDAO) {
         this.aventurasJsonDAO = aventurasJsonDAO;
         this.monstresJsonDAO = monstresJsonDAO;
         this.personatgesJsonDAO = personatgesJsonDAO;
     }
 
+    /**
+     * Mètode de creació d'una aventura
+     * @param nom Nom
+     * @param combats Combats
+     * @param numCombats Nombre total de combats
+     * @return Retorna l'aventura creada
+     */
     public Aventura crearAventura(String nom, List<Combat> combats, int numCombats) {
         Aventura aventura = new Aventura(nom, combats, null);
         for (int i = 0; i < numCombats; i++) {
@@ -27,6 +43,13 @@ public class AventuraManager {
         return aventura;
     }
 
+    /**
+     * Mètode que afegeix els Monstres al Combat
+     * @param aventura Aventura
+     * @param posicioMonstre Posició del a la que volem afegir el monstre
+     * @param quantitatMonstres Número de monstre totals a afegir
+     * @param numCombat Nombre total de combats
+     */
     public void afegirMonstreCombat(Aventura aventura, int posicioMonstre, int quantitatMonstres, int numCombat) {
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
         Monstre monstre = null;
@@ -41,6 +64,12 @@ public class AventuraManager {
         }
     }
 
+    /**
+     * Mètode que revisa si algun dels monstres del combat és de tipus "Boss"
+     * @param aventura Aventura
+     * @param numCombat Nombre total de combats
+     * @return Retorna un boolean indicant si hi ha o no un "Boss"
+     */
     public boolean checkBossCombat (Aventura aventura, int numCombat) {
         boolean bossCheck = false;
         for (int i=0; i < aventura.getCombats().get(numCombat).getMonstre().size(); i++) {
@@ -51,6 +80,11 @@ public class AventuraManager {
         return bossCheck;
     }
 
+    /**
+     * Mètode que genera una llista amb els monstres d'un combat i la seva quantitat
+     * @param combat Combat
+     * @return Retorna la llista
+     */
     public List<String> generarLlistaMonstres(Combat combat) {
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
         List<String> infoMonstresCombat = new ArrayList<>();
@@ -66,6 +100,11 @@ public class AventuraManager {
         return infoMonstresCombat;
     }
 
+    /**
+     * Mètode que genera una llista amb els monstres d'un combat i la seva quantitat amb un format diferent
+     * @param combat Combat
+     * @return Retorna la llista
+     */
     public List<String> generarLlistaMonstres2 (Combat combat) {
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
         List<String> infoMonstresCombat = new ArrayList<>();
@@ -81,6 +120,13 @@ public class AventuraManager {
         return infoMonstresCombat;
     }
 
+    /**
+     * Mètode que borra un monstre de un combat
+     * @param aventura Aventura
+     * @param monstreDelete Posició del monstre que es vol borrar
+     * @param numCombat Numero de combat on volem borrar
+     * @return Retorna una String amb el nom de monstre i quantitat borrada
+     */
     public String borrarMonstreCombat (Aventura aventura, int monstreDelete, int numCombat) {
         List<String> infoMonstresCombat = generarLlistaMonstres(aventura.getCombats().get(numCombat));
         String stringMonstre, monstresEliminats;
@@ -101,11 +147,19 @@ public class AventuraManager {
         return monstresEliminats = numeroMonstres + " " + nomMonstre;
     }
 
+    /**
+     * Mètode que llegeix les aventures del Json
+     * @return Retorna la llista d'aventures llegida
+     */
     public List<Aventura> llegirAventures(){
         List<Aventura> aventuraList = aventurasJsonDAO.readAventura();
         return aventuraList;
     }
 
+    /**
+     * Mètode que llegeix les aventures del Json i retorna una llista amb els noms d'aquestes
+     * @return Retorna una llista amb els noms de les aventures
+     */
     public List<String> llistarAventuras () {
         List<Aventura> aventuras = aventurasJsonDAO.readAventura();
         List<String> noms = new ArrayList<>();
@@ -115,11 +169,22 @@ public class AventuraManager {
         }
         return noms;
     }
+
+    /**
+     * Mètode que retorna una única Aventura
+     * @param numAventura Posició de l'aventura a la llista d'aventures
+     * @return Retorna l'aventura
+     */
     public Aventura retornaAventuraComplerta(int numAventura) {
         List<Aventura> aventuras = aventurasJsonDAO.readAventura();
         return aventuras.get(numAventura-1);
     }
 
+    /**
+     * Mètode que afegeix un personatge a l'aventura
+     * @param aventura Aventura
+     * @param numPersonatge Posició del personatge a la llista de personatges
+     */
     public void afegirPersonatgeAventura (Aventura aventura, int numPersonatge) {
         List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
         if (aventura.getPersonatges() == null) {
@@ -129,6 +194,11 @@ public class AventuraManager {
 
     }
 
+    /**
+     * Mètode que afegeix un personatge i va ordenant-los per ordre d'iniciativa
+     * @param personatges Llista de personatges
+     * @param personatge Personatge afegit a la llista
+     */
     public void ordenarPersonatgesSegonsIniciatives (List<Personatge> personatges, Personatge personatge) {
 
         personatge.setIniciativa(personatge.getIniciativa() + ((int) (Math.random() * (12)) + 1));
@@ -142,6 +212,11 @@ public class AventuraManager {
         }
     }
 
+    /**
+     * Mètode que afegeix un monstre i va ordenant-los per ordre d'iniciativa
+     * @param monstres Llista de monstres
+     * @param monstre Monstre afegit a la llista
+     */
     public void ordenarMonstresSegonsIniciatives (List<Monstre> monstres, Monstre monstre) {
 
         monstre.setIniciativa(monstre.getIniciativa() + ((int) (Math.random() * (12)) + 1));
@@ -155,6 +230,12 @@ public class AventuraManager {
         }
     }
 
+    /**
+     * Mètode que junta i ordena tots els personatges i monstres
+     * @param personatges Llista de personatges ordenada
+     * @param monstres Llista de monstres ordenada
+     * @return Retorna una llista ordenada final
+     */
     public List<String> mostrarOrdreIniciativas (List<Personatge> personatges, List<Monstre> monstres) {
         List<String> llistaOrdenadaFinal = new ArrayList<>();
         int i, contadorPersonatges = 0, contadorMonstres = 0;
@@ -184,6 +265,12 @@ public class AventuraManager {
         return llistaOrdenadaFinal;
     }
 
+    /**
+     * Mètode que junta i ordena tots els personatges i monstres i rtorna unicament el nom
+     * @param personatges Llista de personatges ordenada
+     * @param monstres Llista de monstres ordenada
+     * @return Retorna una els noms ordenats
+     */
     public List<String> nomsOrdreIniciativas (List<Personatge> personatges, List<Monstre> monstres) {
         List<String> nomsOrdenats = new ArrayList<>();
         int i, contadorPersonatges = 0, contadorMonstres = 0;
@@ -213,6 +300,11 @@ public class AventuraManager {
         return nomsOrdenats;
     }
 
+    /**
+     * Mètode que crea una llista amb el nom i punts de vida maxims i actuals
+     * @param personatges Llista de personatges
+     * @return Retorna la llista creada
+     */
     public List<String> showPartyHP (List<Personatge> personatges) {
         List<String> llista = new ArrayList<>();
 
@@ -222,10 +314,23 @@ public class AventuraManager {
         return llista;
     }
 
+    /**
+     * Mètode que guarda una aventura al Json
+     * @param aventura Aventura
+     */
     public void guardarAventuraJSON (Aventura aventura){
         aventurasJsonDAO.writeAventura(aventura);
     }
 
+    /**
+     * Mètode que crida al mètode de realitzar una acció durant la batalla de personatge
+     * @param personatges Llista de personatges de l'aventura
+     * @param monstres Llista de monstres de l'aventura
+     * @param contadorPersonatge Posició del personatge realitzant l'acció
+     * @param posMenorMonstre Posició del monstre amb menys vida
+     * @param posMajorMonstre Posició del monstre amb més vida
+     * @return Retorna la frase generada durant l'acció
+     */
     public String accioDurantCombat (List<Personatge> personatges, List<Monstre> monstres, int contadorPersonatge, int posMenorMonstre, int posMajorMonstre) {
         String frase =  null;
 
@@ -234,6 +339,13 @@ public class AventuraManager {
         return frase;
     }
 
+    /**
+     * Mètode que crida al mètode d'evolucionar de personatge durant l'aventura
+     * @param personatges Llista de personatges de l'aventura
+     * @param personatge Personatge que evoluciona
+     * @param posPersonatge Posició on es troba el personatge que evoluciona
+     * @return Retorna la frase generada durant l'evolució
+     */
     public String evolucionaPersonatges(List<Personatge> personatges, Personatge personatge, int posPersonatge) {
 
         String frase = personatge.evolucionarPersonatge(personatges, posPersonatge);

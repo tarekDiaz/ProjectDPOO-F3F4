@@ -4,11 +4,33 @@ import business.Personatge.Personatge;
 
 import java.util.List;
 
+/**
+ * Classe herència de Monstre
+ */
 public class Boss extends Monstre{
+
+    /**
+     * Mètode constructor
+     * @param nom Nom
+     * @param nivellDificultat Nivell de dificultat
+     * @param experiencia Experiencia que otorga al ser vençut
+     * @param pdv Punts de vida
+     * @param iniciativa Numero d'iniciativa
+     * @param tipusDau Valor máxim de dany que fa
+     * @param tipusDeMal Tipus de mal al atacar
+     */
     public Boss(String nom, String nivellDificultat, int experiencia, int pdv, int iniciativa, String tipusDau, String tipusDeMal) {
         super(nom, nivellDificultat, experiencia, pdv, iniciativa, tipusDau, tipusDeMal);
     }
 
+    /**
+     * Mètode que realitza l'atac d'un monstre a un personatge durant el combat i genera una frase
+     * @param monstres Llista de monstres
+     * @param personatges Llista de personatges
+     * @param contadorMonstre Posició del monstre que ataca
+     * @param mal Mal que realitza l'atac
+     * @return Retorna la frase generada durant l'acció
+     */
     @Override
     public String atacarFaseCombat(List<Monstre> monstres, List<Personatge> personatges, int contadorMonstre, int mal) {
         String fraseBoss;
@@ -45,6 +67,12 @@ public class Boss extends Monstre{
             return fraseBoss;
     }
 
+    /**
+     * Mètode que infligeix mal a un monstre
+     * @param mal Mal a infligir
+     * @param dau Dau (atac fallat, normal o critic)
+     * @param tipusDeMalAtac String del tipus de mal que realitza el personatge
+     */
     @Override
     public void monstreRebMal (int mal, int dau, String tipusDeMalAtac) {
         if (dau == 1) {

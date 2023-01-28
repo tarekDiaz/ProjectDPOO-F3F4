@@ -6,13 +6,24 @@ import persistence.Monstres.MonstresDAO;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que utilitza monstres i treballa amb ells
+ */
 public class MonstreManager {
     private MonstresDAO monstresJsonDAO;
 
+    /**
+     * Mètode constructor
+     * @param monstresJsonDAO Monstres de persistència
+     */
     public MonstreManager(MonstresDAO monstresJsonDAO) {
         this.monstresJsonDAO = monstresJsonDAO;
     }
 
+    /**
+     * Mètode que crea una llista amb el nom i nivell de dificultat de tots els monstres
+     * @return Retorna una llista de tipus String
+     */
     public List<String> llistarMonstres(){
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
         List<String> infoMonstres = new ArrayList<>();
@@ -26,6 +37,11 @@ public class MonstreManager {
         return infoMonstres;
     }
 
+    /**
+     * Mètode que retorna un Monstre
+     * @param posicio Posició on es troba el monstre a persistència
+     * @return Retorna el monstre
+     */
     public Monstre retornaMonstreComplert(int posicio) {
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
         Monstre monstre = null;
@@ -35,6 +51,11 @@ public class MonstreManager {
         return monstre;
     }
 
+    /**
+     * Mètode que revisa si tots els monstres d'un combat estan morts
+     * @param monstres Llista de monstres del combat
+     * @return Retorna un boolean depenent de si estan tots morts o no
+     */
     public boolean totalMonstersUnconscius (List<Monstre> monstres) {
         int mort = 0;
         boolean TMU = false;
@@ -50,6 +71,11 @@ public class MonstreManager {
         return TMU;
     }
 
+    /**
+     * Mètode que retorna la posició de la llista on es troba el monstre amb menys vida
+     * @param monstres Llista de monstres
+     * @return Retorna la posició
+     */
     public int posicioMonstreMenysHP (List<Monstre> monstres) {
         int posMenor = 0, menor = monstres.get(0).getPdv();
         for (int i=1; i<monstres.size(); i++) {
@@ -61,6 +87,11 @@ public class MonstreManager {
         return posMenor;
     }
 
+    /**
+     * Mètode que retorna la posició de la llista on es troba el monstre amb més vida
+     * @param monstres Llista de monstres
+     * @return Retorna la posició
+     */
     public int posicioMonstreMesHP (List<Monstre> monstres) {
         int posMajor = 0, major = monstres.get(0).getPdv();
         for (int i=1; i<monstres.size(); i++) {
@@ -72,11 +103,21 @@ public class MonstreManager {
         return posMajor;
     }
 
+    /**
+     * Mètode que crida al mètode de monstre que comprova si aquest està mort
+     * @param monstre Monstre
+     * @return Retorna un boolea depenent de si el monstra esta mort o no
+     */
     public boolean estaInconscient (Monstre monstre) {
         boolean inconscient = monstre.estaInconscient();
         return inconscient;
     }
 
+    /**
+     * Mètode que calcula el mal que fa un monstre
+     * @param monstre Monstre
+     * @return Retorna el mal
+     */
     public int damageMonstre (Monstre monstre) {
         String numeroString;
         int numeroInt;
@@ -89,6 +130,14 @@ public class MonstreManager {
         return dau;
     }
 
+    /**
+     * Mètode que crida a un mètode de monstre que realiza l'acció d'atacar a un personatge.
+     * @param monstres Llista monstres
+     * @param personatges Llista personatges
+     * @param contadorMonstre Posició del monstre que ataca
+     * @param mal Mal que realitza el monstre
+     * @return Retorna la frase generada durant l'acció
+     */
     public String atacarFaseCombat(List<Monstre> monstres, List<Personatge> personatges, int contadorMonstre, int mal) {
         String frase;
 
@@ -97,6 +146,10 @@ public class MonstreManager {
         return frase;
     }
 
+    /**
+     * Mètode que comprova quins monstres són de dificultat "Boss" i els inicialitza (canvia de classe Monstre a Boss)
+     * @param monstres Llista de monstres
+     */
     public void inicialitzarBosses(List<Monstre> monstres) {
         List<Monstre> copiaLlista = new ArrayList<>(monstres);
         monstres.clear();

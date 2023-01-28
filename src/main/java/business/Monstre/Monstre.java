@@ -109,6 +109,12 @@ public class Monstre {
         return false;
     }
 
+    /**
+     * Mètode que infligeix mal a un monstre
+     * @param mal Mal a infligir
+     * @param dau Dau (atac fallat, normal o critic)
+     * @param tipusDeMalAtac String del tipus de mal que realitza el monstre
+     */
     public void monstreRebMal (int mal, int dau, String tipusDeMalAtac) {
         if (dau == 1) {
             mal = 0;
@@ -125,6 +131,10 @@ public class Monstre {
         }
     }
 
+    /**
+     * Mètode que comprova si un monstre està mort
+     * @return Retorna un boolean depenent de si el monstre està mort o no
+     */
     public boolean estaInconscient () {
         boolean inconscient = false;
         if (this.getPdv() == 0) {
@@ -133,6 +143,14 @@ public class Monstre {
         return inconscient;
     }
 
+    /**
+     * Mètode que realitza l'atac d'un monstre a un personatge durant el combat i genera una frase
+     * @param monstres Llista de monstres
+     * @param personatges Llista de personatges
+     * @param contadorMonstre Posició del monstre que ataca
+     * @param mal Mal que realitza l'atac
+     * @return Retorna la frase generada durant l'acció
+     */
     public String atacarFaseCombat(List<Monstre> monstres, List<Personatge> personatges, int contadorMonstre, int mal) {
         String frase;
         int dau = 0;

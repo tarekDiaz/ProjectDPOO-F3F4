@@ -207,32 +207,60 @@ public class Personatge {
         this.tipusDeMal = tipusDeMal;
     }
 
+    /**
+     * Mètode que redueix el mal que rep un personatge
+     * @param mal Mal que rep
+     * @param monstre Monstre que realitza el mal
+     * @return
+     */
     public int reduirMal (int mal, Monstre monstre) {
 
         return mal;
     }
 
+    /**
+     * Mètode que calcula el mal que fa el personatge
+     * @return mal que fa el personatge
+     */
     public int atacarPersonatge() {
         int mal = (int) (Math.random() * (6)) + 1 + getCos();
         return mal;
     }
 
+    /**
+     * Mètode que calcula els punts de vida màxims d'un personatge i els actualitza
+     * @return Retorna els punts de vida calculats
+     */
     public int calcularPdvMax () {
         int calculPdv = (10 + getCos()) * getNivell();
         return calculPdv;
     }
 
+    /**
+     * Mètode que realitza l'acció de suport d'un personatge
+     * @param personatges Llista de personatges
+     * @param frase Llista de frases generades per l'acció
+     */
     public void suportPersonatge(List<Personatge> personatges, List<String> frase) {
         this.setEsperit(getEsperit()+1);
         frase.add(this.getNom() + " uses Self-Motivated. Their Spirit increases in +1.");
     }
 
+    /**
+     * Mètode que cura la vida d'un personatge
+     * @return Retorna la cura realitzada
+     */
     public int curarPersonatge() {
         int cura = (int) (Math.random() * (8)) + 1 + getMent();
 
         return cura;
     }
 
+    /**
+     * Mètode que realitza l'acció del descans curt
+     * @param personatges Llista de personatges
+     * @param frase Llista de frases generades per l'acció
+     */
     public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
         String fraseaux = "";
         int cura = curarPersonatge();
@@ -248,6 +276,12 @@ public class Personatge {
         frase.add(this.getNom() + " uses Bandage Time. Heals " + cura + " hit points." + fraseaux);
     }
 
+    /**
+     * Mètode que actualitza la vida d'un personatge que rep mal
+     * @param mal Mal que rep el personatge
+     * @param dau Dau (atac fallat, normal o critic)
+     * @param monstre Monstre que ataca al personatge
+     */
     public void rebreMalPersonatge(int mal, int dau, Monstre monstre) {
         if (dau == 1) {
             mal = 0;
@@ -265,24 +299,46 @@ public class Personatge {
         }
     }
 
+    /**
+     * Mètode que calcula la iniciativa del personatge
+     * @return numero de la iniciativa
+     */
     public int calcularIniciativa () {
         int n = (int) (Math.random() * (12)) + 1;
         int iniciativa = n + getEsperit();
         return iniciativa;
     }
 
+    /**
+     * Mètode que crea una frase amb el nom i punts de vida maxims i actuals i l'afegeix a la llista
+     * @param llista Llista on afegir les frases
+     * @return Retorna la llista
+     */
     public List<String> writePartyHP (List<String> llista) {
         llista.add("- " + getNom() + "   " + getPdvActual() + " / " + getPdvMax() + " hit points");
 
         return llista;
     }
 
+    /**
+     * Mètode que retorna el nom de l'atac que realitza el personatge
+     * @return Retorna el nom de l'atac que realitza el personatge
+     */
     public String retornaNomAtac () {
         String nomAtac = "Sword Slash";
 
         return nomAtac;
     }
 
+    /**
+     * Mètode que realitza l'acció d'un personatge durant la batalla
+     * @param personatges Llista de personatges del combat
+     * @param monstres Llista de monstres del combat
+     * @param frase Frase generada per l'acció
+     * @param posMenorMonstre Posició del monstre amb menys vida
+     * @param posMajorMonstre Posició del mosntre amb més vida
+     * @return Retorna la frase generada per l'acció
+     */
     public String accioBatalla(List<Personatge> personatges, List<Monstre> monstres, String frase, int posMenorMonstre, int posMajorMonstre) {
         int mal = this.atacarPersonatge();
         frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with " + this.retornaNomAtac() + ".";
@@ -306,6 +362,12 @@ public class Personatge {
         return frase;
     }
 
+    /**
+     * Mètode que evoluciona un personatge
+     * @param personatges Llista de personatges de l'aventura
+     * @param posPersonatge Posició del personatge a evolucionar
+     * @return
+     */
     public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
         Personatge evolucio = null;
         String frase = null;
@@ -318,6 +380,10 @@ public class Personatge {
         return frase;
     }
 
+    /**
+     * Mètode que comprova si un personatge està inconscient o no
+     * @return Retorna un boolean que comprova si el personatge esta inconscient o no
+     */
     public boolean estaInconscient() {
         boolean x = false;
 
