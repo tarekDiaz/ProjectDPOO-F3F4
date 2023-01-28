@@ -7,6 +7,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * Classe Personatges amb els seus respectius getters i setters.
+ */
 public class Personatge {
 
     @SerializedName("name")
@@ -44,6 +47,21 @@ public class Personatge {
 
     private String tipusDeMal;
 
+    /**
+     * Mètode constructor amb tots els atributs
+     * @param nom Nom
+     * @param nomJugador Nom del Jugador que crea el personatge
+     * @param nivell Nivell
+     * @param cos Estadística de cos
+     * @param ment Estadística de ment
+     * @param esperit Estadística d'esperit
+     * @param classe Classe del personatge
+     * @param experiencia Experiència total
+     * @param pdvMax Punts de vida totals
+     * @param pdvActual Punts de vida durant el combat
+     * @param iniciativa Numero d'iniciativa
+     * @param tipusDeMal Tipus de mal al atacar
+     */
     public Personatge(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa, String tipusDeMal) {
         this.nom = nom;
         this.nomJugador = nomJugador;
@@ -59,6 +77,16 @@ public class Personatge {
         this.tipusDeMal = tipusDeMal;
     }
 
+    /**
+     * Mètode constructor amb els atributs del JSON
+     * @param nom Nom
+     * @param nomJugador Nom del Jugador que crea el personatge
+     * @param experiencia Experiència total
+     * @param cos Estadística de cos
+     * @param ment Estadística de ment
+     * @param esperit Estadística d'esperit
+     * @param classe Classe del personatge
+     */
     public Personatge(String nom, String nomJugador, int experiencia, int cos, int ment, int esperit, String classe) {
         this.nom = nom;
         this.nomJugador = nomJugador;

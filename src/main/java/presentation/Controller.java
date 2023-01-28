@@ -10,6 +10,9 @@ import business.Personatge.PersonatgeManager;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Aquesta classe s'ocupa d'executar el programa
+ */
 public class Controller {
     private UiManager ui;
 
@@ -18,6 +21,13 @@ public class Controller {
     private MonstreManager monstreManager;
     private AventuraManager aventuraManager;
 
+    /**
+     * Mètode contructor
+     * @param ui UiManager
+     * @param personatgeManager PersonatgeManager
+     * @param monstreManager MonstreManager
+     * @param aventuraManager AventuraManager
+     */
     public Controller(UiManager ui, PersonatgeManager personatgeManager, MonstreManager monstreManager, AventuraManager aventuraManager) {
         this.ui = ui;
         this.personatgeManager = personatgeManager;
@@ -25,50 +35,9 @@ public class Controller {
         this.aventuraManager = aventuraManager;
     }
 
-    /*
-    public void loadData(){
-        int opcio;
-        boolean loaded = false;
-
-        ui.showMessage(
-                "   ____  _               __       __    ____ ___   ___   _____\n" +
-                        "  / __/ (_)__ _   ___   / /___   / /   / __// _ \\ / _ \\ / ___/\n" +
-                        " _\\ \\  / //  ' \\ / _ \\ / // -_) / /__ _\\ \\ / , _// ___// (_ / \n" +
-                        "/___/ /_//_/_/_// .__//_/ \\__/ /____//___//_/|_|/_/    \\___/  \n" +
-                        "               /_/\n");
-        ui.showMessage("Welcome to Simple LSRPG.\n");
-        ui.showMessage("Do you want to use your local or cloud data?");
-        ui.showMessage("\t1) Local data");
-        ui.showMessage("\t1) Cloud data");
-
-        opcio = ui.askForInteger("-> Answer:");
-
-        switch (opcio){
-            case 1:
-                ui.showMessage("Loading data...");
-                break;
-            case 2:
-                ui.showMessage("Loading data...");
-                break;
-            default:
-                ui.showMessage("Choose a correct option");
-                break;
-        }
-        if (!personatgeManager.getPersonatgesJsonDAO().getExsists() || !monstreManager.getMonstresJsonDAO().getExsists() || !aventuraManager.getAventurasJsonDAO().getExsists()){
-            if(!personatgeManager.getPersonatgesJsonDAO().getExsists()){
-                ui.showMessage("Error: The charachters.json file can't be accessed.");
-            }
-            if(!monstreManager.getMonstresJsonDAO().getExsists()) {
-                ui.showMessage("Error: The monsters.json file can't be accessed.");
-            }
-            if(!aventuraManager.getAventurasJsonDAO().getExsists()){
-                ui.showMessage("Error: The adventure.json file can't be accessed.");
-            }
-        }
-        ui.showMessage("Data was successfully loaded.");
-    }
-*/
-
+    /**
+     * Mètode que s'ocupa d'executar el programa sencer
+     */
     public void run() {
         int opcio;
         do {
@@ -79,6 +48,10 @@ public class Controller {
         } while (opcio != 5);
     }
 
+    /**
+     * Mètode que entra a una de les opcions del programa depenent el parametre d'entrada
+     * @param option Opció elegida del menu pricipal
+     */
     private void executeMenuPrincipal(int option) {
         ui.showMessage("");
         switch (option) {
@@ -108,6 +81,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Executa la opció 1
+     */
     private void opcio1() {
         String nom, player, classe;
         int nivell, cos, ment, esperit;
@@ -161,7 +137,9 @@ public class Controller {
         ui.showMessage("\nThe new character " + nom + " has been created.");
     }
 
-
+    /**
+     * Executa la opció 2
+     */
     private void opcio2() {
         String player, nomPersonatge=null, nomPersonatgeDelete;
         int totalNumPersonatge, numPersonatge;
@@ -235,6 +213,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Executa la opció 3
+     */
     private void opcio3() {
         String nomAventura;
         int numCombats, opcioMonstres, totalNumMonstres, numMonstre, quantitatMonstre = 0, monsterDelete;
@@ -314,10 +295,11 @@ public class Controller {
         aventuraManager.guardarAventuraJSON(aventura);
         ui.showMessage("Tavern keeper: 'Great plan lad! I hope you won’t die!'\n");
         ui.showMessage("The new adventure " + aventura.getNom() + " has been created.");
-
-
-
     }
+
+    /**
+     * Executa la opció 4
+     */
     private void opcio4() {
         int numAventuras, numOfCharacters, countPJ = 0, personatgeAfegir, roundCounter = 0;
         int i = 0;

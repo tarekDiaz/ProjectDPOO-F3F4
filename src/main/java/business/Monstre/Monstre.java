@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * Classe Monstre amb els seus respectius getters i setters.
+ */
 public class Monstre {
 
     @SerializedName("name")
@@ -23,6 +26,16 @@ public class Monstre {
     @SerializedName("damageType")
     private String tipusDeMal;
 
+    /**
+     * Mètode constructor
+     * @param nom Nom
+     * @param nivellDificultat Nivell de dificultat
+     * @param experiencia Experiencia que otorga al ser vençut
+     * @param pdv Punts de vida
+     * @param iniciativa Numero d'iniciativa
+     * @param tipusDau Valor máxim de dany que fa
+     * @param tipusDeMal Tipus de mal al atacar
+     */
     public Monstre(String nom, String nivellDificultat, int experiencia, int pdv, int iniciativa, String tipusDau, String tipusDeMal) {
         this.nom = nom;
         this.nivellDificultat = nivellDificultat;

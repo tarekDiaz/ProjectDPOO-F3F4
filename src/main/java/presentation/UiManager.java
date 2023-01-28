@@ -4,17 +4,32 @@ import business.Personatge.Personatge;
 
 import java.util.*;
 
+/**
+ * Aquesta classe s'ocupa de printar la informació per pantalla i demanar dades al usuari.
+ */
 public class UiManager {
     private Scanner scanner;
 
+    /**
+     * Mètode constructor
+     */
     public UiManager() {
         scanner = new Scanner(System.in);
     }
 
+    /**
+     * Mètode que reb un missatge del usuari i el printa per pantalla
+     * @param message Missatge a printar
+     */
     public void showMessage(String message) {
         System.out.println(message);
     }
 
+    /**
+     * Mètode que reb un missatge del usuari tipus String i el retorna en tipus Integer
+     * @param message Missatge que reb
+     * @return Integer per utilitzar com a variable
+     */
     public int askForInteger(String message) {
         while (true) {
             try {
@@ -28,11 +43,20 @@ public class UiManager {
         }
     }
 
+    /**
+     * Mètode que reb un missatge del usuari i el retorna
+     * @param message Missatge que reb
+     * @return String per utilitzar com a variable
+     */
     public String askForString(String message) {
         System.out.print(message);
         return scanner.nextLine();
     }
 
+    /**
+     * Mètode que mostra per pantalla l'inici del programa
+     * @return Opció elegida de persistencia
+     */
     public int start(){
         int opcio;
         System.out.println(
@@ -60,7 +84,10 @@ public class UiManager {
 
 
 
-
+    /**
+     * Mètode que mostra per pantalla el menú principal
+     * @param checkPersonatges Retorna true quan hi ha 3 personatges o més a l'aventura
+     */
     public void menuPrincipal(boolean checkPersonatges) {
         System.out.println("The tavern keeper looks at you and says: ");
         System.out.println("Welcome adventurer! How can i help you?\n");
@@ -76,6 +103,10 @@ public class UiManager {
         System.out.println("\t 5) Exit");
     }
 
+    /**
+     * Mètode que mostra per pantalla una llista de personatges
+     * @param personatges Llista de personatges a mostrar
+     */
     public void showCharList(List<String> personatges) {
         System.out.println("");
         for (int i = 0; i < personatges.size(); i++) {
@@ -84,12 +115,22 @@ public class UiManager {
         System.out.println("\n\t0. Back\n");
     }
 
+    /**
+     * Mètode que mostra per pantalla una llista de monstres
+     * @param monstres Llista de monstres a mostrar
+     */
     public void showMonsterList(List<String> monstres) {
         for (int i = 0; i < monstres.size(); i++) {
             System.out.println("\t" + (i+1) + ". " + monstres.get(i));
         }
     }
 
+    /**
+     * Mètode que mostra per pantalla una llista indexada dels personatges que es van afegint a la party
+     * @param personatges Llista de personatges
+     * @param numOfCharacters Quantitat de personatges totals
+     * @param countPJ Numeró de personatge que estem afegint
+     */
     public void showPartyList(List<Personatge> personatges, int numOfCharacters, int countPJ) {
         System.out.println("\n--------------------------------");
         System.out.println("Your party (" + countPJ + " / " + numOfCharacters + "):");
@@ -103,12 +144,20 @@ public class UiManager {
         System.out.println("--------------------------------");
     }
 
+    /**
+     * Mètode que mostra per pantalla una llista de tipus String
+     * @param llista Llista de String
+     */
     public void showBasicList (List<String> llista) {
         for (int i=0; i<llista.size(); i++) {
             System.out.println("\t" + llista.get(i));
         }
     }
 
+    /**
+     * Mètode que mostra per pantalla una llista de tipus String sense espaiat
+     * @param llista Llista de String
+     */
     public void showListNoT (List<String> llista) {
         for (int i=0; i<llista.size(); i++) {
             System.out.println(llista.get(i));

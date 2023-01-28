@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * Classe Aventura amb els seus respectius getters i setters.
+ */
 public class Aventura {
     @SerializedName("nameAdventure")
     String nom;
@@ -12,6 +15,12 @@ public class Aventura {
     List<Combat> combats;
     List<Personatge> personatges;
 
+    /**
+     * Mètode Contructor
+     * @param nom Nom de la Aventura
+     * @param combats Llista de combats
+     * @param personatges Llista de personatges
+     */
     public Aventura(String nom,List<Combat> combats, List<Personatge> personatges) {
         this.nom = nom;
         this.combats = combats;
