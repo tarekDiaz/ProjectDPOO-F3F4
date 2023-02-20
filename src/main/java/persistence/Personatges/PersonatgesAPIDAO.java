@@ -1,7 +1,7 @@
 package persistence.Personatges;
 
 
-import business.Personatge.Personatge;
+import business.Personatge.*;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import persistence.ApiHelper;
@@ -9,6 +9,7 @@ import persistence.PersistenceException;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 /**
  * Classe que accedeix a les dades dels personatges a través de l'API
@@ -64,11 +65,42 @@ public class PersonatgesAPIDAO implements PersonatgesDAO{
             String personatgesString = ap.getFromUrl(PERSONATGE_URL);
 
             Gson gson = new Gson();
-            JsonElement personatgesJSON = JsonParser.parseString(personatgesString);
+            JsonArray personatgesJSON = JsonParser.parseString(personatgesString).getAsJsonArray();
 
-            Type tipoLista = new TypeToken<List<Personatge>>(){}.getType();
-            List<Personatge> personatges = gson.fromJson(personatgesJSON, tipoLista);
+            //Type tipoLista = new TypeToken<List<Personatge>>(){}.getType();
+            //List<Personatge> personatges = gson.fromJson(personatgesJSON, tipoLista);
+            List<Personatge> personatges = new ArrayList<>();
 
+
+            for (JsonElement element : personatgesJSON) {
+                JsonObject object = element.getAsJsonObject();
+                String nom = object.get("name").getAsString();
+                String player = object.get("player").getAsString();
+                int exp = object.get("xp").getAsInt();
+                int cos = object.get("body").getAsInt();
+                int ment = object.get("mind").getAsInt();
+                int esperit = object.get("spirit").getAsInt();
+                String classe = object.get("class").getAsString();
+
+                if (classe.equals("Adventurer")) {
+                    personatges.add(new Aventurer(nom, player, exp, cos, ment, esperit, classe));
+                }
+                if (classe.equals("Warrior")) {
+                    personatges.add(new Guerrer(nom, player, exp, cos, ment, esperit, classe));
+                }
+                if (classe.equals("Champion")) {
+                    personatges.add(new Campio(nom, player, exp, cos, ment, esperit, classe));
+                }
+                if (classe.equals("Cleric")) {
+                    personatges.add(new Clergue(nom, player, exp, cos, ment, esperit, classe));
+                }
+                if (classe.equals("Paladin")) {
+                    personatges.add(new Paladi(nom, player, exp, cos, ment, esperit, classe));
+                }
+                if (classe.equals("Mage")) {
+                    personatges.add(new Mag(nom, player, exp, cos, ment, esperit, classe));
+                }
+            }
             return personatges;
 
         } catch (IOException e) {
