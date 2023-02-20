@@ -178,5 +178,32 @@
     "mind": 0,
     "spirit": 1,
     "class": "Adventurer"
+  },
+  {
+    "name": "JorxPaladin",
+    "player": "Jordi",
+    "xp": 700,
+    "body": 1,
+    "mind": 1,
+    "spirit": 0,
+    "class": "Cleric"
+  },
+  {
+    "name": "JorxPaladin2",
+    "player": "Jordi",
+    "xp": 700,
+    "body": 0,
+    "mind": 0,
+    "spirit": 1,
+    "class": "Cleric"
+  },
+  {
+    "name": "JorxPaladi3",
+    "player": "Jordi",
+    "xp": 700,
+    "body": 1,
+    "mind": 0,
+    "spirit": 0,
+    "class": "Cleric"
   }
 ]

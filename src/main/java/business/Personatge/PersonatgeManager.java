@@ -326,27 +326,27 @@ public class PersonatgeManager {
      */
     public String classeDepenentDeLvl(Personatge personatge, int nivell) {
         String classe = null;
-        if (personatge.getClasse().equals("Aventurer")) {
-            if (personatge.getNivell() < 4) {
-                classe = "Aventurer";
+        if (personatge.getClasse().equals("Adventurer")) {
+            if (nivell < 4) {
+                classe = "Adventurer";
             }
-            if (personatge.getNivell() > 3 && personatge.getNivell() < 8) {
-                classe = "Guerrer";
+            if (nivell > 3 && nivell < 8) {
+                classe = "Warrior";
             }
-            if (personatge.getNivell() > 7) {
-                classe = "Campio";
-            }
-        }
-        if (personatge.getClasse().equals("Clergue")) {
-            if (personatge.getNivell() < 5) {
-                classe = "Clergue";
-            }
-            if (personatge.getNivell() > 4) {
-                classe = "Paladi";
+            if (nivell > 7) {
+                classe = "Champion";
             }
         }
-        if (personatge.getClasse().equals("Mag")) {
-            classe = "Mag";
+        if (personatge.getClasse().equals("Cleric")) {
+            if (nivell < 5) {
+                classe = "Cleric";
+            }
+            if (nivell > 4) {
+                classe = "Paladin";
+            }
+        }
+        if (personatge.getClasse().equals("Mage")) {
+            classe = "Mage";
         }
         return classe;
     }
