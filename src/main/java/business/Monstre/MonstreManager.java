@@ -28,8 +28,6 @@ public class MonstreManager {
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
         List<String> infoMonstres = new ArrayList<>();
 
-        String nom, dificultat;
-
         for (int i = 0; i < monstres.size(); i++) {
             infoMonstres.add(monstres.get(i).getNom() + " (" + monstres.get(i).getNivellDificultat() + ")");
         }
