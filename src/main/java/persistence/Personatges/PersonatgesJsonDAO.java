@@ -1,6 +1,6 @@
 package persistence.Personatges;
 
-import business.Personatge.Personatge;
+import business.Personatge.*;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import persistence.PersistenceException;
@@ -41,16 +41,42 @@ public class PersonatgesJsonDAO implements PersonatgesDAO{
             throw new RuntimeException(e);
         }
         Gson gson = new Gson();
-        Type tipoLista = new TypeToken<List<Personatge>>(){}.getType();
+        //Type tipoLista = new TypeToken<List<Personatge>>(){}.getType();
         JsonArray content = JsonParser.parseReader(reader).getAsJsonArray();
         // JsonArray personatge = content.getAsJsonArray();
         List<Personatge> personatgesJsonArray = new ArrayList<>();
                 //gson.fromJson(reader, tipoLista);
         for (JsonElement element : content) {
             JsonObject object = element.getAsJsonObject();
-            String name = object.get("name").getAsString();
-            System.out.println(name);
+            String nom = object.get("name").getAsString();
+            String player = object.get("player").getAsString();
+            int exp = object.get("xp").getAsInt();
+            int cos = object.get("body").getAsInt();
+            int ment = object.get("mind").getAsInt();
+            int esperit = object.get("spirit").getAsInt();
+            String classe = object.get("class").getAsString();
+
+            if (classe.equals("Adventurer")) {
+                personatgesJsonArray.add(new Aventurer(nom, player, exp, cos, ment, esperit, classe));
+            }
+            if (classe.equals("Warrior")) {
+                personatgesJsonArray.add(new Guerrer(nom, player, exp, cos, ment, esperit, classe));
+            }
+            if (classe.equals("Champion")) {
+                personatgesJsonArray.add(new Campio(nom, player, exp, cos, ment, esperit, classe));
+            }
+            if (classe.equals("Cleric")) {
+                personatgesJsonArray.add(new Clergue(nom, player, exp, cos, ment, esperit, classe));
+            }
+            if (classe.equals("Paladin")) {
+                personatgesJsonArray.add(new Paladi(nom, player, exp, cos, ment, esperit, classe));
+            }
+            if (classe.equals("Mage")) {
+                personatgesJsonArray.add(new Mag(nom, player, exp, cos, ment, esperit, classe));
+            }
         }
+
+
         if (personatgesJsonArray == null){
             personatgesJsonArray = new ArrayList<Personatge>();
         }
