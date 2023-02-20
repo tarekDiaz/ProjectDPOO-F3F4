@@ -122,15 +122,13 @@ public class Controller {
         ui.showMessage("`\nTavern keeper: 'Looking good!");
         ui.showMessage("'And lastly, ?'\n");
         classe = ui.askForString("-> Enter the character's initial class [Adventurer, Cleric, Mage]: ");
-        // no se si soc retrasat o que passa pero no aconegueixo fer el while estic tilt
         while (!classe.equals("Adventurer") && !classe.equals("Cleric")  && !classe.equals("Mage")) {
             ui.showMessage("\nEnter a valid class.\n");
             classe = ui.askForString("-> Enter the character's initial class [Adventurer, Cleric, Mage]: ");
         }
 
-        // Per saber a quina classe evoluciona pero aqui no fa falta inicialitzar el personatge amb la seva classe
-        Personatge personatge = personatgeManager.crearPersonatge(nom, player, nivell, cos, ment, esperit, classe);
-        classe = personatgeManager.classeDepenentDeLvl(personatge, nivell);
+        classe = personatgeManager.classeDepenentDeLvl(classe, nivell);
+        personatgeManager.crearPersonatge(nom, player, nivell, cos, ment, esperit, classe);
 
         ui.showMessage("\nTavern keeper: 'Any decent party needs one of those.'");
         ui.showMessage("'I guess that means you are a " + classe + " by now, nice!");
@@ -346,10 +344,8 @@ public class Controller {
                 aventuraManager.afegirPersonatgeAventura(currentAventura, personatgeAfegir);
                 countPJ++;
             }while (countPJ < numOfCharacters);
-            // inicialitzo lvl, pdv i iniciativa
             personatgeManager.inicialitzaPersonatges(currentAventura.getPersonatges());
-            // aqui inicialitzo les classes
-            personatgeManager.inicialitzaPersonatgesAmbClasse(currentAventura.getPersonatges());
+            //personatgeManager.inicialitzaPersonatgesAmbClasse(currentAventura.getPersonatges());
 
             ui.showPartyList(currentAventura.getPersonatges(), numOfCharacters, countPJ);
             ui.showMessage("\nTavern keeper: 'Great, good luck on your adventure lads!'\n");

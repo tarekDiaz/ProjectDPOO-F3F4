@@ -28,11 +28,28 @@ public class PersonatgeManager {
      * @param ment estadística ment del personatge
      * @param esperit estadística esperit del personatge
      */
-    public Personatge crearPersonatge (String nom, String player, int nivell, int cos, int ment, int esperit, String classe){
+    public void crearPersonatge (String nom, String player, int nivell, int cos, int ment, int esperit, String classe){
+        Personatge personatge = null;
         int exp = (nivell * 100) - 100;
-        Personatge personatge = new Personatge(nom, player, exp, cos, ment, esperit, classe);
+        if (classe.equals("Adventurer")) {
+            personatge = new Aventurer(nom, player, exp, cos, ment, esperit, classe);
+        }
+        if (classe.equals("Warrior")) {
+            personatge = new Guerrer(nom, player, exp, cos, ment, esperit, classe);
+        }
+        if (classe.equals("Champion")) {
+            personatge = new Campio(nom, player, exp, cos, ment, esperit, classe);
+        }
+        if (classe.equals("Cleric")) {
+            personatge = new Clergue(nom, player, exp, cos, ment, esperit, classe);
+        }
+        if (classe.equals("Paladin")) {
+            personatge = new Paladi(nom, player, exp, cos, ment, esperit, classe);
+        }
+        if (classe.equals("Mage")) {
+            personatge = new Mag(nom, player, exp, cos, ment, esperit, classe);
+        }
         personatgesJsonDAO.nouPersonatge(personatge);
-        return personatge;
     }
 
     /**
@@ -61,7 +78,7 @@ public class PersonatgeManager {
      * Mètode que comprova quins personatges són de cada classe i els inicialitza (canvia de classe Personatge a la classe corresponent)
      * @param personatges Llista de personatges
      */
-    public void inicialitzaPersonatgesAmbClasse (List<Personatge> personatges) {
+   /* public void inicialitzaPersonatgesAmbClasse (List<Personatge> personatges) {
         List<Personatge> copiaLlista = new ArrayList<>(personatges);
         personatges.clear();
         for (int i=0; i<copiaLlista.size(); i++) {
@@ -88,7 +105,7 @@ public class PersonatgeManager {
                 personatges.add(new Mag(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa(), 0, "Magical"));
             }
         }
-    }
+    }*/
 
     /**
      * Mètode que envia el nom del personatge a la classe de persistència per borrar un personatge
@@ -320,13 +337,12 @@ public class PersonatgeManager {
 
     /**
      * Mètode que retorna un String amb la classe del personatge
-     * @param personatge
+     * @param classe
      * @param nivell
      * @return
      */
-    public String classeDepenentDeLvl(Personatge personatge, int nivell) {
-        String classe = null;
-        if (personatge.getClasse().equals("Adventurer")) {
+    public String classeDepenentDeLvl(String classe, int nivell) {
+        if (classe.equals("Adventurer")) {
             if (nivell < 4) {
                 classe = "Adventurer";
             }
@@ -337,16 +353,13 @@ public class PersonatgeManager {
                 classe = "Champion";
             }
         }
-        if (personatge.getClasse().equals("Cleric")) {
+        if (classe.equals("Cleric")) {
             if (nivell < 5) {
                 classe = "Cleric";
             }
             if (nivell > 4) {
                 classe = "Paladin";
             }
-        }
-        if (personatge.getClasse().equals("Mage")) {
-            classe = "Mage";
         }
         return classe;
     }

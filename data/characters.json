@@ -205,5 +205,32 @@
     "mind": 0,
     "spirit": 0,
     "class": "Cleric"
+  },
+  {
+    "name": "ClassTest",
+    "player": "Jordi",
+    "xp": 800,
+    "body": 1,
+    "mind": 0,
+    "spirit": 2,
+    "class": "Adventurer"
+  },
+  {
+    "name": "classTest2",
+    "player": "Jordi",
+    "xp": 800,
+    "body": 1,
+    "mind": 1,
+    "spirit": 2,
+    "class": "Cleric"
+  },
+  {
+    "name": "classtest3",
+    "player": "Jordi",
+    "xp": 800,
+    "body": 2,
+    "mind": 1,
+    "spirit": 0,
+    "class": "Champion"
   }
 ]

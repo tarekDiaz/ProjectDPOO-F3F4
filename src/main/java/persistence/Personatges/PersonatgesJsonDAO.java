@@ -7,6 +7,7 @@ import persistence.PersistenceException;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,15 @@ public class PersonatgesJsonDAO implements PersonatgesDAO{
         }
         Gson gson = new Gson();
         Type tipoLista = new TypeToken<List<Personatge>>(){}.getType();
-        List<Personatge> personatgesJsonArray = gson.fromJson(reader, tipoLista);
+        JsonArray content = JsonParser.parseReader(reader).getAsJsonArray();
+        // JsonArray personatge = content.getAsJsonArray();
+        List<Personatge> personatgesJsonArray = new ArrayList<>();
+                //gson.fromJson(reader, tipoLista);
+        for (JsonElement element : content) {
+            JsonObject object = element.getAsJsonObject();
+            String name = object.get("name").getAsString();
+            System.out.println(name);
+        }
         if (personatgesJsonArray == null){
             personatgesJsonArray = new ArrayList<Personatge>();
         }

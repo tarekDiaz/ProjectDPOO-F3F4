@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Classe Personatges amb els seus respectius getters i setters.
  */
-public class Personatge {
+public abstract class Personatge {
 
     @SerializedName("name")
     @Expose
