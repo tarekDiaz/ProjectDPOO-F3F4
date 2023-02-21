@@ -345,7 +345,6 @@ public class Controller {
                 countPJ++;
             }while (countPJ < numOfCharacters);
             personatgeManager.inicialitzaPersonatges(currentAventura.getPersonatges());
-            //personatgeManager.inicialitzaPersonatgesAmbClasse(currentAventura.getPersonatges());
 
             ui.showPartyList(currentAventura.getPersonatges(), numOfCharacters, countPJ);
             ui.showMessage("\nTavern keeper: 'Great, good luck on your adventure lads!'\n");

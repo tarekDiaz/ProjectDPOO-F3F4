@@ -54,6 +54,11 @@ public class Mag extends Personatge{
         this.escut = escut;
     }
 
+    @Override
+    public void indicarTipusMal() {
+        this.setTipusDeMal("Magical");
+    }
+
     /**
      * Mètode que calcula la iniciativa del mag
      * @return numero de la iniciativa

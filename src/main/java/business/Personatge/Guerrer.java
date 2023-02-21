@@ -87,8 +87,8 @@ public class Guerrer extends Aventurer{
     public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
         Personatge evolucio = null;
         String frase = null;
-        if (this.getNivell() == 8) {
-            evolucio = new Campio(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), this.getClasse(), this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());
+        if (this.getNivell() >= 8) {
+            evolucio = new Campio(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), "Champion", this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());
             personatges.add(posPersonatge + 1, evolucio);
             personatges.remove(posPersonatge);
             frase = this.getNom() + " evolves to Champion!";

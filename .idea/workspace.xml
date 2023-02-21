@@ -4,8 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f82bdc1-5171-492e-a6c5-3fce3f526e27" name="Changes" comment="new dao">
-      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/Personatges/PersonatgesAPIDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/Personatges/PersonatgesAPIDAO.java" afterDir="false" />
+    <list default="true" id="0f82bdc1-5171-492e-a6c5-3fce3f526e27" name="Changes" comment="h">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/adventure.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/adventure.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/characters.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/characters.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Clergue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Clergue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Guerrer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Guerrer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Mag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Mag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Personatge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Personatge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/PersonatgeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/PersonatgeManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/presentation/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/presentation/Controller.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +114,17 @@
           <line>141</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/presentation/Controller.java</url>
+          <line>427</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="currentAventura.personatges.get(2)" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

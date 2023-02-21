@@ -240,5 +240,62 @@
         ]
       }
     ]
+  },
+  {
+    "nameAdventure": "EvolvingAdventure",
+    "combats": [
+      {
+        "monsters": [
+          {
+            "name": "Warg Rider",
+            "challenge": "Minion",
+            "experience": 6,
+            "hitPoints": 6,
+            "initiative": 2,
+            "damageDice": "d6",
+            "damageType": "Physical"
+          }
+        ]
+      },
+      {
+        "monsters": [
+          {
+            "name": "Snaga",
+            "challenge": "Minion",
+            "experience": 2,
+            "hitPoints": 4,
+            "initiative": 0,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          }
+        ]
+      },
+      {
+        "monsters": [
+          {
+            "name": "Snaga",
+            "challenge": "Minion",
+            "experience": 2,
+            "hitPoints": 4,
+            "initiative": 0,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          }
+        ]
+      },
+      {
+        "monsters": [
+          {
+            "name": "Snaga",
+            "challenge": "Minion",
+            "experience": 2,
+            "hitPoints": 4,
+            "initiative": 0,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          }
+        ]
+      }
+    ]
   }
 ]

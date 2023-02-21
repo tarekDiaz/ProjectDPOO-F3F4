@@ -207,6 +207,10 @@ public abstract class Personatge {
         this.tipusDeMal = tipusDeMal;
     }
 
+    public void indicarTipusMal() {
+        this.setTipusDeMal("Physical");
+    }
+
     /**
      * Mètode que redueix el mal que rep un personatge
      * @param mal Mal que rep
@@ -371,8 +375,8 @@ public abstract class Personatge {
     public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
         Personatge evolucio = null;
         String frase = null;
-        if (this.getNivell() == 4) {
-            evolucio = new Guerrer(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), this.getClasse(), this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());
+        if (this.getNivell() >= 4) {
+            evolucio = new Guerrer(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), "Warrior", this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());
             personatges.add(posPersonatge + 1, evolucio);
             personatges.remove(posPersonatge);
             frase = this.getNom() + " evolves to Warrior!";

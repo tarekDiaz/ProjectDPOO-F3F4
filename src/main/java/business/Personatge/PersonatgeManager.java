@@ -71,41 +71,9 @@ public class PersonatgeManager {
             personatges.get(i).setNivell((personatges.get(i).getExperiencia() / 100) + 1);
             calcularPdvMax(personatges.get(i));
             personatges.get(i).setIniciativa(calcularIniciativa(personatges.get(i)));
+            personatges.get(i).indicarTipusMal();
         }
     }
-
-    /**
-     * Mètode que comprova quins personatges són de cada classe i els inicialitza (canvia de classe Personatge a la classe corresponent)
-     * @param personatges Llista de personatges
-     */
-   /* public void inicialitzaPersonatgesAmbClasse (List<Personatge> personatges) {
-        List<Personatge> copiaLlista = new ArrayList<>(personatges);
-        personatges.clear();
-        for (int i=0; i<copiaLlista.size(); i++) {
-            if (copiaLlista.get(i).getClasse().equals("Adventurer")) {
-                if (copiaLlista.get(i).getNivell() < 4) {
-                    personatges.add(new Aventurer(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa(), "Physical"));
-                }
-                if (copiaLlista.get(i).getNivell() > 3 && copiaLlista.get(i).getNivell() < 8) {
-                    personatges.add(new Guerrer(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa(), "Physical"));
-                }
-                if (copiaLlista.get(i).getNivell() > 7) {
-                    personatges.add(new Campio(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa(), "Physical"));
-                }
-            }
-            if (copiaLlista.get(i).getClasse().equals("Cleric")) {
-                if (copiaLlista.get(i).getNivell() < 5) {
-                    personatges.add(new Clergue(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa(), "Psychical"));
-                }
-                if (copiaLlista.get(i).getNivell() > 4) {
-                    personatges.add(new Paladi(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa(), "Psychical"));
-                }
-            }
-            if (copiaLlista.get(i).getClasse().equals("Mage")) {
-                personatges.add(new Mag(copiaLlista.get(i).getNom(), copiaLlista.get(i).getNomJugador(), copiaLlista.get(i).getNivell(), copiaLlista.get(i).getCos(), copiaLlista.get(i).getMent(), copiaLlista.get(i).getEsperit(), copiaLlista.get(i).getClasse(), copiaLlista.get(i).getExperiencia(), copiaLlista.get(i).getPdvMax(), copiaLlista.get(i).getPdvActual(), copiaLlista.get(i).getIniciativa(), 0, "Magical"));
-            }
-        }
-    }*/
 
     /**
      * Mètode que envia el nom del personatge a la classe de persistència per borrar un personatge

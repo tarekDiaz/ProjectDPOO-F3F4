@@ -232,5 +232,50 @@
     "mind": 1,
     "spirit": 0,
     "class": "Champion"
+  },
+  {
+    "name": "JorxPaladinReal",
+    "player": "Jordi",
+    "xp": 700,
+    "body": 2,
+    "mind": 0,
+    "spirit": 2,
+    "class": "Paladin"
+  },
+  {
+    "name": "JorxWarriorReal",
+    "player": "Jordi",
+    "xp": 400,
+    "body": 0,
+    "mind": 0,
+    "spirit": 1,
+    "class": "Warrior"
+  },
+  {
+    "name": "WarriorAEvolucionar",
+    "player": "Jordi",
+    "xp": 698,
+    "body": 0,
+    "mind": 2,
+    "spirit": 1,
+    "class": "Warrior"
+  },
+  {
+    "name": "AdventurerAEvolucionar",
+    "player": "Jordi",
+    "xp": 298,
+    "body": 1,
+    "mind": 1,
+    "spirit": 1,
+    "class": "Adventurer"
+  },
+  {
+    "name": "ClericAEvolucionar",
+    "player": "Jordi",
+    "xp": 398,
+    "body": 2,
+    "mind": 1,
+    "spirit": 1,
+    "class": "Cleric"
   }
 ]
