@@ -87,47 +87,19 @@ public class Controller {
     private void opcio1() {
         String nom, player, classe;
         int nivell, cos, ment, esperit;
-        int dau1, dau2;
-        ui.showMessage("Tavern keeper: 'Oh, so you are new to this land.'");
-        ui.showMessage("'What's your name?'\n");
-        nom = ui.askForString("-> Enter your name: ");
-        ui.showMessage("\nTavern keeper: 'Hello, " + nom + ", be welcome.'");
-        ui.showMessage("'And now, if I may break the fourth wall, who is your Player?\n'");
-        player = ui.askForString("-> Enter the player's name: ");
-        ui.showMessage("\nTavern keeper: 'I see, i see...'");
-        ui.showMessage("'Now, are you an experienced adventurer?'\n");
-        nivell = ui.askForInteger("-> Enter the character's level [1..10]: ");
-        ui.showMessage("\nTavern keeper: 'Oh, so you are level " + nivell + "!'");
+
+        nom = o1AskForName();
+        player = o1AskForPlayerName();
+        nivell = o1AskForLevel();
         ui.showMessage("'Great, let me get a closer look at you...'");
         ui.showMessage("\nGenerating your stats...\n");
-        dau1 = personatgeManager.tirarDauStats();
-        dau2 = personatgeManager.tirarDauStats();
-        cos = personatgeManager.sumarDausStats(dau1, dau2);
-        ui.showMessage("Body:   You rolled " + cos + " (" + dau1 + " and " + dau2 + ").");
-        cos = personatgeManager.generarStats(cos);
-        dau1 = personatgeManager.tirarDauStats();
-        dau2 = personatgeManager.tirarDauStats();
-        ment = personatgeManager.sumarDausStats(dau1, dau2);
-        ui.showMessage("Mind:   You rolled " + ment + " (" + dau1 + " and " + dau2 + ").");
-        ment = personatgeManager.generarStats(ment);
-        dau1 = personatgeManager.tirarDauStats();
-        dau2 = personatgeManager.tirarDauStats();
-        esperit = personatgeManager.sumarDausStats(dau1, dau2);
-        ui.showMessage("Spirit: You rolled " + esperit + " (" + dau1 + " and " + dau2 + ").");
-        esperit = personatgeManager.generarStats(esperit);
-        ui.showMessage("\nYour stats are:");
-        ui.showMessage("\t- Body: " + cos);
-        ui.showMessage("\t- Mind: " + ment);
-        ui.showMessage("\t- Spirit: " + esperit);
+        cos = o1GenerarStat();
+        ment = o1GenerarStat();
+        esperit = o1GenerarStat();
+        o1MostrarStats(cos, ment, esperit);
         ui.showMessage("`\nTavern keeper: 'Looking good!");
         ui.showMessage("'And lastly, ?'\n");
-        classe = ui.askForString("-> Enter the character's initial class [Adventurer, Cleric, Mage]: ");
-        while (!classe.equals("Adventurer") && !classe.equals("Cleric")  && !classe.equals("Mage")) {
-            ui.showMessage("\nEnter a valid class.\n");
-            classe = ui.askForString("-> Enter the character's initial class [Adventurer, Cleric, Mage]: ");
-        }
-
-        classe = personatgeManager.classeDepenentDeLvl(classe, nivell);
+        classe = o1AskForClass(nivell);
         personatgeManager.crearPersonatge(nom, player, nivell, cos, ment, esperit, classe);
 
         ui.showMessage("\nTavern keeper: 'Any decent party needs one of those.'");
@@ -135,13 +107,66 @@ public class Controller {
         ui.showMessage("\nThe new character " + nom + " has been created.");
     }
 
+    private String o1AskForName () {
+        String nom;
+        ui.showMessage("Tavern keeper: 'Oh, so you are new to this land.'");
+        ui.showMessage("'What's your name?'\n");
+        nom = ui.askForString("-> Enter your name: ");
+        ui.showMessage("\nTavern keeper: 'Hello, " + nom + ", be welcome.'");
+        return nom;
+    }
+
+    private String o1AskForPlayerName() {
+        String player;
+        ui.showMessage("'And now, if I may break the fourth wall, who is your Player?\n'");
+        player = ui.askForString("-> Enter the player's name: ");
+        ui.showMessage("\nTavern keeper: 'I see, i see...'");
+        return player;
+    }
+    private int o1AskForLevel() {
+        int nivell;
+        ui.showMessage("'Now, are you an experienced adventurer?'\n");
+        nivell = ui.askForInteger("-> Enter the character's level [1..10]: ");
+        ui.showMessage("\nTavern keeper: 'Oh, so you are level " + nivell + "!'");
+        return nivell;
+    }
+
+    private int o1GenerarStat() {
+        int dau1, dau2;
+        int stat;
+        dau1 = personatgeManager.tirarDauStats();
+        dau2 = personatgeManager.tirarDauStats();
+        stat = personatgeManager.sumarDausStats(dau1, dau2);
+        ui.showMessage("Body:   You rolled " + stat + " (" + dau1 + " and " + dau2 + ").");
+        stat = personatgeManager.generarStats(stat);
+        return stat;
+    }
+
+    private void o1MostrarStats(int cos, int ment, int esperit) {
+        ui.showMessage("\nYour stats are:");
+        ui.showMessage("\t- Body: " + cos);
+        ui.showMessage("\t- Mind: " + ment);
+        ui.showMessage("\t- Spirit: " + esperit);
+    }
+
+    private String o1AskForClass(int nivell) {
+        String classe;
+        classe = ui.askForString("-> Enter the character's initial class [Adventurer, Cleric, Mage]: ");
+        while (!classe.equals("Adventurer") && !classe.equals("Cleric")  && !classe.equals("Mage")) {
+            ui.showMessage("\nEnter a valid class.\n");
+            classe = ui.askForString("-> Enter the character's initial class [Adventurer, Cleric, Mage]: ");
+        }
+
+        classe = personatgeManager.classeDepenentDeLvl(classe, nivell);
+        return classe;
+    }
+
+
     /**
      * Executa la opció 2
      */
     private void opcio2() {
-        String player, nomPersonatge=null, nomPersonatgeDelete;
-        int totalNumPersonatge, numPersonatge;
-        boolean back = true;
+        String nomPersonatge;
 
         ui.showMessage("Tavern keeper: 'Lads! They want to see you!'");
         if (personatgeManager.llegirPersonatges().isEmpty()){
@@ -149,66 +174,83 @@ public class Controller {
         }
         else{
             ui.showMessage("'Who piques your interest?'\n");
-            while (back) {
-                back = false;
-                player = ui.askForString("-> Enter the name of the Player to filter: ");
-                while (personatgeManager.llistarPersonatgesPlayer(player).isEmpty() && !player.isEmpty()) {
-                    player = ui.askForString("\n'That's not a Player's name. Enter a valid one: ");
-                }
 
-                if (player.isEmpty()) {
-                    ui.showMessage("\nYou watch as all adventurers get up from their chairs and approach you.");
-                    ui.showCharList(personatgeManager.llistarPersonatges());
-                    totalNumPersonatge = personatgeManager.llistarPersonatges().size();
-                    numPersonatge = ui.askForInteger("Who would you like to meet [0.." + totalNumPersonatge + "]: ");
-                    if (numPersonatge == 0) {
-                        back = true;
-                        ui.showMessage("\nTavern keeper: 'You did not want to do this, it's fine, let's just go back.\n");
-                    } else {
-                        nomPersonatge = personatgeManager.llistarPersonatges().get(numPersonatge-1);
-                    }
+            nomPersonatge = o2AskforPersonatge();
+            o2ShowFullPJInfo(nomPersonatge);
+            o2DecideToDelete(nomPersonatge);
+        }
+    }
+
+    private String o2AskforPersonatge() {
+        int totalNumPersonatge, numPersonatge;
+        boolean back=true;
+        String player, nomPersonatge=null;
+
+        while (back) {
+            back = false;
+            player = ui.askForString("-> Enter the name of the Player to filter: ");
+            while (personatgeManager.llistarPersonatgesPlayer(player).isEmpty() && !player.isEmpty()) {
+                player = ui.askForString("\n'That's not a Player's name. Enter a valid one: ");
+            }
+            if (player.isEmpty()) {
+                ui.showMessage("\nYou watch as all adventurers get up from their chairs and approach you.");
+                ui.showCharList(personatgeManager.llistarPersonatges());
+                totalNumPersonatge = personatgeManager.llistarPersonatges().size();
+                numPersonatge = ui.askForInteger("Who would you like to meet [0.." + totalNumPersonatge + "]: ");
+                if (numPersonatge == 0) {
+                    back = true;
+                    ui.showMessage("\nTavern keeper: 'You did not want to do this, it's fine, let's just go back.\n");
                 } else {
-                    ui.showMessage("\nYou watch as some adventurers get up from their chairs and approach you.");
-                    ui.showCharList(personatgeManager.llistarPersonatgesPlayer(player));
-                    totalNumPersonatge = personatgeManager.llistarPersonatgesPlayer(player).size();
-                    numPersonatge = ui.askForInteger("Who would you like to meet [0.." + totalNumPersonatge + "]: ");
-                    if (numPersonatge == 0) {
-                        back = true;
-                        ui.showMessage("\nTavern keeper: 'You did not want to do this, it's fine, let's just go back.\n");
-                    } else {
-                        nomPersonatge = personatgeManager.llistarPersonatgesPlayer(player).get(numPersonatge-1);
-                    }
+                    nomPersonatge = personatgeManager.llistarPersonatges().get(numPersonatge - 1);
+                }
+            } else {
+                ui.showMessage("\nYou watch as some adventurers get up from their chairs and approach you.");
+                ui.showCharList(personatgeManager.llistarPersonatgesPlayer(player));
+                totalNumPersonatge = personatgeManager.llistarPersonatgesPlayer(player).size();
+                numPersonatge = ui.askForInteger("Who would you like to meet [0.." + totalNumPersonatge + "]: ");
+                if (numPersonatge == 0) {
+                    back = true;
+                    ui.showMessage("\nTavern keeper: 'You did not want to do this, it's fine, let's just go back.\n");
+                } else {
+                    nomPersonatge = personatgeManager.llistarPersonatgesPlayer(player).get(numPersonatge - 1);
                 }
             }
-
-            ui.showMessage("\nTavern keeper: 'Hey " + nomPersonatge + " get here; the boss wants to see you!'\n");
-            ui.showMessage("*Name: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom());
-            ui.showMessage("*Player: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNomJugador());
-            ui.showMessage("*Class: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getClasse());
-            int nivell = (personatgeManager.retornaPersonatgeComplert(nomPersonatge).getExperiencia() / 100) + 1;
-            ui.showMessage("*Level: " + nivell);
-            ui.showMessage("*XP: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getExperiencia());
-            ui.showMessage("*Body: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getCos());
-            ui.showMessage("*Mind: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getMent());
-            ui.showMessage("*Spirit: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getEsperit());
-
-            do {
-                ui.showMessage("\n[Enter name to delete, or press enter to cancel]");
-                nomPersonatgeDelete = ui.askForString("Do you want to delete " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom() + "? ");
-                if (nomPersonatgeDelete.isEmpty()) {
-                    ui.showMessage("\nTavern keeper: 'That's enough " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom() + ", you can go back with your buddys'");
-                } else {
-                    if (!nomPersonatge.equals(nomPersonatgeDelete)) {
-                        ui.showMessage("\nTavern keeper: 'That's not who we are talking about. Make a decision.'");
-                    }
-                }
-                if (nomPersonatge.equals(nomPersonatgeDelete)) {
-                    ui.showMessage("\nTavern keeper: 'I'm sorry kiddo, but you have to leave.'");
-                    ui.showMessage("\nCharacter "+ personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom() + " left the Guild.");
-                    personatgeManager.borrarPersonatge(nomPersonatge);
-                }
-            } while ((!nomPersonatge.equals(nomPersonatgeDelete)) && !nomPersonatgeDelete.isEmpty());
         }
+        return nomPersonatge;
+    }
+
+    private void o2ShowFullPJInfo(String nomPersonatge) {
+        ui.showMessage("\nTavern keeper: 'Hey " + nomPersonatge + " get here; the boss wants to see you!'\n");
+        ui.showMessage("*Name: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom());
+        ui.showMessage("*Player: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNomJugador());
+        ui.showMessage("*Class: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getClasse());
+        int nivell = (personatgeManager.retornaPersonatgeComplert(nomPersonatge).getExperiencia() / 100) + 1;
+        ui.showMessage("*Level: " + nivell);
+        ui.showMessage("*XP: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getExperiencia());
+        ui.showMessage("*Body: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getCos());
+        ui.showMessage("*Mind: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getMent());
+        ui.showMessage("*Spirit: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getEsperit());
+    }
+
+    private void o2DecideToDelete(String nomPersonatge) {
+        String nomPersonatgeDelete;
+
+        do {
+            ui.showMessage("\n[Enter name to delete, or press enter to cancel]");
+            nomPersonatgeDelete = ui.askForString("Do you want to delete " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom() + "? ");
+            if (nomPersonatgeDelete.isEmpty()) {
+                ui.showMessage("\nTavern keeper: 'That's enough " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom() + ", you can go back with your buddys'");
+            } else {
+                if (!nomPersonatge.equals(nomPersonatgeDelete)) {
+                    ui.showMessage("\nTavern keeper: 'That's not who we are talking about. Make a decision.'");
+                }
+            }
+            if (nomPersonatge.equals(nomPersonatgeDelete)) {
+                ui.showMessage("\nTavern keeper: 'I'm sorry kiddo, but you have to leave.'");
+                ui.showMessage("\nCharacter "+ personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom() + " left the Guild.");
+                personatgeManager.borrarPersonatge(nomPersonatge);
+            }
+        } while ((!nomPersonatge.equals(nomPersonatgeDelete)) && !nomPersonatgeDelete.isEmpty());
     }
 
     /**
