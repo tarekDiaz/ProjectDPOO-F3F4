@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f82bdc1-5171-492e-a6c5-3fce3f526e27" name="Changes" comment="h">
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Clergue.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Clergue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Guerrer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Guerrer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Personatge.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Personatge.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/adventure.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/adventure.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/Personatges/PersonatgesAPIDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/Personatges/PersonatgesAPIDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/Personatges/PersonatgesJsonDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/Personatges/PersonatgesJsonDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/presentation/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/presentation/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/persistence/Personatges/PersonatgesAPIDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/persistence/Personatges/PersonatgesAPIDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/persistence/Personatges/PersonatgesJsonDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/persistence/Personatges/PersonatgesJsonDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/presentation/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/presentation/Controller.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +63,7 @@
       <workItem from="1676895385528" duration="3079000" />
       <workItem from="1676898979315" duration="4884000" />
       <workItem from="1676981299255" duration="2750000" />
+      <workItem from="1677162963491" duration="10213000" />
     </task>
     <task id="LOCAL-00001" summary="h">
       <created>1676899185904</created>
@@ -124,15 +130,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="h" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/presentation/Controller.java</url>
-          <line>469</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="currentAventura.personatges.get(2)" />

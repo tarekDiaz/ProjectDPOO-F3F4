@@ -2,12 +2,9 @@ package persistence.Personatges;
 
 import business.Personatge.*;
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 import persistence.PersistenceException;
 
 import java.io.*;
-import java.lang.reflect.Type;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,18 +31,17 @@ public class PersonatgesJsonDAO implements PersonatgesDAO{
      * @return llista de tipus Personatge amb els personatges del fitxer
      */
     public List<Personatge> readPersonatge() {
-        FileReader reader = null;
+        FileReader reader;
         try {
             reader = new FileReader("data/characters.json");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        Gson gson = new Gson();
-        //Type tipoLista = new TypeToken<List<Personatge>>(){}.getType();
+
         JsonArray content = JsonParser.parseReader(reader).getAsJsonArray();
-        // JsonArray personatge = content.getAsJsonArray();
-        List<Personatge> personatgesJsonArray = new ArrayList<>();
-                //gson.fromJson(reader, tipoLista);
+
+        List<Personatge> personatges = new ArrayList<>();
+
         for (JsonElement element : content) {
             JsonObject object = element.getAsJsonObject();
             String nom = object.get("name").getAsString();
@@ -57,32 +53,27 @@ public class PersonatgesJsonDAO implements PersonatgesDAO{
             String classe = object.get("class").getAsString();
 
             if (classe.equals("Adventurer")) {
-                personatgesJsonArray.add(new Aventurer(nom, player, exp, cos, ment, esperit, classe));
+                personatges.add(new Aventurer(nom, player, exp, cos, ment, esperit, classe));
             }
             if (classe.equals("Warrior")) {
-                personatgesJsonArray.add(new Guerrer(nom, player, exp, cos, ment, esperit, classe));
+                personatges.add(new Guerrer(nom, player, exp, cos, ment, esperit, classe));
             }
             if (classe.equals("Champion")) {
-                personatgesJsonArray.add(new Campio(nom, player, exp, cos, ment, esperit, classe));
+                personatges.add(new Campio(nom, player, exp, cos, ment, esperit, classe));
             }
             if (classe.equals("Cleric")) {
-                personatgesJsonArray.add(new Clergue(nom, player, exp, cos, ment, esperit, classe));
+                personatges.add(new Clergue(nom, player, exp, cos, ment, esperit, classe));
             }
             if (classe.equals("Paladin")) {
-                personatgesJsonArray.add(new Paladi(nom, player, exp, cos, ment, esperit, classe));
+                personatges.add(new Paladi(nom, player, exp, cos, ment, esperit, classe));
             }
             if (classe.equals("Mage")) {
-                personatgesJsonArray.add(new Mag(nom, player, exp, cos, ment, esperit, classe));
+                personatges.add(new Mag(nom, player, exp, cos, ment, esperit, classe));
             }
         }
-
-
-        if (personatgesJsonArray == null){
-            personatgesJsonArray = new ArrayList<Personatge>();
-        }
-
-        return personatgesJsonArray;
+        return personatges;
     }
+    
     /**
      * Mètode que afegeix un nou personatge al fitxer Json
      * @param personatge personatge que es vol afegir

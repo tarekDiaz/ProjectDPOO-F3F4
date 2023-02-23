@@ -3,12 +3,10 @@ package persistence.Personatges;
 
 import business.Personatge.*;
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 import persistence.ApiHelper;
 import persistence.PersistenceException;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -64,15 +62,11 @@ public class PersonatgesAPIDAO implements PersonatgesDAO{
         try {
             String personatgesString = ap.getFromUrl(PERSONATGE_URL);
 
-            Gson gson = new Gson();
-            JsonArray personatgesJSON = JsonParser.parseString(personatgesString).getAsJsonArray();
+            JsonArray content = JsonParser.parseString(personatgesString).getAsJsonArray();
 
-            //Type tipoLista = new TypeToken<List<Personatge>>(){}.getType();
-            //List<Personatge> personatges = gson.fromJson(personatgesJSON, tipoLista);
             List<Personatge> personatges = new ArrayList<>();
 
-
-            for (JsonElement element : personatgesJSON) {
+            for (JsonElement element : content) {
                 JsonObject object = element.getAsJsonObject();
                 String nom = object.get("name").getAsString();
                 String player = object.get("player").getAsString();
