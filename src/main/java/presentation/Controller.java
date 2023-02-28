@@ -189,7 +189,7 @@ public class Controller {
 
 
     /**
-     * Executa l'opció 2 del programa. Llista els personatges a partir d'un nom de jugaor i dona l'opció d'esborrar un personatge.
+     * Executa l'opció 2 del programa. Llista els personatges a partir d'un nom de jugador i dona l'opció d'esborrar un personatge.
      */
     private void opcio2() {
         String nomPersonatge;
@@ -292,7 +292,7 @@ public class Controller {
     }
 
     /**
-     * Executa l'opció 3 del progframa. Crear una aventura nova.
+     * Executa l'opció 3 del programa. Crear una aventura nova.
      */
     private void opcio3() {
         Boolean continua;
