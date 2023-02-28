@@ -24,7 +24,7 @@ public class Mag extends Personatge{
      * @param pdvMax Punts de vida totals
      * @param pdvActual Punts de vida durant el combat
      * @param iniciativa Numero d'iniciativa
-     * @param tipusDeMal Tipus de mal al atacar
+     * @param tipusDeMal Tipus de mal a l'atacar
      * @param escut Numero d'escut
      */
     public Mag(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa, int escut, String tipusDeMal) {
@@ -55,7 +55,7 @@ public class Mag extends Personatge{
     }
 
     /**
-     * Mètode que "seteja" el tipus de mal d'un mag a "Magical"
+     * Mètode que posa el tipus de mal d'un mag a "Magical"
      */
     @Override
     public void indicarTipusMal() {
@@ -77,7 +77,7 @@ public class Mag extends Personatge{
      * Mètode que redueix el mal que rep un mag
      * @param mal Mal que rep
      * @param monstre Monstre que realitza el mal
-     * @return Retorna el mal despres de ser reduit
+     * @return Retorna el mal després de ser reduït
      */
     @Override
     public int reduirMal (int mal, Monstre monstre) {

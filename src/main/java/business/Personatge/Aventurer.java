@@ -18,7 +18,7 @@ public class Aventurer extends Personatge{
      * @param pdvMax Punts de vida totals
      * @param pdvActual Punts de vida durant el combat
      * @param iniciativa Numero d'iniciativa
-     * @param tipusDeMal Tipus de mal al atacar
+     * @param tipusDeMal Tipus de mal a l'atacar
      */
     public Aventurer(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa, String tipusDeMal) {
         super(nom, nomJugador, nivell, cos, ment, esperit, classe, experiencia, pdvMax, pdvActual, iniciativa, tipusDeMal);

@@ -100,7 +100,7 @@ public class PersonatgesJsonDAO implements PersonatgesDAO{
 
     /**
      * Borra el personatge de characters.json
-     * @param nom nom del personatge que es vol borrar
+     * @param nom nom del personatge que es vol esborrar
      */
     public void borrar(String nom){
         try {

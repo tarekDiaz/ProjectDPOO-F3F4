@@ -12,7 +12,6 @@ public class Monstre {
 
     @SerializedName("name")
     private String nom;
-
     @SerializedName("challenge")
     private String nivellDificultat;
     @SerializedName("experience")
@@ -30,11 +29,11 @@ public class Monstre {
      * Mètode constructor
      * @param nom Nom
      * @param nivellDificultat Nivell de dificultat
-     * @param experiencia Experiencia que otorga al ser vençut
+     * @param experiencia Experiència que atorga al ser vençut
      * @param pdv Punts de vida
      * @param iniciativa Numero d'iniciativa
      * @param tipusDau Valor máxim de dany que fa
-     * @param tipusDeMal Tipus de mal al atacar
+     * @param tipusDeMal Tipus de mal a l'atacar
      */
     public Monstre(String nom, String nivellDificultat, int experiencia, int pdv, int iniciativa, String tipusDau, String tipusDeMal) {
         this.nom = nom;
@@ -83,9 +82,9 @@ public class Monstre {
     public String getTipusDau(){return tipusDau;}
 
     /**
-     * Mètode d'override a "equals" que comprova si dos monstres son iguals
+     * Mètode d'override a "equals" que comprova si dos monstres són iguals
      * @param o Monstre al que volem comparar
-     * @return Retorna true si es igual i false si es diferent
+     * @return Retorna true si és igual i false si és diferent
      */
     @Override
     public boolean equals(Object o)

@@ -5,7 +5,7 @@ import business.Personatge.Personatge;
 import java.util.List;
 
 /**
- * Classe herència de Monstre per els monstres de tipus Boss
+ * Classe herència de Monstre pels monstres de tipus Boss
  */
 public class Boss extends Monstre{
 
@@ -13,11 +13,11 @@ public class Boss extends Monstre{
      * Mètode constructor
      * @param nom Nom
      * @param nivellDificultat Nivell de dificultat
-     * @param experiencia Experiencia que otorga al ser vençut
+     * @param experiencia Experiència que atorga al ser vençut
      * @param pdv Punts de vida
      * @param iniciativa Numero d'iniciativa
-     * @param tipusDau Valor máxim de dany que fa
-     * @param tipusDeMal Tipus de mal al atacar
+     * @param tipusDau Valor maxim de dany que fa
+     * @param tipusDeMal Tipus de mal a l'atacar
      */
     public Boss(String nom, String nivellDificultat, int experiencia, int pdv, int iniciativa, String tipusDau, String tipusDeMal) {
         super(nom, nivellDificultat, experiencia, pdv, iniciativa, tipusDau, tipusDeMal);

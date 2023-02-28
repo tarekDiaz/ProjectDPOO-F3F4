@@ -38,7 +38,7 @@ public class AventuraManager {
     public Aventura crearAventura(String nom, List<Combat> combats, int numCombats) {
         Aventura aventura = new Aventura(nom, combats, null);
         for (int i = 0; i < numCombats; i++) {
-            aventura.combats.add(new Combat(new ArrayList<Monstre>()));
+            aventura.combats.add(new Combat(new ArrayList<>()));
         }
         return aventura;
     }
@@ -46,7 +46,7 @@ public class AventuraManager {
     /**
      * Mètode que afegeix els Monstres al Combat
      * @param aventura Aventura
-     * @param posicioMonstre Posició del a la que volem afegir el monstre
+     * @param posicioMonstre Posició de la qual volem afegir el monstre
      * @param quantitatMonstres Número de monstre totals a afegir
      * @param numCombat Nombre total de combats
      */

@@ -17,7 +17,7 @@ public class Aventura {
 
     /**
      * Mètode Contructor
-     * @param nom Nom de la Aventura
+     * @param nom Nom de l'Aventura
      * @param combats Llista de combats
      * @param personatges Llista de personatges
      */

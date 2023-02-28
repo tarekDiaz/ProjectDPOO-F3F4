@@ -44,8 +44,8 @@ public class UiManager {
     }
 
     /**
-     * Mètode que reb un missatge del usuari i el retorna
-     * @param message Missatge que reb
+     * Mètode que reb un missatge de l'usuari i el retorna
+     * @param message Missatge que rep
      * @return String per utilitzar com a variable
      */
     public String askForString(String message) {
@@ -55,7 +55,7 @@ public class UiManager {
 
     /**
      * Mètode que mostra per pantalla l'inici del programa
-     * @return Opció elegida de persistencia
+     * @return Opció elegida de persistència
      */
     public int start(){
         int opcio;
@@ -80,9 +80,6 @@ public class UiManager {
         System.out.println("\nLoading data...");
         return opcio;
     }
-
-
-
 
     /**
      * Mètode que mostra per pantalla el menú principal
@@ -129,7 +126,7 @@ public class UiManager {
      * Mètode que mostra per pantalla una llista indexada dels personatges que es van afegint a la party
      * @param personatges Llista de personatges
      * @param numOfCharacters Quantitat de personatges totals
-     * @param countPJ Numeró de personatge que estem afegint
+     * @param countPJ Número de personatge que estem afegint
      */
     public void showPartyList(List<Personatge> personatges, int numOfCharacters, int countPJ) {
         System.out.println("\n--------------------------------");

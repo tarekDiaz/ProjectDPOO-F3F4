@@ -60,7 +60,7 @@ public abstract class Personatge {
      * @param pdvMax Punts de vida totals
      * @param pdvActual Punts de vida durant el combat
      * @param iniciativa Numero d'iniciativa
-     * @param tipusDeMal Tipus de mal al atacar
+     * @param tipusDeMal Tipus de mal a l'atacar
      */
     public Personatge(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa, String tipusDeMal) {
         this.nom = nom;
@@ -95,19 +95,6 @@ public abstract class Personatge {
         this.ment = ment;
         this.esperit = esperit;
         this.classe = classe;
-    }
-
-    public JsonObject toJson(){
-        JsonObject personatgeJson = new JsonObject();
-
-        personatgeJson.addProperty("name",this.nom);
-        personatgeJson.addProperty("player",this.nomJugador);
-        personatgeJson.addProperty("xp",this.experiencia);
-        personatgeJson.addProperty("mind",this.ment);
-        personatgeJson.addProperty("spirit",this.esperit);
-        personatgeJson.addProperty("class",this.classe);
-
-        return personatgeJson;
     }
 
     public String getNom() {
@@ -203,7 +190,7 @@ public abstract class Personatge {
     }
 
     /**
-     * Mètode que "seteja" el tipus de mal d'un Personatge a "Physical"
+     * Mètode que posa el tipus de mal d'un Personatge a "Physical"
      */
     public void indicarTipusMal() {
         this.setTipusDeMal("Physical");
@@ -213,7 +200,7 @@ public abstract class Personatge {
      * Mètode que redueix el mal que rep un personatge
      * @param mal Mal que rep
      * @param monstre Monstre que realitza el mal
-     * @return Retorna el mal despres de ser reduit
+     * @return Retorna el mal després de ser reduït
      */
     public int reduirMal (int mal, Monstre monstre) {
 

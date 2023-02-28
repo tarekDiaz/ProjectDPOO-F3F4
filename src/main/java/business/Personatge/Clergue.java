@@ -43,7 +43,7 @@ public class Clergue extends Personatge{
     }
 
     /**
-     * Mètode que "seteja" el tipus de mal d'un Clergue a "Psychical"
+     * Mètode que posa el tipus de mal d'un Clergue a "Psychical"
      */
     @Override
     public void indicarTipusMal() {

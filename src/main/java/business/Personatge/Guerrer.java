@@ -56,7 +56,7 @@ public class Guerrer extends Aventurer{
      * Mètode que redueix el mal que rep un guerrer
      * @param mal Mal que rep
      * @param monstre Monstre que realitza el mal
-     * @return Retorna el mal despres de ser reduit
+     * @return Retorna el mal després de ser reduit
      */
     @Override
     public int reduirMal (int mal, Monstre monstre) {

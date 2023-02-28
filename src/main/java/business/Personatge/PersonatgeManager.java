@@ -63,7 +63,7 @@ public class PersonatgeManager {
     }
 
     /**
-     * Mètode que inicialitza els personatges. Els hi posa el nivell, els punts de vida màxims i la iniciativa ja que
+     * Mètode que inicialitza els personatges. Els hi posa el nivell, els punts de vida màxims i la iniciativa, ja que
      * aquestes caracteristiques no es troben a la informació de persistència.
      * @param personatges la llista de personatges del programa que es volen inicialitzar
      */
@@ -78,7 +78,7 @@ public class PersonatgeManager {
 
     /**
      * Mètode que envia el nom del personatge a la classe de persistència per borrar un personatge
-     * @param nom nom del personatge a borrar
+     * @param nom nom del personatge a esborrar
      */
     public void borrarPersonatge (String nom){
         personatgesJsonDAO.borrar(nom);
@@ -141,8 +141,8 @@ public class PersonatgeManager {
 
     /**
      * Mètode que crida al mètode de personatge que comprova si està inconcient o no
-     * @param personatge personatge al que es vol comprovar
-     * @return boolean que serà true si esta inconcient i false si no ho està.
+     * @param personatge personatge al qual es vol comprovar
+     * @return boolean que serà true si està inconscient i false si no ho està.
      */
     public boolean estaInconscient(Personatge personatge) {
         boolean x = personatge.estaInconscient();
@@ -154,7 +154,7 @@ public class PersonatgeManager {
      * Mètode que suma l'experiència d'un personatge i comprova si ha pujat de nivell o no.
      * @param personatge personatge al qual es vol sumar l'experiència.
      * @param experienciaMonstre experiència que li dona el monstre
-     * @return un boolean que es true quan un personatge ha pujat de nivell
+     * @return un boolean que és true quan un personatge ha pujat de nivell
      */
     public boolean sumarExperiencia(Personatge personatge, int experienciaMonstre) {
         int nivellPrevi = personatge.getNivell();
@@ -179,7 +179,7 @@ public class PersonatgeManager {
 
     /**
      * Mètode que calcula els punts de vida màxims d'un personatge i els actualitza
-     * @param personatge personatge al que es vol calcular
+     * @param personatge personatge al qual es vol calcular
      */
     public void calcularPdvMax (Personatge personatge) {
         int calculPdv = personatge.calcularPdvMax();
@@ -201,9 +201,9 @@ public class PersonatgeManager {
     }
 
     /**
-     * Mètode que crida al mètode de personatge que realitza l'acció del descans curt si el personatge no està inconscient
+     * Mètode que crida al mètode de personatge que realitza l'acció del descans curt si el personatge no està inconscient.
      * @param personatgesAventura Llista de personatges de l'aventura
-     * @param personatgesOrdenats Llista de persoantges de l'aventura ordenats
+     * @param personatgesOrdenats Llista de persoantges de l'aventura ordenada
      * @return Retorna la frase generada per l'acció
      */
     public List<String> descansCurt(List<Personatge> personatgesAventura, List<Personatge> personatgesOrdenats) {
@@ -292,7 +292,7 @@ public class PersonatgeManager {
     }
 
     /**
-     * Mètode que revisa que el nombre de personatges a persistencia sigui major o igual a tres
+     * Mètode que revisa que el nombre de personatges a persistència sigui major o igual a tres
      * @return Retorna un boolean depenent de si el nombre de personatges es major o igual a tres o no
      */
     public boolean checkPersonatgesSize () {
