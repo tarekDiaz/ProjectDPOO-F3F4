@@ -20,7 +20,7 @@ public class Controller {
     private AventuraManager aventuraManager;
 
     /**
-     * Mètode contructor
+     * Mètode contructor del controller
      * @param ui UiManager
      * @param personatgeManager PersonatgeManager
      * @param monstreManager MonstreManager
@@ -80,7 +80,7 @@ public class Controller {
     }
 
     /**
-     * Executa l'opció 1
+     * Executa l'opció 1 del programa. Crea un personatge nou.
      */
     private void opcio1() {
         String nom, player, classe;
@@ -170,6 +170,11 @@ public class Controller {
         ui.showMessage("\t- Spirit: " + esperit);
     }
 
+    /**
+     * Mètode de lopció 1 que demana a l'usuari la classe del personatge que pot variar a partir del nivell del personatge.
+     * @param nivell nivell del personatge
+     * @return nom de la classe del personatge
+     */
     private String o1AskForClass(int nivell) {
         String classe;
         classe = ui.askForString("-> Enter the character's initial class [Adventurer, Cleric, Mage]: ");
@@ -184,7 +189,7 @@ public class Controller {
 
 
     /**
-     * Executa l'opció 2
+     * Executa l'opció 2 del programa. Llista els personatges a partir d'un nom de jugaor i dona l'opció d'esborrar un personatge.
      */
     private void opcio2() {
         String nomPersonatge;
@@ -202,6 +207,10 @@ public class Controller {
         }
     }
 
+    /**
+     *Mètode de l'opció 2 que demana a l'usuari el nom del jugador i de personatge que es vol elegir.
+     * @return el nom del personatge elegit.
+     */
     private String o2AskforPersonatge() {
         int totalNumPersonatge, numPersonatge;
         boolean back=true;
@@ -240,6 +249,10 @@ public class Controller {
         return nomPersonatge;
     }
 
+    /**
+     * Mètode de l'opció 2 que mostra la informació d'un personatge.
+     * @param nomPersonatge el nom del personatge que es vol mostrar la informació.
+     */
     private void o2ShowFullPJInfo(String nomPersonatge) {
         ui.showMessage("\nTavern keeper: 'Hey " + nomPersonatge + " get here; the boss wants to see you!'\n");
         ui.showMessage("*Name: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom());
@@ -253,6 +266,10 @@ public class Controller {
         ui.showMessage("*Spirit: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getEsperit());
     }
 
+    /**
+     * Mètode de l'opció 2 que decideix si es vol eliminar o no un personatge.
+     * @param nomPersonatge personatge que es vol eliminar o no.
+     */
     private void o2DecideToDelete(String nomPersonatge) {
         String nomPersonatgeDelete;
 
@@ -275,7 +292,7 @@ public class Controller {
     }
 
     /**
-     * Executa l'opció 3
+     * Executa l'opció 3 del progframa. Crear una aventura nova.
      */
     private void opcio3() {
         Boolean continua;
@@ -313,12 +330,22 @@ public class Controller {
         ui.showMessage("Tavern keeper: 'Great plan lad! I hope you won’t die!'\n");
         ui.showMessage("The new adventure " + aventura.getNom() + " has been created.");
     }
+
+    /**
+     * Mètode de l'opció 3 que demana el nom de l'aventura que es vol crear
+     * @return el nom de l'aventura elegit
+     */
     private String o3AskNameAventura(){
         ui.showMessage("Tavern keeper: 'Planning an adventure? Good luck with that!'\n");
         String nomAventura = ui.askForString("-> Name your adventure: ");
         ui.showMessage("\nTaven keeper: 'You plan to undertake " + nomAventura + ", really?'");
         return nomAventura;
     }
+
+    /**
+     * Mètode de l'opció 3 que demana quants combats es volen tindre en l'aventura
+     * @return el nombre de combats elegit
+     */
     private int o3AskNumCombats(){
         ui.showMessage("'How long will that take?'\n");
         int numCombats = ui.askForInteger("-> How many encounters do you want [1..4]: ");
@@ -330,6 +357,11 @@ public class Controller {
 
         return numCombats;
     }
+
+    /**
+     * Mètode de l'opció 3 que demana quina opció es vol elegir en la creació de l'aventura: afegir monstre, eliminar monstre o continuar.
+     * @return el nombre de l'opció elegida
+     */
     private int o3ElegirOpcioEncounter(){
         ui.showMessage("1. Add Monster");
         ui.showMessage("2. Remove monster");
@@ -341,6 +373,12 @@ public class Controller {
         }
         return opcioMonstres;
     }
+
+    /**
+     * Mètode de l'opció 3 que afegeix els monstres a l'aventura.
+     * @param aventura la classe aventura en la que s'afegiran els monstres
+     * @param i nombre del combat en el qual s'afegiran els monstres.
+     */
     private void o3AddMonstreAventura(Aventura aventura, int i){
         ui.showMonsterList(monstreManager.llistarMonstres());
         int totalNumMonstres = monstreManager.llistarMonstres().size();
@@ -361,6 +399,12 @@ public class Controller {
             }
         }
     }
+
+    /**
+     * Mètode de l'opció 3 que elimina els monstres d'un combat de l'aventura
+     * @param aventura aventura en la que s'eliminaran els monstres
+     * @param i nombre de combat de l'aventura
+     */
     private void o3DeleteMonstreAventura(Aventura aventura, int i){
         if (!aventura.getCombats().get(i).getMonstre().isEmpty()) {
             int monsterDelete = ui.askForInteger("-> Which monster do you want to delete: ");
@@ -377,7 +421,7 @@ public class Controller {
     }
 
     /**
-     * Executa l'opció 4
+     * Executa l'opció 4 del programa. Començar una aventura.
      */
     private void opcio4() {
         int numAventuras, numOfCharacters;
@@ -441,6 +485,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Mètode de l'opció 4 que demana a l'usuari quina aventura es vol jugar.
+     * @return el nombre de l'aventura que elegeix l'usuari.
+     */
     private int o4ChooseAventura(){
         ui.showMessage("'Where do you fancy going?'\n");
         ui.showMessage("Available adventures:");
@@ -454,6 +502,10 @@ public class Controller {
         return numAventuras;
     }
 
+    /**
+     * Mètode de l'opció 4 que demana el nombre de personatges que jugaran l'aventura
+     * @return el nombre de personatges que jugaran l'aventura
+     */
     private int o4NumCharacters(){
         ui.showMessage("'And how many people shall join you?'\n");
         int numOfCharacters = ui.askForInteger("-> Choose a number of characters [3..5]: ");
@@ -465,6 +517,11 @@ public class Controller {
         return numOfCharacters;
     }
 
+    /**
+     * Mètode de l'opció 4 que elegeix quins personatges jugaran l'aventura.
+     * @param currentAventura l'aventura que es jugarà
+     * @param numOfCharacters el nombre total de personatges que jugaran l'aventura
+     */
     private void o4ChooseCharacters(Aventura currentAventura, int numOfCharacters){
         int countPJ = 0;
         ui.showMessage("'Who among these lads shall join you?'\n");
@@ -485,6 +542,12 @@ public class Controller {
         ui.showPartyList(currentAventura.getPersonatges(), numOfCharacters, countPJ);
     }
 
+    /**
+     * Mètode de l'opció 4 que simula el combat que es fa dins de l'aventura.
+     * @param currentAventura aventura actual que es juga
+     * @param personatgesOrdenats llista dels personatges de l'aventura ordenats per iniciativa
+     * @param monstresOrdenats llista dels monstres ordenats per iniciativa
+     */
     private void o4CombatStage(Aventura currentAventura, List<Personatge> personatgesOrdenats, List<Monstre> monstresOrdenats){
         boolean dead = false;
         int roundCounter = 0;
@@ -537,6 +600,12 @@ public class Controller {
         }
     }
 
+    /**
+     * Mètode de l'opció 4 que s'executa quan els personatges guanyen el combat
+     * @param currentAventura aventura que es juga
+     * @param personatgesOrdenats llista dels personatges ordenats per iniciativa
+     * @param monstresOrdenats llista dels monstres ordenats per iniciativa
+     */
     private void o4combatWin(Aventura currentAventura, List<Personatge> personatgesOrdenats,List<Monstre> monstresOrdenats){
 
         ui.showMessage("All enemys are defeated.\n");
