@@ -158,10 +158,6 @@ public abstract class Personatge {
         this.nom = nom;
     }
 
-    public void setNomJugador(String nomJugador) {
-        this.nomJugador = nomJugador;
-    }
-
     public void setNivell(int nivell) {
         this.nivell = nivell;
     }
@@ -198,7 +194,6 @@ public abstract class Personatge {
         this.iniciativa = iniciativa;
     }
 
-
     public String getTipusDeMal() {
         return tipusDeMal;
     }
@@ -207,6 +202,9 @@ public abstract class Personatge {
         this.tipusDeMal = tipusDeMal;
     }
 
+    /**
+     * Mètode que "seteja" el tipus de mal d'un Personatge a "Physical"
+     */
     public void indicarTipusMal() {
         this.setTipusDeMal("Physical");
     }
@@ -215,7 +213,7 @@ public abstract class Personatge {
      * Mètode que redueix el mal que rep un personatge
      * @param mal Mal que rep
      * @param monstre Monstre que realitza el mal
-     * @return
+     * @return Retorna el mal despres de ser reduit
      */
     public int reduirMal (int mal, Monstre monstre) {
 
@@ -370,10 +368,10 @@ public abstract class Personatge {
      * Mètode que evoluciona un personatge
      * @param personatges Llista de personatges de l'aventura
      * @param posPersonatge Posició del personatge a evolucionar
-     * @return
+     * @return Retorna la frase corresponent a la evolució del personatge
      */
     public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
-        Personatge evolucio = null;
+        Personatge evolucio;
         String frase = null;
         if (this.getNivell() >= 4) {
             evolucio = new Guerrer(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), "Warrior", this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());

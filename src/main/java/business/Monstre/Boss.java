@@ -5,7 +5,7 @@ import business.Personatge.Personatge;
 import java.util.List;
 
 /**
- * Classe herència de Monstre
+ * Classe herència de Monstre per els monstres de tipus Boss
  */
 public class Boss extends Monstre{
 

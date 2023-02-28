@@ -32,7 +32,7 @@ public class MonstresJsonDAO implements MonstresDAO{
      * @return llista de classe Monstre dels monstres
      */
     public List<Monstre> readMonstres() {
-        FileReader reader = null;
+        FileReader reader;
         try {
             reader = new FileReader(FILE_PATH);
         } catch (FileNotFoundException e) {

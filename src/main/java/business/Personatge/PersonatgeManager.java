@@ -27,6 +27,7 @@ public class PersonatgeManager {
      * @param cos estadística cos del personatge
      * @param ment estadística ment del personatge
      * @param esperit estadística esperit del personatge
+     * @param classe classe del personatge
      */
     public void crearPersonatge (String nom, String player, int nivell, int cos, int ment, int esperit, String classe){
         Personatge personatge = null;
@@ -96,7 +97,7 @@ public class PersonatgeManager {
      * Mètode que suma els nombres de dos daus
      * @param dau1 nombre del dau 1
      * @param dau2 nombre del dau 2
-     * @return
+     * @return Retorna la suma dels daus
      */
     public int sumarDausStats(int dau1, int dau2) {
         int stat = dau1 + dau2;
@@ -305,9 +306,9 @@ public class PersonatgeManager {
 
     /**
      * Mètode que retorna un String amb la classe del personatge
-     * @param classe
-     * @param nivell
-     * @return
+     * @param classe classe del personatge
+     * @param nivell nivell del personatge
+     * @return Retorna la classe del personatge modificada
      */
     public String classeDepenentDeLvl(String classe, int nivell) {
         if (classe.equals("Adventurer")) {

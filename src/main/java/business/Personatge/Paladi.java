@@ -56,7 +56,7 @@ public class Paladi extends Clergue{
      * Mètode que redueix el mal que rep un paladí
      * @param mal Mal que rep
      * @param monstre Monstre que realitza el mal
-     * @return
+     * @return Retorna el mal despres de ser reduit
      */
     @Override
     public int reduirMal (int mal, Monstre monstre) {

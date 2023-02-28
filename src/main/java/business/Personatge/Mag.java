@@ -54,6 +54,9 @@ public class Mag extends Personatge{
         this.escut = escut;
     }
 
+    /**
+     * Mètode que "seteja" el tipus de mal d'un mag a "Magical"
+     */
     @Override
     public void indicarTipusMal() {
         this.setTipusDeMal("Magical");
@@ -74,7 +77,7 @@ public class Mag extends Personatge{
      * Mètode que redueix el mal que rep un mag
      * @param mal Mal que rep
      * @param monstre Monstre que realitza el mal
-     * @return
+     * @return Retorna el mal despres de ser reduit
      */
     @Override
     public int reduirMal (int mal, Monstre monstre) {
