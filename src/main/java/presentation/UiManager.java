@@ -18,7 +18,7 @@ public class UiManager {
     }
 
     /**
-     * Mètode que reb un missatge del usuari i el printa per pantalla
+     * Mètode que rep un missatge de l'usuari i el printa per pantalla
      * @param message Missatge a printar
      */
     public void showMessage(String message) {
@@ -26,8 +26,8 @@ public class UiManager {
     }
 
     /**
-     * Mètode que reb un missatge del usuari tipus String i el retorna en tipus Integer
-     * @param message Missatge que reb
+     * Mètode que rep un missatge de l'usuari tipus String i el retorna en tipus Integer
+     * @param message Missatge que rep
      * @return Integer per utilitzar com a variable
      */
     public int askForInteger(String message) {

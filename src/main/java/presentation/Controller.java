@@ -105,6 +105,10 @@ public class Controller {
         ui.showMessage("\nThe new character " + nom + " has been created.");
     }
 
+    /**
+     * Mètode de l'opció que demana un nom a l'usuari i el retorna en forma de String
+     * @return String del nom donat per l'usuari
+     */
     private String o1AskForName () {
         String nom;
         ui.showMessage("Tavern keeper: 'Oh, so you are new to this land.'");
@@ -114,6 +118,10 @@ public class Controller {
         return nom;
     }
 
+    /**
+     * Mètode de l'opció 1 que demana a l'usuari el nom del jugador
+     * @return String del nom del jugador donat per l'usuari
+     */
     private String o1AskForPlayerName() {
         String player;
         ui.showMessage("'And now, if I may break the fourth wall, who is your Player?\n'");
@@ -121,6 +129,11 @@ public class Controller {
         ui.showMessage("\nTavern keeper: 'I see, i see...'");
         return player;
     }
+
+    /**
+     * Mètode de l'opció 1 que demana a l'usuari el nivell del personatge
+     * @return el nivell del personatge
+     */
     private int o1AskForLevel() {
         int nivell;
         ui.showMessage("'Now, are you an experienced adventurer?'\n");
@@ -129,6 +142,10 @@ public class Controller {
         return nivell;
     }
 
+    /**
+     * Mètode de l'opció 1 que genera el nombre d'un stat del personatge a partir de dos daus
+     * @return el nombre que tindrà el stat
+     */
     private int o1GenerarStat() {
         int dau1, dau2;
         int stat;
@@ -140,6 +157,12 @@ public class Controller {
         return stat;
     }
 
+    /**
+     * Mètode de l'opció 1 que mostra els stats del personatge
+     * @param cos el numero del stat de cos
+     * @param ment el numero del stat de ment
+     * @param esperit el numero del stat d'esperit
+     */
     private void o1MostrarStats(int cos, int ment, int esperit) {
         ui.showMessage("\nYour stats are:");
         ui.showMessage("\t- Body: " + cos);
