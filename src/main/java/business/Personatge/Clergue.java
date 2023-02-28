@@ -42,6 +42,9 @@ public class Clergue extends Personatge{
         super(nom, nomJugador, experiencia, cos, ment, esperit, classe);
     }
 
+    /**
+     * Mètode que "seteja" el tipus de mal d'un Clergue a "Psychical"
+     */
     @Override
     public void indicarTipusMal() {
         this.setTipusDeMal("Psychical");
@@ -166,11 +169,11 @@ public class Clergue extends Personatge{
      * Mètode que evoluciona un clergue
      * @param personatges Llista de personatges de l'aventura
      * @param posPersonatge Posició del personatge a evolucionar
-     * @return
+     * @return Retorna la frase corresponent a la evolució del clergue
      */
     @Override
     public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
-        Personatge evolucio = null;
+        Personatge evolucio;
         String frase = null;
         if (this.getNivell() >= 5) {
             evolucio = new Paladi(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), "Paladin", this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());

@@ -56,7 +56,7 @@ public class Guerrer extends Aventurer{
      * Mètode que redueix el mal que rep un guerrer
      * @param mal Mal que rep
      * @param monstre Monstre que realitza el mal
-     * @return
+     * @return Retorna el mal despres de ser reduit
      */
     @Override
     public int reduirMal (int mal, Monstre monstre) {
@@ -81,11 +81,11 @@ public class Guerrer extends Aventurer{
      * Mètode que evoluciona un guerrer
      * @param personatges Llista de personatges de l'aventura
      * @param posPersonatge Posició del personatge a evolucionar
-     * @return
+     * @return Retorna la frase corresponent a la evolució del guerrer
      */
     @Override
     public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
-        Personatge evolucio = null;
+        Personatge evolucio;
         String frase = null;
         if (this.getNivell() >= 8) {
             evolucio = new Campio(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), "Champion", this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());

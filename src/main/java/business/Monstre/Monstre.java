@@ -82,7 +82,11 @@ public class Monstre {
 
     public String getTipusDau(){return tipusDau;}
 
-
+    /**
+     * Mètode d'override a "equals" que comprova si dos monstres son iguals
+     * @param o Monstre al que volem comparar
+     * @return Retorna true si es igual i false si es diferent
+     */
     @Override
     public boolean equals(Object o)
     {
@@ -153,7 +157,7 @@ public class Monstre {
      */
     public String atacarFaseCombat(List<Monstre> monstres, List<Personatge> personatges, int contadorMonstre, int mal) {
         String frase;
-        int dau = 0;
+        int dau;
 
         int rollPersonatge = (int) (Math.random() * (personatges.size()));
         while (personatges.get(rollPersonatge).estaInconscient()) {

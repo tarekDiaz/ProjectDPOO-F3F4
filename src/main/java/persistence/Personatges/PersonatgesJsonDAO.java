@@ -98,6 +98,10 @@ public class PersonatgesJsonDAO implements PersonatgesDAO{
         }
     }
 
+    /**
+     * Borra el personatge de characters.json
+     * @param nom nom del personatge que es vol borrar
+     */
     public void borrar(String nom){
         try {
             List<Personatge> personatgesJson = readPersonatge();

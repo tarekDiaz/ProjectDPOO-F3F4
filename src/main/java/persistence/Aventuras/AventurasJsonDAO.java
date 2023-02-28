@@ -32,7 +32,7 @@ public class AventurasJsonDAO implements AventurasDAO{
      * @return llista de classe Aventura amb les aventures
      */
     public List<Aventura> readAventura() {
-        FileReader reader = null;
+        FileReader reader;
         try {
             reader = new FileReader(ADVENTURE_PATH);
         } catch (FileNotFoundException e) {
