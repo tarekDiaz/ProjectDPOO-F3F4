@@ -4,21 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f82bdc1-5171-492e-a6c5-3fce3f526e27" name="Changes" comment="h">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0f82bdc1-5171-492e-a6c5-3fce3f526e27" name="Changes" comment="pushfinal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Aventurer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Aventurer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Campio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Campio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Clergue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Clergue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Guerrer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Guerrer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Mag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Mag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Paladi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Paladi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Personatge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Personatge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Monstre/Monstre.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Monstre/Monstre.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Aventurer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Aventurer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Mag.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Mag.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Personatge.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Personatge.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/presentation/UiManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/presentation/UiManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Campio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Campio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Clergue.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Clergue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Guerrer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Guerrer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Paladi.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Paladi.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +78,7 @@
       <workItem from="1677595864177" duration="6282000" />
       <workItem from="1678031598512" duration="4727000" />
       <workItem from="1678107504947" duration="15503000" />
-      <workItem from="1678286039796" duration="5097000" />
+      <workItem from="1678286039796" duration="5805000" />
     </task>
     <task id="LOCAL-00001" summary="h">
       <created>1676899185904</created>
@@ -152,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677593266247</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="pushfinal">
+      <created>1678372248286</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1678372248286</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,7 +171,8 @@
     <MESSAGE value="new dao" />
     <MESSAGE value="good" />
     <MESSAGE value="h" />
-    <option name="LAST_COMMIT_MESSAGE" value="h" />
+    <MESSAGE value="pushfinal" />
+    <option name="LAST_COMMIT_MESSAGE" value="pushfinal" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
