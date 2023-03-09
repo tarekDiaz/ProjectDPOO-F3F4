@@ -22,7 +22,7 @@ public class Guerrer extends Aventurer{
      * @param pdvMax Punts de vida totals
      * @param pdvActual Punts de vida durant el combat
      * @param iniciativa Numero d'iniciativa
-     * @param tipusDeMal Tipus de mal al atacar
+     * @param tipusDeMal Tipus de mal a l'atacar
      */
     public Guerrer(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa, String tipusDeMal) {
         super(nom, nomJugador, nivell, cos, ment, esperit, classe, experiencia, pdvMax, pdvActual, iniciativa, tipusDeMal);
@@ -65,16 +65,40 @@ public class Guerrer extends Aventurer{
         }
         return mal;
     }
-
     /**
-     * Mètode que retorna el nom de l'atac que realitza el guerrer
-     * @return Retorna el nom de l'atac que realitza el personatge
+     * Mètode que realitza l'acció d'un personatge de tipus guerrer durant la batalla
+     * @param personatges Llista de personatges del combat
+     * @param monstres Llista de monstres del combat
+     * @param frase Frase generada per l'acció
+     * @param posMenorMonstre Posició del monstre amb menys vida
+     * @param posMajorMonstre Posició del monstre amb més vida
+     * @return Retorna la frase generada per l'acció
      */
     @Override
-    public String retornaNomAtac () {
-        String nomAtac = "Improved Sword Slash";
+    public String accioBatalla(List<Personatge> personatges, List<Monstre> monstres, String frase, int posMenorMonstre, int posMajorMonstre) {
+        int mal = this.atacarPersonatge();
+        int dau = (int) (Math.random() * (10)) + 1;
+        frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with Improved Sword Slash.";
 
-        return nomAtac;
+
+        monstres.get(posMenorMonstre).monstreRebMal(mal, dau, this.getTipusDeMal());
+
+
+        if (dau == 1) {
+            frase = frase + "\nFails and deals 0 " + getTipusDeMal() + " damage.";
+        }
+        if (dau > 1 && dau < 10) {
+            frase = frase + "\nHits and deals " + mal + " " + getTipusDeMal() + " damage.";
+        }
+        if (dau == 10) {
+            frase = frase + "\nCritical Hit and deals " + (mal * 2) + " " + getTipusDeMal() + " damage.";
+        }
+
+        if (monstres.get(posMenorMonstre).estaInconscient()) {
+            frase = frase + "\n" + monstres.get(posMenorMonstre).getNom() + " dies.";
+        }
+
+        return frase;
     }
 
     /**

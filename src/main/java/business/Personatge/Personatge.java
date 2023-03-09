@@ -1,7 +1,6 @@
 package business.Personatge;
 
 import business.Monstre.Monstre;
-import com.google.gson.JsonObject;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -44,7 +43,6 @@ public abstract class Personatge {
     private int pdvMax;
     private int pdvActual;
     private int iniciativa;
-
     private String tipusDeMal;
 
     /**
@@ -190,11 +188,9 @@ public abstract class Personatge {
     }
 
     /**
-     * Mètode que posa el tipus de mal d'un Personatge a "Physical"
+     * Mètode que implementa el tipus de mal del personatge
      */
-    public void indicarTipusMal() {
-        this.setTipusDeMal("Physical");
-    }
+    public abstract void indicarTipusMal();
 
     /**
      * Mètode que redueix el mal que rep un personatge
@@ -202,8 +198,8 @@ public abstract class Personatge {
      * @param monstre Monstre que realitza el mal
      * @return Retorna el mal després de ser reduït
      */
-    public int reduirMal (int mal, Monstre monstre) {
-
+    public int reduirMal (int mal, Monstre monstre)
+    {
         return mal;
     }
 
@@ -230,10 +226,7 @@ public abstract class Personatge {
      * @param personatges Llista de personatges
      * @param frase Llista de frases generades per l'acció
      */
-    public void suportPersonatge(List<Personatge> personatges, List<String> frase) {
-        this.setEsperit(getEsperit()+1);
-        frase.add(this.getNom() + " uses Self-Motivated. Their Spirit increases in +1.");
-    }
+    public abstract void suportPersonatge(List<Personatge> personatges, List<String> frase);
 
     /**
      * Mètode que cura la vida d'un personatge
@@ -250,20 +243,7 @@ public abstract class Personatge {
      * @param personatges Llista de personatges
      * @param frase Llista de frases generades per l'acció
      */
-    public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
-        String fraseaux = "";
-        int cura = curarPersonatge();
-        if (this.getPdvActual() == this.getPdvMax()) {
-            fraseaux = " But was already full hp.";
-        }
-        int pdvPostCura = this.getPdvActual() + cura;
-        if (pdvPostCura > this.getPdvMax()) {
-            this.setPdvActual(getPdvMax());
-        } else {
-            this.setPdvActual(pdvPostCura);
-        }
-        frase.add(this.getNom() + " uses Bandage Time. Heals " + cura + " hit points." + fraseaux);
-    }
+    public abstract void curaDescansCurt(List<Personatge> personatges, List<String> frase);
 
     /**
      * Mètode que actualitza la vida d'un personatge que rep mal
@@ -292,11 +272,7 @@ public abstract class Personatge {
      * Mètode que calcula la iniciativa del personatge
      * @return numero de la iniciativa
      */
-    public int calcularIniciativa () {
-        int n = (int) (Math.random() * (12)) + 1;
-        int iniciativa = n + getEsperit();
-        return iniciativa;
-    }
+    public abstract int calcularIniciativa();
 
     /**
      * Mètode que crea una frase amb el nom i punts de vida maxims i actuals i l'afegeix a la llista
@@ -310,64 +286,23 @@ public abstract class Personatge {
     }
 
     /**
-     * Mètode que retorna el nom de l'atac que realitza el personatge
-     * @return Retorna el nom de l'atac que realitza el personatge
-     */
-    public String retornaNomAtac () {
-        String nomAtac = "Sword Slash";
-
-        return nomAtac;
-    }
-
-    /**
      * Mètode que realitza l'acció d'un personatge durant la batalla
      * @param personatges Llista de personatges del combat
      * @param monstres Llista de monstres del combat
      * @param frase Frase generada per l'acció
      * @param posMenorMonstre Posició del monstre amb menys vida
-     * @param posMajorMonstre Posició del mosntre amb més vida
+     * @param posMajorMonstre Posició del monstre amb més vida
      * @return Retorna la frase generada per l'acció
      */
-    public String accioBatalla(List<Personatge> personatges, List<Monstre> monstres, String frase, int posMenorMonstre, int posMajorMonstre) {
-        int mal = this.atacarPersonatge();
-        frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with " + this.retornaNomAtac() + ".";
-
-        int dau = (int) (Math.random() * (10)) + 1;
-
-        monstres.get(posMenorMonstre).monstreRebMal(mal, dau, this.getTipusDeMal());
-
-        if (dau == 1) {
-            frase = frase + "\nFails and deals 0 " + getTipusDeMal() + " damage.";
-        }
-        if (dau > 1 && dau < 10) {
-            frase = frase + "\nHits and deals " + mal + " " + getTipusDeMal() + " damage.";
-        }
-        if (dau == 10) {
-            frase = frase + "\nCritical Hit and deals " + (mal * 2) + " " + getTipusDeMal() + " damage.";
-        }
-        if (monstres.get(posMenorMonstre).estaInconscient()) {
-            frase = frase + "\n" + monstres.get(posMenorMonstre).getNom() + " dies.";
-        }
-        return frase;
-    }
+    public abstract String accioBatalla(List<Personatge> personatges, List<Monstre> monstres, String frase, int posMenorMonstre, int posMajorMonstre);
 
     /**
      * Mètode que evoluciona un personatge
      * @param personatges Llista de personatges de l'aventura
      * @param posPersonatge Posició del personatge a evolucionar
-     * @return Retorna la frase corresponent a la evolució del personatge
+     * @return Retorna la frase corresponent a l'evolució del personatge
      */
-    public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
-        Personatge evolucio;
-        String frase = null;
-        if (this.getNivell() >= 4) {
-            evolucio = new Guerrer(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), "Warrior", this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());
-            personatges.add(posPersonatge + 1, evolucio);
-            personatges.remove(posPersonatge);
-            frase = this.getNom() + " evolves to Warrior!";
-        }
-        return frase;
-    }
+    public abstract String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge);
 
     /**
      * Mètode que comprova si un personatge està inconscient o no
@@ -379,7 +314,6 @@ public abstract class Personatge {
         if (this.getPdvActual() == 0) {
             x = true;
         }
-
         return x;
     }
 }

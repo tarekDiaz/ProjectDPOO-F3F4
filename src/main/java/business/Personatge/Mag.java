@@ -12,27 +12,6 @@ public class Mag extends Personatge{
     private int escut;
 
     /**
-     * Mètode constructor amb tots els atributs
-     * @param nom Nom
-     * @param nomJugador Nom del Jugador que crea el personatge
-     * @param nivell Nivell
-     * @param cos Estadística de cos
-     * @param ment Estadística de ment
-     * @param esperit Estadística d'esperit
-     * @param classe Classe del personatge
-     * @param experiencia Experiència total
-     * @param pdvMax Punts de vida totals
-     * @param pdvActual Punts de vida durant el combat
-     * @param iniciativa Numero d'iniciativa
-     * @param tipusDeMal Tipus de mal a l'atacar
-     * @param escut Numero d'escut
-     */
-    public Mag(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa, int escut, String tipusDeMal) {
-        super(nom, nomJugador, nivell, cos, ment, esperit, classe, experiencia, pdvMax, pdvActual, iniciativa, tipusDeMal);
-        this.escut = escut;
-    }
-
-    /**
      * Mètode constructor amb els atributs del JSON
      * @param nom Nom
      * @param nomJugador Nom del Jugador que crea el personatge
@@ -46,10 +25,18 @@ public class Mag extends Personatge{
         super(nom, nomJugador, experiencia, cos, ment, esperit, classe);
     }
 
+    /**
+     * Getter que retorna l'escut del mag
+     * @return valor de l'escut
+     */
     public int getEscut() {
         return escut;
     }
 
+    /**
+     * Setter que posa valor a l'escut del mag
+     * @param escut valor de l'escut
+     */
     public void setEscut(int escut) {
         this.escut = escut;
     }
@@ -184,10 +171,10 @@ public class Mag extends Personatge{
             }
         }
         if (monstresVius >= 3) {
-            int mal = (int) (Math.random() * (4)) + 1 + getMent();;
+            int mal = (int) (Math.random() * (4)) + 1 + getMent();
+            int dau = (int) (Math.random() * (10)) + 1;
             frase = "\n" + getNom() + " attacks all non-dead enemies with Fireball.";
 
-            int dau = (int) (Math.random() * (10)) + 1;
             if (dau == 1) {
                 frase = frase + "\nFails and deals 0 " + getTipusDeMal() + " damage.";
             }
@@ -211,10 +198,10 @@ public class Mag extends Personatge{
 
             frase = frase + fraseaux;
         } else {
-            int mal = (int) (Math.random() * (6)) + 1 + getMent();;
+            int mal = (int) (Math.random() * (6)) + 1 + getMent();
+            int dau = (int) (Math.random() * (10)) + 1;
             frase = "\n" + getNom() + " attacks " + monstres.get(posMajorMonstre).getNom() + " with Arcane Missile.";
 
-            int dau = (int) (Math.random() * (10)) + 1;
 
             monstres.get(posMajorMonstre).monstreRebMal(mal, dau, this.getTipusDeMal());
 
@@ -232,5 +219,16 @@ public class Mag extends Personatge{
             }
         }
         return frase;
+    }
+
+    /**
+     * Mètode que evoluciona un personatge. En aquest cas, com un mag mai pot evolucionar, retornarà null
+     * @param personatges Llista de personatges de l'aventura
+     * @param posPersonatge Posició del personatge a evolucionar
+     * @return retorna null, ja que un mag mai pot evolucionar.
+     */
+    @Override
+    public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
+        return null;
     }
 }

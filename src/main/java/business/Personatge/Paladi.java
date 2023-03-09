@@ -133,9 +133,8 @@ public class Paladi extends Clergue{
         }
         if (!healingDone) {
             int mal = atacarPersonatge();
-            frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with Never on my watch.";
-
             int dau = (int) (Math.random() * (10)) + 1;
+            frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with Never on my watch.";
 
             monstres.get(posMenorMonstre).monstreRebMal(mal, dau, this.getTipusDeMal());
 
@@ -153,5 +152,16 @@ public class Paladi extends Clergue{
             }
         }
         return frase;
+    }
+
+    /**
+     * Mètode que evoluciona un personatge. En aquest cas, com un paladí mai pot evolucionar, retornarà null
+     * @param personatges Llista de personatges de l'aventura
+     * @param posPersonatge Posició del personatge a evolucionar
+     * @return retorna null, ja que un mag mai pot evolucionar.
+     */
+    @Override
+    public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
+        return null;
     }
 }

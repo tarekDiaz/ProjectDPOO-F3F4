@@ -143,9 +143,8 @@ public class Clergue extends Personatge{
         }
         if (!healingDone) {
             int mal = atacarPersonatge();
-            frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with Not on my watch.";
-
             int dau = (int) (Math.random() * (10)) + 1;
+            frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with Not on my watch.";
 
             monstres.get(posMenorMonstre).monstreRebMal(mal, dau, this.getTipusDeMal());
 

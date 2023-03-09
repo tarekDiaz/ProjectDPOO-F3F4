@@ -88,4 +88,15 @@ public class Campio extends Guerrer{
         setPdvActual(getPdvMax());
         return cura;
     }
+
+    /**
+     * Mètode que evoluciona un personatge. En aquest cas, com un campió mai pot evolucionar, retornarà null
+     * @param personatges Llista de personatges de l'aventura
+     * @param posPersonatge Posició del personatge a evolucionar
+     * @return retorna null, ja que un mag mai pot evolucionar.
+     */
+    @Override
+    public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
+        return null;
+    }
 }

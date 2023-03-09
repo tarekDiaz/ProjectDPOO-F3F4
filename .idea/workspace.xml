@@ -7,10 +7,18 @@
     <list default="true" id="0f82bdc1-5171-492e-a6c5-3fce3f526e27" name="Changes" comment="h">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Clergue.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Clergue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Guerrer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Guerrer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Aventurer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Aventurer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Campio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Campio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Clergue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Clergue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Guerrer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Guerrer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Mag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Mag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Paladi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Paladi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Personatge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Personatge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/business/Monstre/Monstre.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Monstre/Monstre.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Aventurer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Aventurer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Mag.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Mag.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Personatge.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Personatge.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/presentation/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/presentation/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/presentation/UiManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/presentation/UiManager.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,11 +28,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -76,6 +84,10 @@
       <workItem from="1677162963491" duration="10925000" />
       <workItem from="1677587236665" duration="41000" />
       <workItem from="1677589889852" duration="1875000" />
+      <workItem from="1677595864177" duration="6282000" />
+      <workItem from="1678031598512" duration="4727000" />
+      <workItem from="1678107504947" duration="15503000" />
+      <workItem from="1678286039796" duration="5097000" />
     </task>
     <task id="LOCAL-00001" summary="h">
       <created>1676899185904</created>
@@ -164,15 +176,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="h" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/presentation/Controller.java</url>
-          <line>618</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="currentAventura.personatges.get(2)" />
