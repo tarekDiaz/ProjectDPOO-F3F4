@@ -7,18 +7,8 @@
     <list default="true" id="0f82bdc1-5171-492e-a6c5-3fce3f526e27" name="Changes" comment="h">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Aventurer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Aventurer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Campio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Campio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Clergue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Clergue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Guerrer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Guerrer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Mag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Mag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Paladi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Paladi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Personatge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Personatge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Monstre/Monstre.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Monstre/Monstre.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Aventurer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Aventurer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Mag.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Mag.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Personatge.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Personatge.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/presentation/UiManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/presentation/UiManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/PersonatgeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/PersonatgeManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,19 +47,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Tárek/Documents/GitHub/ProjectDPOO-F3F4&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/pimor/Desktop/Projectes DPOO/dpoo-2223-s2-b02",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -88,6 +79,12 @@
       <workItem from="1678031598512" duration="4727000" />
       <workItem from="1678107504947" duration="15503000" />
       <workItem from="1678286039796" duration="5097000" />
+      <workItem from="1678984236649" duration="148000" />
+      <workItem from="1680602659026" duration="1547000" />
+      <workItem from="1680685449281" duration="1423000" />
+      <workItem from="1681422438427" duration="1231000" />
+      <workItem from="1681564566544" duration="18000" />
+      <workItem from="1681747167767" duration="4015000" />
     </task>
     <task id="LOCAL-00001" summary="h">
       <created>1676899185904</created>

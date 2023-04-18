@@ -187,6 +187,13 @@ public abstract class Personatge {
         this.tipusDeMal = tipusDeMal;
     }
 
+    public void inicialitzaPersonatges () {
+            this.setNivell((this.experiencia / 100) + 1);
+            this.setPdvMax(calcularPdvMax());
+            this.setIniciativa(calcularIniciativa());
+            this.indicarTipusMal();
+    }
+
     /**
      * Mètode que implementa el tipus de mal del personatge
      */
@@ -208,7 +215,7 @@ public abstract class Personatge {
      * @return mal que fa el personatge
      */
     public int atacarPersonatge() {
-        int mal = (int) (Math.random() * (6)) + 1 + getCos();
+        int mal = (int) (Math.random() * (6)) + 1 + this.cos;
         return mal;
     }
 
@@ -217,7 +224,7 @@ public abstract class Personatge {
      * @return Retorna els punts de vida calculats
      */
     public int calcularPdvMax () {
-        int calculPdv = (10 + getCos()) * getNivell();
+        int calculPdv = (10 + this.cos) * this.nivell;
         return calculPdv;
     }
 
@@ -233,7 +240,7 @@ public abstract class Personatge {
      * @return Retorna la cura realitzada
      */
     public int curarPersonatge() {
-        int cura = (int) (Math.random() * (8)) + 1 + getMent();
+        int cura = (int) (Math.random() * (8)) + 1 + this.ment;
 
         return cura;
     }
@@ -261,10 +268,10 @@ public abstract class Personatge {
 
         mal = this.reduirMal(mal, monstre);
 
-        int pdvPostAtac = this.getPdvActual() - mal;
-        this.setPdvActual(pdvPostAtac);
-        if (this.getPdvActual() < 0) {
-            this.setPdvActual(0);
+        int pdvPostAtac = this.pdvActual - mal;
+        this.pdvActual = pdvPostAtac;
+        if (this.pdvActual < 0) {
+            this.pdvActual = 0;
         }
     }
 
@@ -280,7 +287,7 @@ public abstract class Personatge {
      * @return Retorna la llista
      */
     public List<String> writePartyHP (List<String> llista) {
-        llista.add("- " + getNom() + "   " + getPdvActual() + " / " + getPdvMax() + " hit points");
+        llista.add("- " + this.nom + "   " + this.pdvActual + " / " + this.pdvMax + " hit points");
 
         return llista;
     }

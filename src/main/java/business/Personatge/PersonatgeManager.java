@@ -69,10 +69,7 @@ public class PersonatgeManager {
      */
     public void inicialitzaPersonatges (List<Personatge> personatges) {
         for (int i = 0; i < personatges.size(); i++) {
-            personatges.get(i).setNivell((personatges.get(i).getExperiencia() / 100) + 1);
-            calcularPdvMax(personatges.get(i));
-            personatges.get(i).setIniciativa(calcularIniciativa(personatges.get(i)));
-            personatges.get(i).indicarTipusMal();
+            personatges.get(i).inicialitzaPersonatges();
         }
     }
 
