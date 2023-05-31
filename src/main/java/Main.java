@@ -47,6 +47,7 @@ public class Main {
             controller.run();
         }catch (PersistenceException e){
             uiManager.showMessage(e.getMessage());
+            uiManager.showMessage("Error: Couldn't load any data");
         }
     }
 }

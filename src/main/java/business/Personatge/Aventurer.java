@@ -47,7 +47,7 @@ public class Aventurer extends Personatge{
      */
     @Override
     public void indicarTipusMal() {
-        this.setTipusDeMal("Physical");
+        setTipusDeMal("Physical");
     }
 
     /**
@@ -57,8 +57,8 @@ public class Aventurer extends Personatge{
      */
     @Override
     public void suportPersonatge(List<Personatge> personatges, List<String> frase) {
-        this.setEsperit(getEsperit()+1);
-        frase.add(this.getNom() + " uses Self-Motivated. Their Spirit increases in +1.");
+        setEsperit(getEsperit()+1);
+        frase.add(getNom() + " uses Self-Motivated. Their Spirit increases in +1.");
     }
 
     /**

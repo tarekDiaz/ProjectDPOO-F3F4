@@ -9,7 +9,7 @@ import java.util.List;
  * Classe que utilitza els personatges i treballa amb ells
  */
 public class PersonatgeManager {
-    private PersonatgesDAO personatgesJsonDAO;
+    private final PersonatgesDAO personatgesJsonDAO;
 
     /**
      * Mètode constructor de la classe

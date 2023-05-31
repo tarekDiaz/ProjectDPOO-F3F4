@@ -14,10 +14,10 @@ import java.util.List;
  * Aquesta classe s'ocupa d'executar el programa
  */
 public class Controller {
-    private UiManager ui;
-    private PersonatgeManager personatgeManager;
-    private MonstreManager monstreManager;
-    private AventuraManager aventuraManager;
+    private final UiManager ui;
+    private final PersonatgeManager personatgeManager;
+    private final MonstreManager monstreManager;
+    private final AventuraManager aventuraManager;
 
     /**
      * Mètode contructor del controller
@@ -298,7 +298,7 @@ public class Controller {
         Boolean continua;
         String nomAventura = o3AskNameAventura();
         int numCombats = o3AskNumCombats();
-        Aventura aventura = aventuraManager.crearAventura(nomAventura, new ArrayList<>(), numCombats);
+        Aventura aventura = aventuraManager.crearAventura(nomAventura, numCombats);
 
         for (int i=0; i<numCombats; i++) {
             continua = false;

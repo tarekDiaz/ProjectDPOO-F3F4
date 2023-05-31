@@ -15,21 +15,15 @@ import java.util.List;
 public class PersonatgesAPIDAO implements PersonatgesDAO{
 
     private final String PERSONATGE_URL = "https://balandrau.salle.url.edu/dpoo/S1-Project_46/characters";
-    private ApiHelper ap;
+    private final ApiHelper ap;
 
-    {
-        try {
-            ap = new ApiHelper();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
     /**
      * Mètode constructor de la classe
      * @throws PersistenceException la classe no es crea correctament perquè no es pot accedir a la API
      */
     public PersonatgesAPIDAO() throws PersistenceException {
         try{
+            ap = new ApiHelper();
             ap.getFromUrl(PERSONATGE_URL);
         }catch (IOException e){
             throw new PersistenceException("Couldn't connect to the remote server.", e);

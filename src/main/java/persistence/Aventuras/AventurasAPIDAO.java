@@ -18,15 +18,7 @@ import java.util.List;
 public class AventurasAPIDAO implements AventurasDAO{
 
     private final String ADVENTURE_URL = "https://balandrau.salle.url.edu/dpoo/S1-Project_46/adventures";
-    private ApiHelper ap;
-
-    {
-        try {
-            ap = new ApiHelper();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    private final ApiHelper ap;
 
     /**
      * Mètode constructor de la classe
@@ -34,6 +26,7 @@ public class AventurasAPIDAO implements AventurasDAO{
      */
     public AventurasAPIDAO() throws PersistenceException {
         try{
+            ap = new ApiHelper();
             ap.getFromUrl(ADVENTURE_URL);
         }catch (IOException e){
             throw new PersistenceException("Couldn't connect to the remote server.", e);

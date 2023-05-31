@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Combat {
     @SerializedName("monsters")
-    List<Monstre> monstres;
+    private List<Monstre> monstres;
 
     /**
      * Mètode Constructor
@@ -24,4 +24,7 @@ public class Combat {
         return monstres;
     }
 
+    public void addMonstre(Monstre monstre){
+        monstres.add(monstre);
+    }
 }

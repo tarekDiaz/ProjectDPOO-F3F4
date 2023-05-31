@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class PersonatgesJsonDAO implements PersonatgesDAO{
     private final String FILE_PATH = "data/characters.json";
-    private FileReader fr;
+    private final FileReader fr;
 
     /**
      * Mètode constructor de la classe

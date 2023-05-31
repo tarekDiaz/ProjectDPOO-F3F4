@@ -1,5 +1,6 @@
 package business.Aventura;
 
+import business.Monstre.Monstre;
 import business.Personatge.Personatge;
 import com.google.gson.annotations.SerializedName;
 
@@ -10,10 +11,10 @@ import java.util.List;
  */
 public class Aventura {
     @SerializedName("nameAdventure")
-    String nom;
+    private String nom;
     @SerializedName("combats")
-    List<Combat> combats;
-    List<Personatge> personatges;
+    private List<Combat> combats;
+    private List<Personatge> personatges;
 
     /**
      * Mètode Contructor
@@ -25,6 +26,10 @@ public class Aventura {
         this.nom = nom;
         this.combats = combats;
         this.personatges = personatges;
+    }
+
+    public void addMonstre(Monstre monstre, int numCombat){
+        combats.get(numCombat).addMonstre(monstre);
     }
 
     public String getNom() {

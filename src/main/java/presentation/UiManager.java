@@ -8,7 +8,7 @@ import java.util.*;
  * Aquesta classe s'ocupa de printar la informació per pantalla i demanar dades al usuari.
  */
 public class UiManager {
-    private Scanner scanner;
+    private final Scanner scanner;
 
     /**
      * Mètode constructor

@@ -93,23 +93,16 @@ public class Monstre {
         if(!(o instanceof Monstre))
         {
             return false;
-        }
-
-        else
-        {
+        } else {
             m=(Monstre)o;
-            if(this.nom.equals(m.getNom()) &&
+            return this.nom.equals(m.getNom()) &&
                     this.nivellDificultat.equals(m.getNivellDificultat()) &&
                     this.experiencia == m.getExperiencia() &&
                     this.pdv == m.getPdv() &&
                     this.iniciativa == m.getIniciativa() &&
                     this.tipusDau.equals(m.getTipusDau()) &&
-                    this.tipusDeMal.equals(m.getTipusDeMal()))
-            {
-                return true;
-            }
+                    this.tipusDeMal.equals(m.getTipusDeMal());
         }
-        return false;
     }
 
     /**
@@ -139,11 +132,7 @@ public class Monstre {
      * @return Retorna un boolean depenent de si el monstre està mort o no
      */
     public boolean estaInconscient () {
-        boolean inconscient = false;
-        if (this.getPdv() == 0) {
-            inconscient = true;
-        }
-        return inconscient;
+        return this.getPdv() == 0;
     }
 
     /**

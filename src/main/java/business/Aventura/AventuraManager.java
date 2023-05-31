@@ -12,9 +12,9 @@ import java.util.*;
  * Classe que utilitza Aventures, monstres i personatges i treballa amb elles
  */
 public class AventuraManager {
-    private AventurasDAO aventurasJsonDAO;
-    private MonstresDAO monstresJsonDAO;
-    private PersonatgesDAO personatgesJsonDAO;
+    private final AventurasDAO aventurasJsonDAO;
+    private final MonstresDAO monstresJsonDAO;
+    private final PersonatgesDAO personatgesJsonDAO;
 
     /**
      * Mètode Constructor
@@ -31,23 +31,22 @@ public class AventuraManager {
     /**
      * Mètode de creació d'una aventura
      * @param nom Nom
-     * @param combats Combats
      * @param numCombats Nombre total de combats
      * @return Retorna l'aventura creada
      */
-    public Aventura crearAventura(String nom, List<Combat> combats, int numCombats) {
-        Aventura aventura = new Aventura(nom, combats, null);
+    public Aventura crearAventura(String nom, int numCombats) {
+        List<Combat> combats = new ArrayList<>();
         for (int i = 0; i < numCombats; i++) {
-            aventura.combats.add(new Combat(new ArrayList<>()));
+            combats.add(new Combat(new ArrayList<>()));
         }
-        return aventura;
+        return new Aventura(nom, combats, null);
     }
 
     /**
      * Mètode que afegeix els Monstres al Combat
      * @param aventura Aventura
      * @param posicioMonstre Posició de la qual volem afegir el monstre
-     * @param quantitatMonstres Número de monstre totals a afegir
+     * @param quantitatMonstres Nombre de monstres totals a afegir
      * @param numCombat Nombre total de combats
      */
     public void afegirMonstreCombat(Aventura aventura, int posicioMonstre, int quantitatMonstres, int numCombat) {
@@ -60,7 +59,7 @@ public class AventuraManager {
             }
         }
         for (int j=0; j < quantitatMonstres; j++) {
-            aventura.combats.get(numCombat).monstres.add(monstre);
+            aventura.addMonstre(monstre,numCombat);
         }
     }
 
@@ -73,8 +72,9 @@ public class AventuraManager {
     public boolean checkBossCombat (Aventura aventura, int numCombat) {
         boolean bossCheck = false;
         for (int i=0; i < aventura.getCombats().get(numCombat).getMonstre().size(); i++) {
-            if (aventura.getCombats().get(numCombat).getMonstre().get(i).getNivellDificultat().equals("Boss")) {
+            if ( aventura.getCombats().get(numCombat).getMonstre().get(i).getNivellDificultat().equals("Boss") ) {
                 bossCheck = true;
+                break;
             }
         }
         return bossCheck;
@@ -89,10 +89,10 @@ public class AventuraManager {
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
         List<String> infoMonstresCombat = new ArrayList<>();
 
-        for (int i = 0; i < monstres.size(); i++) {
-            for (int j=0; j < combat.getMonstre().size(); j++){
-                if (monstres.get(i).getNom().equals(combat.getMonstre().get(j).getNom())) {
-                    infoMonstresCombat.add(monstres.get(i).getNom() + " (x" + Collections.frequency(combat.getMonstre(), monstres.get(i)) + ")");
+        for (Monstre monstre : monstres) {
+            for (int j = 0; j < combat.getMonstre().size(); j++) {
+                if (monstre.getNom().equals(combat.getMonstre().get(j).getNom())) {
+                    infoMonstresCombat.add(monstre.getNom() + " (x" + Collections.frequency(combat.getMonstre(), monstre) + ")");
                     j = combat.getMonstre().size();
                 }
             }
@@ -109,11 +109,11 @@ public class AventuraManager {
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
         List<String> infoMonstresCombat = new ArrayList<>();
 
-        for (int i = 0; i < monstres.size(); i++) {
-            for (int j=0; j < combat.monstres.size(); j++){
-                if (monstres.get(i).getNom().equals(combat.monstres.get(j).getNom())) {
-                    infoMonstresCombat.add("- " + Collections.frequency(combat.monstres, monstres.get(i)) + "x " + monstres.get(i).getNom());
-                    j = combat.monstres.size();
+        for (Monstre monstre : monstres) {
+            for (int j = 0; j < combat.getMonstre().size(); j++) {
+                if (monstre.getNom().equals(combat.getMonstre().get(j).getNom())) {
+                    infoMonstresCombat.add("- " + Collections.frequency(combat.getMonstre(), monstre) + "x " + monstre.getNom());
+                    j = combat.getMonstre().size();
                 }
             }
         }
@@ -136,9 +136,9 @@ public class AventuraManager {
 
         StringTokenizer tokens = new StringTokenizer(stringMonstre);
         String nomMonstre = tokens.nextToken();
-        for (int i=0; i<aventura.combats.get(numCombat).monstres.size(); i++) {
-            if (aventura.combats.get(numCombat).monstres.get(i).getNom().equals(nomMonstre)) {
-                aventura.combats.get(numCombat).monstres.remove(i);
+        for (int i=0; i<aventura.getCombats().get(numCombat).getMonstre().size(); i++) {
+            if (aventura.getCombats().get(numCombat).getMonstre().get(i).getNom().equals(nomMonstre)) {
+                aventura.getCombats().get(numCombat).getMonstre().remove(i);
                 numeroMonstres ++;
                 i--;
             }
@@ -152,8 +152,7 @@ public class AventuraManager {
      * @return Retorna la llista d'aventures llegida
      */
     public List<Aventura> llegirAventures(){
-        List<Aventura> aventuraList = aventurasJsonDAO.readAventura();
-        return aventuraList;
+        return aventurasJsonDAO.readAventura();
     }
 
     /**
@@ -164,8 +163,8 @@ public class AventuraManager {
         List<Aventura> aventuras = aventurasJsonDAO.readAventura();
         List<String> noms = new ArrayList<>();
 
-        for (int i = 0; i < aventuras.size(); i++) {
-            noms.add(aventuras.get(i).getNom());
+        for (Aventura aventura : aventuras) {
+            noms.add(aventura.getNom());
         }
         return noms;
     }
@@ -190,7 +189,7 @@ public class AventuraManager {
         if (aventura.getPersonatges() == null) {
             aventura.setPersonatges(new ArrayList<>());
         }
-        aventura.personatges.add(personatges.get(numPersonatge-1));
+        aventura.getPersonatges().add(personatges.get(numPersonatge-1));
 
     }
 
@@ -204,9 +203,9 @@ public class AventuraManager {
         personatge.setIniciativa(personatge.getIniciativa() + ((int) (Math.random() * (12)) + 1));
         personatges.add(personatge);
         if (personatges.size() > 1) {
-            Collections.sort(personatges, new Comparator<Personatge>() {
+            personatges.sort(new Comparator<Personatge>() {
                 public int compare(Personatge p1, Personatge p2) {
-                    return new Integer (p2.getIniciativa()).compareTo(new Integer(p1.getIniciativa()));
+                    return Integer.compare(p2.getIniciativa(), p1.getIniciativa());
                 }
             });
         }
@@ -222,9 +221,9 @@ public class AventuraManager {
         monstre.setIniciativa(monstre.getIniciativa() + ((int) (Math.random() * (12)) + 1));
         monstres.add(monstre);
         if (monstres.size() > 1) {
-            Collections.sort(monstres, new Comparator<Monstre>() {
+            monstres.sort(new Comparator<Monstre>() {
                 public int compare(Monstre m1, Monstre m2) {
-                    return new Integer (m2.getIniciativa()).compareTo(new Integer(m1.getIniciativa()));
+                    return Integer.compare(m2.getIniciativa(), m1.getIniciativa());
                 }
             });
         }
@@ -308,8 +307,8 @@ public class AventuraManager {
     public List<String> showPartyHP (List<Personatge> personatges) {
         List<String> llista = new ArrayList<>();
 
-        for (int i=0; i<personatges.size(); i++) {
-            personatges.get(i).writePartyHP(llista);
+        for (Personatge personatge : personatges) {
+            personatge.writePartyHP(llista);
         }
         return llista;
     }
@@ -348,7 +347,6 @@ public class AventuraManager {
      */
     public String evolucionaPersonatges(List<Personatge> personatges, Personatge personatge, int posPersonatge) {
 
-        String frase = personatge.evolucionarPersonatge(personatges, posPersonatge);
-        return frase;
+        return personatge.evolucionarPersonatge(personatges, posPersonatge);
     }
 }

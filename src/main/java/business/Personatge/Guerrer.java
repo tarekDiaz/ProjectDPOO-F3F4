@@ -107,6 +107,7 @@ public class Guerrer extends Aventurer{
      * @param posPersonatge Posició del personatge a evolucionar
      * @return Retorna la frase corresponent a la evolució del guerrer
      */
+    /*
     @Override
     public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
         Personatge evolucio;
@@ -119,4 +120,18 @@ public class Guerrer extends Aventurer{
         }
         return frase;
     }
+*/
+    @Override
+    public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
+        Personatge evolucio;
+        String frase = null;
+        if (this.getNivell() >= 8) {
+            evolucio = new Campio(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), "Champion", this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());
+            personatges.add(posPersonatge + 1, evolucio);
+            personatges.remove(posPersonatge);
+            frase = this.getNom() + " evolves to Champion!";
+        }
+        return frase;
+    }
+
 }

@@ -10,7 +10,7 @@ import java.util.List;
  * Classe que utilitza monstres i treballa amb ells
  */
 public class MonstreManager {
-    private MonstresDAO monstresJsonDAO;
+    private final MonstresDAO monstresJsonDAO;
 
     /**
      * Mètode constructor

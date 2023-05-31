@@ -38,7 +38,6 @@ public abstract class Personatge {
     @SerializedName("class")
     @Expose
     private String classe;
-
     private int nivell;
     private int pdvMax;
     private int pdvActual;
@@ -188,10 +187,10 @@ public abstract class Personatge {
     }
 
     public void inicialitzaPersonatges () {
-            this.setNivell((this.experiencia / 100) + 1);
-            this.setPdvMax(calcularPdvMax());
-            this.setIniciativa(calcularIniciativa());
-            this.indicarTipusMal();
+        this.setNivell((this.experiencia / 100) + 1);
+        this.setPdvMax(calcularPdvMax());
+        this.setIniciativa(calcularIniciativa());
+        this.indicarTipusMal();
     }
 
     /**
@@ -316,11 +315,6 @@ public abstract class Personatge {
      * @return Retorna un boolean que comprova si el personatge esta inconscient o no
      */
     public boolean estaInconscient() {
-        boolean x = false;
-
-        if (this.getPdvActual() == 0) {
-            x = true;
-        }
-        return x;
+        return this.getPdvActual() == 0;
     }
 }

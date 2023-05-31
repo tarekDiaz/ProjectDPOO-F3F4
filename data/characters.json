@@ -277,5 +277,14 @@
     "mind": 1,
     "spirit": 1,
     "class": "Cleric"
+  },
+  {
+    "name": "Tarek",
+    "player": "Sylkrat",
+    "xp": 300,
+    "body": 1,
+    "mind": 1,
+    "spirit": 1,
+    "class": "Warrior"
   }
 ]
