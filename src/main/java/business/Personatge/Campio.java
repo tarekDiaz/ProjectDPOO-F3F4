@@ -60,7 +60,7 @@ public class Campio extends Guerrer{
         for (int k = 0; k<personatges.size(); k++) {
             personatges.get(k).setEsperit(getEsperit() + 1);
         }
-        frase.add(this.getNom() + " uses Motivational speech. Everyone's Spirit increases in +1.");
+        frase.add(nom + " uses Motivational speech. Everyone's Spirit increases in +1.");
     }
     /**
      * Mètode que realitza l'acció del descans curt d'un campió
@@ -70,12 +70,12 @@ public class Campio extends Guerrer{
     @Override
     public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
         String fraseaux = "";
-        int cura = this.getPdvMax() - this.getPdvActual();
-        if (this.getPdvActual() == this.getPdvMax()) {
+        int cura = pdvMax - pdvActual;
+        if (pdvActual == pdvMax) {
             fraseaux = " because was already full hp";
         }
-        this.setPdvActual(getPdvMax());
-        frase.add(this.getNom() + " uses Improved Bandage Time. Heals " + cura + " hit points" + fraseaux + ".");
+        pdvActual = pdvMax;
+        frase.add(nom + " uses Improved Bandage Time. Heals " + cura + " hit points" + fraseaux + ".");
     }
 
     /**
@@ -84,8 +84,8 @@ public class Campio extends Guerrer{
      */
     @Override
     public int curarPersonatge() {
-        int cura = getPdvMax() - getPdvActual();
-        setPdvActual(getPdvMax());
+        int cura = pdvMax - pdvActual;
+        pdvActual = pdvMax;
         return cura;
     }
 

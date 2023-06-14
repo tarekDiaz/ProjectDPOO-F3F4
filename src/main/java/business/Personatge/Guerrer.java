@@ -60,7 +60,7 @@ public class Guerrer extends Aventurer{
      */
     @Override
     public int reduirMal (int mal, Monstre monstre) {
-        if (monstre.getTipusDeMal().equals(this.getTipusDeMal())) {
+        if (monstre.getTipusDeMal().equals(tipusDeMal)) {
             mal = mal/2;
         }
         return mal;
@@ -76,12 +76,12 @@ public class Guerrer extends Aventurer{
      */
     @Override
     public String accioBatalla(List<Personatge> personatges, List<Monstre> monstres, String frase, int posMenorMonstre, int posMajorMonstre) {
-        int mal = this.atacarPersonatge();
+        int mal = atacarPersonatge();
         int dau = (int) (Math.random() * (10)) + 1;
         frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with Improved Sword Slash.";
 
 
-        monstres.get(posMenorMonstre).monstreRebMal(mal, dau, this.getTipusDeMal());
+        monstres.get(posMenorMonstre).monstreRebMal(mal, dau, tipusDeMal);
 
 
         if (dau == 1) {
@@ -125,11 +125,11 @@ public class Guerrer extends Aventurer{
     public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
         Personatge evolucio;
         String frase = null;
-        if (this.getNivell() >= 8) {
-            evolucio = new Campio(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), "Champion", this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());
+        if (nivell >= 8) {
+            evolucio = new Campio(nom, nomJugador, nivell, cos, ment, esperit, "Champion", experiencia, pdvMax, pdvActual, iniciativa, tipusDeMal);
             personatges.add(posPersonatge + 1, evolucio);
             personatges.remove(posPersonatge);
-            frase = this.getNom() + " evolves to Champion!";
+            frase = nom + " evolves to Champion!";
         }
         return frase;
     }

@@ -71,11 +71,11 @@ public class UiManager {
         System.out.println("\t1) Local data");
         System.out.println("\t2) Cloud data\n");
 
-        opcio = this.askForInteger("-> Answer:");
+        opcio = askForInteger("-> Answer:");
 
         while(opcio != 1 && opcio != 2){
             System.out.println("Invalid number!");
-            opcio = this.askForInteger("-> Answer:");
+            opcio = askForInteger("-> Answer:");
         }
         System.out.println("\nLoading data...");
         return opcio;

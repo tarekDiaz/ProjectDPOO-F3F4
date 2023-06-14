@@ -60,7 +60,7 @@ public class Paladi extends Clergue{
      */
     @Override
     public int reduirMal (int mal, Monstre monstre) {
-        if (monstre.getTipusDeMal().equals(this.getTipusDeMal())) {
+        if (monstre.getTipusDeMal().equals(tipusDeMal)) {
             mal = mal/2;
         }
         return mal;
@@ -77,7 +77,7 @@ public class Paladi extends Clergue{
         for (int k = 0; k<personatges.size(); k++) {
             personatges.get(k).setMent(getMent() + suma);
         }
-        frase.add(this.getNom() + " uses Blessing of good luck. Everyone's Mind increases in +" + suma + ".");
+        frase.add(nom + " uses Blessing of good luck. Everyone's Mind increases in +" + suma + ".");
     }
 
     /**
@@ -98,7 +98,7 @@ public class Paladi extends Clergue{
                 }
             }
         }
-        frase.add(this.getNom() + " uses Prayer of mass healing. Heals " + cura + " hit points to the non-unconscious characters in the party");
+        frase.add(nom + " uses Prayer of mass healing. Heals " + cura + " hit points to the non-unconscious characters in the party");
     }
 
     /**
@@ -127,7 +127,7 @@ public class Paladi extends Clergue{
                         }
                     }
                 }
-                frase = "\n" + this.getNom() + " uses Prayer of mass healing. Heals " + cura + " hit points to the non-unconscious characters in the party.";
+                frase = "\n" + nom + " uses Prayer of mass healing. Heals " + cura + " hit points to the non-unconscious characters in the party.";
                 healingDone = true;
             }
         }
@@ -136,7 +136,7 @@ public class Paladi extends Clergue{
             int dau = (int) (Math.random() * (10)) + 1;
             frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with Never on my watch.";
 
-            monstres.get(posMenorMonstre).monstreRebMal(mal, dau, this.getTipusDeMal());
+            monstres.get(posMenorMonstre).monstreRebMal(mal, dau, tipusDeMal);
 
             if (dau == 1) {
                 frase = frase + "\nFails and deals 0 " + getTipusDeMal() + " damage.";

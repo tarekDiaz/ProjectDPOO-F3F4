@@ -36,7 +36,7 @@ public class MonstresAPIDAO implements MonstresDAO{
      * Mètode que llegeix i retorna els monstres que es troben a l'API
      * @return llista de classe Monstre dels monstres
      */
-    public List<Monstre> readMonstres() {
+    public List<Monstre> readMonstres() throws PersistenceException {
 
         try {
             String monstresString = ap.getFromUrl(MONSTRES_URL);
@@ -49,7 +49,7 @@ public class MonstresAPIDAO implements MonstresDAO{
 
             return monstres;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new PersistenceException("Couldn't connect to the remote server.",e);
         }
     }
 }

@@ -4,45 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f82bdc1-5171-492e-a6c5-3fce3f526e27" name="Changes" comment="pushfinal">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0f82bdc1-5171-492e-a6c5-3fce3f526e27" name="Changes" comment="corrections">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/characters.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/characters.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Aventura/Aventura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Aventura/Aventura.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/adventure.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/adventure.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/business/Aventura/AventuraManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Aventura/AventuraManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/business/Aventura/Combat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Aventura/Combat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Monstre/Boss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Monstre/Boss.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/business/Monstre/Monstre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Monstre/Monstre.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/business/Monstre/MonstreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Monstre/MonstreManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Aventurer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Aventurer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Campio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Campio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Clergue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Clergue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Guerrer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Guerrer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Mag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Mag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Paladi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Paladi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/Personatge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/Personatge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/business/Personatge/PersonatgeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/business/Personatge/PersonatgeManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/persistence/Aventuras/AventurasAPIDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/Aventuras/AventurasAPIDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/Aventuras/AventurasDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/Aventuras/AventurasDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/Aventuras/AventurasJsonDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/Aventuras/AventurasJsonDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/persistence/Monstres/MonstresAPIDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/Monstres/MonstresAPIDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/Monstres/MonstresDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/Monstres/MonstresDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/Monstres/MonstresJsonDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/Monstres/MonstresJsonDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/persistence/Personatges/PersonatgesAPIDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/Personatges/PersonatgesAPIDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/persistence/Personatges/PersonatgesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/Personatges/PersonatgesDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/persistence/Personatges/PersonatgesJsonDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/persistence/Personatges/PersonatgesJsonDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/presentation/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/presentation/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/presentation/UiManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/presentation/UiManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Aventura/Aventura.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Aventura/Aventura.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/business/Aventura/AventuraManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Aventura/AventuraManager$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/business/Aventura/AventuraManager$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Aventura/AventuraManager$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/business/Aventura/AventuraManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Aventura/AventuraManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/business/Aventura/Combat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Aventura/Combat.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/business/Monstre/Monstre.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Monstre/Monstre.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/business/Monstre/MonstreManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Monstre/MonstreManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Guerrer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Guerrer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/Personatge.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/Personatge.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/business/Personatge/PersonatgeManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/business/Personatge/PersonatgeManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/persistence/Aventuras/AventurasAPIDAO$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/persistence/Aventuras/AventurasAPIDAO$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/persistence/Aventuras/AventurasAPIDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/persistence/Aventuras/AventurasAPIDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/persistence/Monstres/MonstresAPIDAO$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/persistence/Monstres/MonstresAPIDAO$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/persistence/Aventuras/AventurasDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/persistence/Aventuras/AventurasDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/persistence/Aventuras/AventurasJsonDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/persistence/Aventuras/AventurasJsonDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/persistence/Monstres/MonstresAPIDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/persistence/Monstres/MonstresAPIDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/persistence/Personatges/PersonatgesAPIDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/persistence/Personatges/PersonatgesAPIDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/persistence/Personatges/PersonatgesJsonDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/persistence/Personatges/PersonatgesJsonDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/presentation/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/presentation/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/presentation/UiManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/presentation/UiManager.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +97,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "run.code.analysis.last.selected.profile": "aGantSign",
+    "run.code.analysis.last.selected.profile": "aDefault",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -134,7 +137,8 @@
       <workItem from="1684756928441" duration="719000" />
       <workItem from="1684867429057" duration="3932000" />
       <workItem from="1685272528116" duration="1984000" />
-      <workItem from="1685537338608" duration="4543000" />
+      <workItem from="1685537338608" duration="6962000" />
+      <workItem from="1686733055190" duration="4498000" />
     </task>
     <task id="LOCAL-00001" summary="h">
       <created>1676899185904</created>
@@ -206,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681829332034</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="corrections">
+      <created>1685542598484</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1685542598485</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,7 +238,8 @@
     <MESSAGE value="new dao" />
     <MESSAGE value="good" />
     <MESSAGE value="h" />
-    <option name="LAST_COMMIT_MESSAGE" value="h" />
+    <MESSAGE value="corrections" />
+    <option name="LAST_COMMIT_MESSAGE" value="corrections" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

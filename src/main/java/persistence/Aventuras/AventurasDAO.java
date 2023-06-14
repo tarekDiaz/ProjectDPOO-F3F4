@@ -1,6 +1,7 @@
 package persistence.Aventuras;
 
 import business.Aventura.Aventura;
+import persistence.PersistenceException;
 
 import java.util.List;
 
@@ -12,12 +13,12 @@ public interface AventurasDAO {
      * Mètode que retorna la llista de les aventures que es troben a persistència
      * @return llista de classe Aventura amb les aventures
      */
-    List<Aventura> readAventura();
+    List<Aventura> readAventura() throws PersistenceException;
     /**
      * Mètode que escriu una nova aventura a persistència
      * @param aventura aventura que es vol afegir
      */
-    void writeAventura (Aventura aventura);
+    void writeAventura (Aventura aventura) throws PersistenceException;
 
 }
 

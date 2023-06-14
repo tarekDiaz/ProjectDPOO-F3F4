@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class AventurasJsonDAO implements AventurasDAO{
     private final String ADVENTURE_PATH = "data/adventure.json";
-    private FileReader fr;
+    private final FileReader fr;
     /**
      * Mètode constructor de la classe
      * @throws PersistenceException la classe no es crea correctament perquè no es pot accedir al fitxer Json
@@ -31,12 +31,12 @@ public class AventurasJsonDAO implements AventurasDAO{
      * Mètode que retorna la llista de les aventures que es troben al fitxer Json
      * @return llista de classe Aventura amb les aventures
      */
-    public List<Aventura> readAventura() {
+    public List<Aventura> readAventura() throws PersistenceException {
         FileReader reader;
         try {
             reader = new FileReader(ADVENTURE_PATH);
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new PersistenceException("Error: The adventure.json file can't be accessed.", e);
         }
         Gson gson = new Gson();
         Type tipoLista = new TypeToken<List<Aventura>>(){}.getType();
@@ -51,7 +51,7 @@ public class AventurasJsonDAO implements AventurasDAO{
      * Mètode que escriu una nova aventura al fitxer Json
      * @param aventura aventura que es vol afegir
      */
-    public void writeAventura(Aventura aventura){
+    public void writeAventura(Aventura aventura) throws PersistenceException {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -69,10 +69,9 @@ public class AventurasJsonDAO implements AventurasDAO{
             fw.flush();
             fw.close();
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | PersistenceException e) {
+            throw new PersistenceException("Error: The adventure.json file can't be accessed.", e);
         }
-
     }
 
 }

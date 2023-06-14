@@ -30,12 +30,12 @@ public class PersonatgesJsonDAO implements PersonatgesDAO{
      * Mètode que llegeix i retorna la llista de personatges guardats al fitxer Json
      * @return llista de tipus Personatge amb els personatges del fitxer
      */
-    public List<Personatge> readPersonatge() {
+    public List<Personatge> readPersonatge() throws PersistenceException {
         FileReader reader;
         try {
             reader = new FileReader("data/characters.json");
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new PersistenceException("Error: The characters.json file can't be accessed.", e);
         }
 
         JsonArray content = JsonParser.parseReader(reader).getAsJsonArray();
@@ -78,7 +78,7 @@ public class PersonatgesJsonDAO implements PersonatgesDAO{
      * Mètode que afegeix un nou personatge al fitxer Json
      * @param personatge personatge que es vol afegir
      */
-    public void nouPersonatge(Personatge personatge) {
+    public void nouPersonatge(Personatge personatge) throws PersistenceException {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 
@@ -94,7 +94,7 @@ public class PersonatgesJsonDAO implements PersonatgesDAO{
             fw.close();
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new PersistenceException("Error: The characters.json file can't be accessed.", e);
         }
     }
 
@@ -102,7 +102,7 @@ public class PersonatgesJsonDAO implements PersonatgesDAO{
      * Borra el personatge de characters.json
      * @param nom nom del personatge que es vol esborrar
      */
-    public void borrar(String nom){
+    public void borrar(String nom) throws PersistenceException {
         try {
             List<Personatge> personatgesJson = readPersonatge();
 
@@ -118,7 +118,7 @@ public class PersonatgesJsonDAO implements PersonatgesDAO{
             fw.flush();
             fw.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new PersistenceException("Error: The characters.json file can't be accessed.", e);
         }
     }
 }

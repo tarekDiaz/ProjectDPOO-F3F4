@@ -37,7 +37,7 @@ public class AventurasAPIDAO implements AventurasDAO{
      * Mètode que retorna la llista de les aventures que es troben a l'API
      * @return llista de classe Aventura amb les aventures
      */
-    public List<Aventura> readAventura() {
+    public List<Aventura> readAventura() throws PersistenceException {
         try {
             String personatgesString = ap.getFromUrl(ADVENTURE_URL);
 
@@ -50,7 +50,7 @@ public class AventurasAPIDAO implements AventurasDAO{
             return aventuras;
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new PersistenceException("Couldn't connect to the remote server.",e);
         }
 
     }
@@ -59,7 +59,7 @@ public class AventurasAPIDAO implements AventurasDAO{
      * Mètode que escriu una nova aventura a l'API
      * @param aventura aventura que es vol afegir al Cloud
      */
-    public void writeAventura (Aventura aventura){
+    public void writeAventura (Aventura aventura) throws PersistenceException {
         Gson gson = new Gson();
 
         String aventuraJSON = gson.toJson(aventura);
@@ -67,7 +67,7 @@ public class AventurasAPIDAO implements AventurasDAO{
         try {
             ap.postToUrl(ADVENTURE_URL, aventuraJSON);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new PersistenceException("Couldn't connect to the remote server.",e);
         }
     }
 

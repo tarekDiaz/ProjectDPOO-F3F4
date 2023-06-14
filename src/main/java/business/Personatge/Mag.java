@@ -46,7 +46,7 @@ public class Mag extends Personatge{
      */
     @Override
     public void indicarTipusMal() {
-        this.setTipusDeMal("Magical");
+        tipusDeMal =  "Magical";
     }
 
     /**
@@ -68,7 +68,7 @@ public class Mag extends Personatge{
      */
     @Override
     public int reduirMal (int mal, Monstre monstre) {
-        if (monstre.getTipusDeMal().equals(this.getTipusDeMal())) {
+        if (monstre.getTipusDeMal().equals(tipusDeMal)) {
             mal = mal - getNivell();
             if (mal < 0) {
                 mal = 0;
@@ -92,27 +92,27 @@ public class Mag extends Personatge{
             mal = mal * 2;
         }
 
-        mal = this.reduirMal(mal, monstre);
+        mal = reduirMal(mal, monstre);
 
-        if (this.getEscut() > 0) {
-            if (mal < this.getEscut()) {
-                int escutPostAtac = this.getEscut() - mal;
-                this.setEscut(escutPostAtac);
+        if (escut > 0) {
+            if (mal < escut) {
+                int escutPostAtac = escut - mal;
+                escut = escutPostAtac;
             }
             else {
-                int malExtra = mal - this.getEscut();
-                this.setEscut(0);
-                this.setPdvActual(this.getPdvActual()-malExtra);
-                if (this.getPdvActual() < 0) {
-                    this.setPdvActual(0);
+                int malExtra = mal - escut;
+                escut = 0;
+                pdvActual = pdvActual - malExtra;
+                if (pdvActual < 0) {
+                    pdvActual = 0;
                 }
             }
         }
         else {
-            int pdvPostAtac = this.getPdvActual() - mal;
-            this.setPdvActual(pdvPostAtac);
-            if (this.getPdvActual() < 0) {
-                this.setPdvActual(0);
+            int pdvPostAtac = pdvActual - mal;
+            pdvActual = pdvPostAtac;
+            if (pdvActual < 0) {
+                pdvActual = 0;
             }
         }
     }
@@ -124,9 +124,9 @@ public class Mag extends Personatge{
      */
     @Override
     public void suportPersonatge(List<Personatge> personatges, List<String> frase) {
-        int escut = ((int) (Math.random() * (6)) + 1 + this.getMent()) * this.getNivell();
-        this.setEscut(escut);
-        frase.add(this.getNom() + " uses Mage shield. Shield recharges to " + escut + ".");
+        int escut = ((int) (Math.random() * (6)) + 1 + ment) * nivell;
+        this.escut = escut;
+        frase.add(nom + " uses Mage shield. Shield recharges to " + escut + ".");
     }
 
     /**
@@ -136,7 +136,7 @@ public class Mag extends Personatge{
      */
     @Override
     public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
-        frase.add(this.getNom() + " is reading a book.");
+        frase.add(nom + " is reading a book.");
     }
 
     /**
@@ -188,7 +188,7 @@ public class Mag extends Personatge{
             for (int j=0; j<monstres.size();j++) {
                 if (monstres.get(j).getPdv() != 0) {
 
-                    monstres.get(j).monstreRebMal(mal, dau, this.getTipusDeMal());
+                    monstres.get(j).monstreRebMal(mal, dau, tipusDeMal);
 
                     if (monstres.get(j).estaInconscient()) {
                         fraseaux = fraseaux + "\n" + monstres.get(j).getNom() + " dies.";
@@ -203,7 +203,7 @@ public class Mag extends Personatge{
             frase = "\n" + getNom() + " attacks " + monstres.get(posMajorMonstre).getNom() + " with Arcane Missile.";
 
 
-            monstres.get(posMajorMonstre).monstreRebMal(mal, dau, this.getTipusDeMal());
+            monstres.get(posMajorMonstre).monstreRebMal(mal, dau, tipusDeMal);
 
             if (dau == 1) {
                 frase = frase + "\nFails and deals 0 " + getTipusDeMal() + " damage.";

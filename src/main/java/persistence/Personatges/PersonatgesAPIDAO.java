@@ -34,7 +34,7 @@ public class PersonatgesAPIDAO implements PersonatgesDAO{
      * Mètode que afegeix un nou personatge a l'API
      * @param personatge personatge que es vol afegir
      */
-    public void nouPersonatge(Personatge personatge){
+    public void nouPersonatge(Personatge personatge) throws PersistenceException {
         Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 
         String personatgeJSON = gson.toJson(personatge);
@@ -42,7 +42,7 @@ public class PersonatgesAPIDAO implements PersonatgesDAO{
         try {
             ap.postToUrl(PERSONATGE_URL, personatgeJSON);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new PersistenceException("Couldn't connect to the remote server.", e);
         }
 
     }
@@ -51,7 +51,7 @@ public class PersonatgesAPIDAO implements PersonatgesDAO{
      * Mètode que llegeix i retorna la llista de personatges guardats a l'API
      * @return llista de tipus Personatge amb els personatges del Cloud
      */
-    public List<Personatge> readPersonatge() {
+    public List<Personatge> readPersonatge() throws PersistenceException {
 
         try {
             String personatgesString = ap.getFromUrl(PERSONATGE_URL);
@@ -92,7 +92,7 @@ public class PersonatgesAPIDAO implements PersonatgesDAO{
             return personatges;
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new PersistenceException("Couldn't connect to the remote server.", e);
         }
     }
 
@@ -100,12 +100,12 @@ public class PersonatgesAPIDAO implements PersonatgesDAO{
      * Mètode que borra un personatge a partir del nom del personatge
      * @param nom nom del personatge que es vol borrar
      */
-    public void borrar(String nom){
+    public void borrar(String nom) throws PersistenceException {
 
         try {
             ap.deleteFromUrl(PERSONATGE_URL + "?name=" +nom);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new PersistenceException("Couldn't connect to the remote server.", e);
         }
     }
 

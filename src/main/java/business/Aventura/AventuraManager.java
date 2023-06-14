@@ -4,6 +4,7 @@ import business.Monstre.Monstre;
 import business.Personatge.Personatge;
 import persistence.Aventuras.AventurasDAO;
 import persistence.Monstres.MonstresDAO;
+import persistence.PersistenceException;
 import persistence.Personatges.PersonatgesDAO;
 
 import java.util.*;
@@ -49,7 +50,7 @@ public class AventuraManager {
      * @param quantitatMonstres Nombre de monstres totals a afegir
      * @param numCombat Nombre total de combats
      */
-    public void afegirMonstreCombat(Aventura aventura, int posicioMonstre, int quantitatMonstres, int numCombat) {
+    public void afegirMonstreCombat(Aventura aventura, int posicioMonstre, int quantitatMonstres, int numCombat) throws PersistenceException {
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
         Monstre monstre = null;
 
@@ -85,7 +86,7 @@ public class AventuraManager {
      * @param combat Combat
      * @return Retorna la llista
      */
-    public List<String> generarLlistaMonstres(Combat combat) {
+    public List<String> generarLlistaMonstres(Combat combat) throws PersistenceException {
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
         List<String> infoMonstresCombat = new ArrayList<>();
 
@@ -105,7 +106,7 @@ public class AventuraManager {
      * @param combat Combat
      * @return Retorna la llista
      */
-    public List<String> generarLlistaMonstres2 (Combat combat) {
+    public List<String> generarLlistaMonstres2 (Combat combat) throws PersistenceException {
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
         List<String> infoMonstresCombat = new ArrayList<>();
 
@@ -127,7 +128,7 @@ public class AventuraManager {
      * @param numCombat Numero de combat on volem borrar
      * @return Retorna una String amb el nom de monstre i quantitat borrada
      */
-    public String borrarMonstreCombat (Aventura aventura, int monstreDelete, int numCombat) {
+    public String borrarMonstreCombat (Aventura aventura, int monstreDelete, int numCombat) throws PersistenceException {
         List<String> infoMonstresCombat = generarLlistaMonstres(aventura.getCombats().get(numCombat));
         String stringMonstre;
         int numeroMonstres = 0;
@@ -151,7 +152,7 @@ public class AventuraManager {
      * Mètode que llegeix les aventures del Json
      * @return Retorna la llista d'aventures llegida
      */
-    public List<Aventura> llegirAventures(){
+    public List<Aventura> llegirAventures() throws PersistenceException {
         return aventurasJsonDAO.readAventura();
     }
 
@@ -159,7 +160,7 @@ public class AventuraManager {
      * Mètode que llegeix les aventures del Json i retorna una llista amb els noms d'aquestes
      * @return Retorna una llista amb els noms de les aventures
      */
-    public List<String> llistarAventuras () {
+    public List<String> llistarAventuras () throws PersistenceException {
         List<Aventura> aventuras = aventurasJsonDAO.readAventura();
         List<String> noms = new ArrayList<>();
 
@@ -174,7 +175,7 @@ public class AventuraManager {
      * @param numAventura Posició de l'aventura a la llista d'aventures
      * @return Retorna l'aventura
      */
-    public Aventura retornaAventuraComplerta(int numAventura) {
+    public Aventura retornaAventuraComplerta(int numAventura) throws PersistenceException {
         List<Aventura> aventuras = aventurasJsonDAO.readAventura();
         return aventuras.get(numAventura-1);
     }
@@ -184,7 +185,7 @@ public class AventuraManager {
      * @param aventura Aventura
      * @param numPersonatge Posició del personatge a la llista de personatges
      */
-    public void afegirPersonatgeAventura (Aventura aventura, int numPersonatge) {
+    public void afegirPersonatgeAventura (Aventura aventura, int numPersonatge) throws PersistenceException {
         List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
         if (aventura.getPersonatges() == null) {
             aventura.setPersonatges(new ArrayList<>());
@@ -317,7 +318,7 @@ public class AventuraManager {
      * Mètode que guarda una aventura al Json
      * @param aventura Aventura
      */
-    public void guardarAventuraJSON (Aventura aventura){
+    public void guardarAventuraJSON (Aventura aventura) throws PersistenceException {
         aventurasJsonDAO.writeAventura(aventura);
     }
 

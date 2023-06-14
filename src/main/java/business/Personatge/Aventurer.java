@@ -47,7 +47,7 @@ public class Aventurer extends Personatge{
      */
     @Override
     public void indicarTipusMal() {
-        setTipusDeMal("Physical");
+        tipusDeMal = "Physical";
     }
 
     /**
@@ -70,16 +70,16 @@ public class Aventurer extends Personatge{
     public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
         String fraseaux = "";
         int cura = curarPersonatge();
-        if (this.getPdvActual() == this.getPdvMax()) {
+        if (pdvActual == pdvMax) {
             fraseaux = " But was already full hp.";
         }
-        int pdvPostCura = this.getPdvActual() + cura;
-        if (pdvPostCura > this.getPdvMax()) {
-            this.setPdvActual(getPdvMax());
+        int pdvPostCura = pdvActual + cura;
+        if (pdvPostCura > pdvMax) {
+            pdvActual = pdvMax;
         } else {
-            this.setPdvActual(pdvPostCura);
+            pdvActual = pdvPostCura;
         }
-        frase.add(this.getNom() + " uses Bandage Time. Heals " + cura + " hit points." + fraseaux);
+        frase.add(nom + " uses Bandage Time. Heals " + cura + " hit points." + fraseaux);
     }
 
     /**
@@ -104,12 +104,12 @@ public class Aventurer extends Personatge{
      */
     @Override
     public String accioBatalla(List<Personatge> personatges, List<Monstre> monstres, String frase, int posMenorMonstre, int posMajorMonstre) {
-        int mal = this.atacarPersonatge();
+        int mal = atacarPersonatge();
         int dau = (int) (Math.random() * (10)) + 1;
 
         frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with Sword Slash.";
 
-        monstres.get(posMenorMonstre).monstreRebMal(mal, dau, this.getTipusDeMal());
+        monstres.get(posMenorMonstre).monstreRebMal(mal, dau, tipusDeMal);
 
         if (dau == 1) {
             frase = frase + "\nFails and deals 0 " + getTipusDeMal() + " damage.";
@@ -138,11 +138,11 @@ public class Aventurer extends Personatge{
     public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
         Personatge evolucio;
         String frase = null;
-        if (this.getNivell() >= 4) {
-            evolucio = new Guerrer(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), "Warrior", this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());
+        if (nivell >= 4) {
+            evolucio = new Guerrer(nom, nomJugador, nivell, cos, ment, esperit, "Warrior", experiencia, pdvMax, pdvActual, iniciativa, tipusDeMal);
             personatges.add(posPersonatge + 1, evolucio);
             personatges.remove(posPersonatge);
-            frase = this.getNom() + " evolves to Warrior!";
+            frase = nom + " evolves to Warrior!";
         }
         return frase;
     }

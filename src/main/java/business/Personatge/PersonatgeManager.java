@@ -1,5 +1,6 @@
 package business.Personatge;
 import business.Monstre.Monstre;
+import persistence.PersistenceException;
 import persistence.Personatges.PersonatgesDAO;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class PersonatgeManager {
      * @param esperit estadística esperit del personatge
      * @param classe classe del personatge
      */
-    public void crearPersonatge (String nom, String player, int nivell, int cos, int ment, int esperit, String classe){
+    public void crearPersonatge (String nom, String player, int nivell, int cos, int ment, int esperit, String classe) throws PersistenceException {
         Personatge personatge = null;
         int exp = (nivell * 100) - 100;
         if (classe.equals("Adventurer")) {
@@ -57,7 +58,7 @@ public class PersonatgeManager {
      * Mètode que retorna una llista amb tots els personatges del Json
      * @return Retorna una llista amb tots els personatges del Json
      */
-    public List<Personatge> llegirPersonatges(){
+    public List<Personatge> llegirPersonatges() throws PersistenceException {
         List<Personatge> personatgesList = personatgesJsonDAO.readPersonatge();
         return personatgesList;
     }
@@ -77,7 +78,7 @@ public class PersonatgeManager {
      * Mètode que envia el nom del personatge a la classe de persistència per borrar un personatge
      * @param nom nom del personatge a esborrar
      */
-    public void borrarPersonatge (String nom){
+    public void borrarPersonatge (String nom) throws PersistenceException {
         personatgesJsonDAO.borrar(nom);
     }
 
@@ -225,7 +226,7 @@ public class PersonatgeManager {
      * @param nomPersonatge Nom del personatge a retornar
      * @return Personatge complert
      */
-    public Personatge retornaPersonatgeComplert(String nomPersonatge) {
+    public Personatge retornaPersonatgeComplert(String nomPersonatge) throws PersistenceException {
         List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
         Personatge personatge = null;
 
@@ -241,7 +242,7 @@ public class PersonatgeManager {
      * Mètode que retorna una llista amb els noms de tots els personatges de persistència
      * @return Retorna una llista de noms
      */
-    public List<String> llistarPersonatges() {
+    public List<String> llistarPersonatges() throws PersistenceException {
         List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
         List<String> noms = new ArrayList<>();
 
@@ -256,7 +257,7 @@ public class PersonatgeManager {
      * @param player Nom del jugador
      * @return Retorna una llista de noms
      */
-    public List<String> llistarPersonatgesPlayer(String player) {
+    public List<String> llistarPersonatgesPlayer(String player) throws PersistenceException {
         List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
         List<String> noms = new ArrayList<>();
 
@@ -292,7 +293,7 @@ public class PersonatgeManager {
      * Mètode que revisa que el nombre de personatges a persistència sigui major o igual a tres
      * @return Retorna un boolean depenent de si el nombre de personatges es major o igual a tres o no
      */
-    public boolean checkPersonatgesSize () {
+    public boolean checkPersonatgesSize () throws PersistenceException {
         boolean check = true;
         List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
         if (personatges.size() < 3) {

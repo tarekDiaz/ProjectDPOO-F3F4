@@ -28,6 +28,11 @@ public class Aventura {
         this.personatges = personatges;
     }
 
+    /**
+     * Mètode que afegeig monstres a un combat
+     * @param monstre monstre que es vol afegir
+     * @param numCombat numero de combat
+     */
     public void addMonstre(Monstre monstre, int numCombat){
         combats.get(numCombat).addMonstre(monstre);
     }

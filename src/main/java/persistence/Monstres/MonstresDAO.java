@@ -1,6 +1,7 @@
 package persistence.Monstres;
 
 import business.Monstre.Monstre;
+import persistence.PersistenceException;
 
 import java.util.List;
 /**
@@ -11,5 +12,5 @@ public interface MonstresDAO {
      * Mètode que llegeix i retorna els monstres que es troben a persistència
      * @return llista de classe Monstre dels monstres de persistència
      */
-    List<Monstre> readMonstres();
+    List<Monstre> readMonstres() throws PersistenceException;
 }

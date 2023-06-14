@@ -13,36 +13,36 @@ public abstract class Personatge {
 
     @SerializedName("name")
     @Expose
-    private String nom;
+    protected String nom;
 
     @SerializedName("player")
     @Expose
-    private String nomJugador;
+    protected String nomJugador;
 
     @SerializedName("xp")
     @Expose
-    private int experiencia;
+    protected int experiencia;
 
     @SerializedName("body")
     @Expose
-    private int cos;
+    protected int cos;
 
     @SerializedName("mind")
     @Expose
-    private int ment;
+    protected int ment;
 
     @SerializedName("spirit")
     @Expose
-    private int esperit;
+    protected int esperit;
 
     @SerializedName("class")
     @Expose
-    private String classe;
-    private int nivell;
-    private int pdvMax;
-    private int pdvActual;
-    private int iniciativa;
-    private String tipusDeMal;
+    protected String classe;
+    protected int nivell;
+    protected int pdvMax;
+    protected int pdvActual;
+    protected int iniciativa;
+    protected String tipusDeMal;
 
     /**
      * Mètode constructor amb tots els atributs
@@ -59,7 +59,7 @@ public abstract class Personatge {
      * @param iniciativa Numero d'iniciativa
      * @param tipusDeMal Tipus de mal a l'atacar
      */
-    public Personatge(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa, String tipusDeMal) {
+    Personatge(String nom, String nomJugador, int nivell, int cos, int ment, int esperit, String classe, int experiencia, int pdvMax, int pdvActual, int iniciativa, String tipusDeMal) {
         this.nom = nom;
         this.nomJugador = nomJugador;
         this.nivell = nivell;
@@ -84,7 +84,7 @@ public abstract class Personatge {
      * @param esperit Estadística d'esperit
      * @param classe Classe del personatge
      */
-    public Personatge(String nom, String nomJugador, int experiencia, int cos, int ment, int esperit, String classe) {
+    Personatge(String nom, String nomJugador, int experiencia, int cos, int ment, int esperit, String classe) {
         this.nom = nom;
         this.nomJugador = nomJugador;
         this.experiencia = experiencia;
@@ -182,15 +182,11 @@ public abstract class Personatge {
         return tipusDeMal;
     }
 
-    public void setTipusDeMal(String tipusDeMal) {
-        this.tipusDeMal = tipusDeMal;
-    }
-
     public void inicialitzaPersonatges () {
-        this.setNivell((this.experiencia / 100) + 1);
-        this.setPdvMax(calcularPdvMax());
-        this.setIniciativa(calcularIniciativa());
-        this.indicarTipusMal();
+        nivell = (experiencia / 100) + 1;
+        pdvMax = calcularPdvMax();
+        iniciativa = calcularIniciativa();
+        indicarTipusMal();
     }
 
     /**
@@ -214,7 +210,7 @@ public abstract class Personatge {
      * @return mal que fa el personatge
      */
     public int atacarPersonatge() {
-        int mal = (int) (Math.random() * (6)) + 1 + this.cos;
+        int mal = (int) (Math.random() * (6)) + 1 + cos;
         return mal;
     }
 
@@ -223,7 +219,7 @@ public abstract class Personatge {
      * @return Retorna els punts de vida calculats
      */
     public int calcularPdvMax () {
-        int calculPdv = (10 + this.cos) * this.nivell;
+        int calculPdv = (10 + cos) * nivell;
         return calculPdv;
     }
 
@@ -239,7 +235,7 @@ public abstract class Personatge {
      * @return Retorna la cura realitzada
      */
     public int curarPersonatge() {
-        int cura = (int) (Math.random() * (8)) + 1 + this.ment;
+        int cura = (int) (Math.random() * (8)) + 1 + ment;
 
         return cura;
     }
@@ -265,12 +261,12 @@ public abstract class Personatge {
             mal = mal * 2;
         }
 
-        mal = this.reduirMal(mal, monstre);
+        mal = reduirMal(mal, monstre);
 
-        int pdvPostAtac = this.pdvActual - mal;
-        this.pdvActual = pdvPostAtac;
-        if (this.pdvActual < 0) {
-            this.pdvActual = 0;
+        int pdvPostAtac = pdvActual - mal;
+        pdvActual = pdvPostAtac;
+        if (pdvActual < 0) {
+            pdvActual = 0;
         }
     }
 
@@ -286,7 +282,7 @@ public abstract class Personatge {
      * @return Retorna la llista
      */
     public List<String> writePartyHP (List<String> llista) {
-        llista.add("- " + this.nom + "   " + this.pdvActual + " / " + this.pdvMax + " hit points");
+        llista.add("- " + nom + "   " + pdvActual + " / " + pdvMax + " hit points");
 
         return llista;
     }
@@ -315,6 +311,6 @@ public abstract class Personatge {
      * @return Retorna un boolean que comprova si el personatge esta inconscient o no
      */
     public boolean estaInconscient() {
-        return this.getPdvActual() == 0;
+        return pdvActual == 0;
     }
 }

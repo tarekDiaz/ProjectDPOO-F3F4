@@ -11,19 +11,19 @@ import java.util.List;
 public class Monstre {
 
     @SerializedName("name")
-    private String nom;
+    protected String nom;
     @SerializedName("challenge")
-    private String nivellDificultat;
+    protected String nivellDificultat;
     @SerializedName("experience")
-    private int experiencia;
+    protected int experiencia;
     @SerializedName("hitPoints")
-    private int pdv;
+    protected int pdv;
     @SerializedName("initiative")
-    private int iniciativa;
+    protected int iniciativa;
     @SerializedName("damageDice")
-    private String tipusDau;
+    protected String tipusDau;
     @SerializedName("damageType")
-    private String tipusDeMal;
+    protected String tipusDeMal;
 
     /**
      * Mètode constructor
@@ -95,13 +95,13 @@ public class Monstre {
             return false;
         } else {
             m=(Monstre)o;
-            return this.nom.equals(m.getNom()) &&
-                    this.nivellDificultat.equals(m.getNivellDificultat()) &&
-                    this.experiencia == m.getExperiencia() &&
-                    this.pdv == m.getPdv() &&
-                    this.iniciativa == m.getIniciativa() &&
-                    this.tipusDau.equals(m.getTipusDau()) &&
-                    this.tipusDeMal.equals(m.getTipusDeMal());
+            return nom.equals(m.getNom()) &&
+                    nivellDificultat.equals(m.getNivellDificultat()) &&
+                    experiencia == m.getExperiencia() &&
+                    pdv == m.getPdv() &&
+                    iniciativa == m.getIniciativa() &&
+                    tipusDau.equals(m.getTipusDau()) &&
+                    tipusDeMal.equals(m.getTipusDeMal());
         }
     }
 
@@ -132,7 +132,7 @@ public class Monstre {
      * @return Retorna un boolean depenent de si el monstre està mort o no
      */
     public boolean estaInconscient () {
-        return this.getPdv() == 0;
+        return pdv == 0;
     }
 
     /**

@@ -2,6 +2,7 @@ package business.Monstre;
 
 import business.Personatge.Personatge;
 import persistence.Monstres.MonstresDAO;
+import persistence.PersistenceException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class MonstreManager {
      * Mètode que crea una llista amb el nom i nivell de dificultat de tots els monstres
      * @return Retorna una llista de tipus String
      */
-    public List<String> llistarMonstres(){
+    public List<String> llistarMonstres() throws PersistenceException {
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
         List<String> infoMonstres = new ArrayList<>();
 
@@ -40,7 +41,7 @@ public class MonstreManager {
      * @param posicio Posició on es troba el monstre a persistència
      * @return Retorna el monstre
      */
-    public Monstre retornaMonstreComplert(int posicio) {
+    public Monstre retornaMonstreComplert(int posicio) throws PersistenceException {
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
         Monstre monstre = null;
 

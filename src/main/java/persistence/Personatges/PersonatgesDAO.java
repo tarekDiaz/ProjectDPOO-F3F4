@@ -1,6 +1,7 @@
 package persistence.Personatges;
 
 import business.Personatge.Personatge;
+import persistence.PersistenceException;
 
 import java.util.List;
 /**
@@ -11,17 +12,17 @@ public interface PersonatgesDAO {
      * Mètode que afegeix un nou personatge a persistència
      * @param personatge personatge que es vol afegir
      */
-    void nouPersonatge(Personatge personatge);
+    void nouPersonatge(Personatge personatge) throws PersistenceException;
 
     /**
      * Mètode que llegeix i retorna la llista de personatges guardats a persistència
      * @return llista de tipus Personatge amb els personatges de persistència
      */
-    List<Personatge> readPersonatge();
+    List<Personatge> readPersonatge() throws PersistenceException;
 
     /**
      * Mètode que borra un personatge a partir del nom del personatge
      * @param nom nom del personatge que es vol esborrar
      */
-    void borrar(String nom);
+    void borrar(String nom) throws PersistenceException;
 }

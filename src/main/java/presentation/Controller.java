@@ -6,6 +6,7 @@ import business.Monstre.Monstre;
 import business.Monstre.MonstreManager;
 import business.Personatge.Personatge;
 import business.Personatge.PersonatgeManager;
+import persistence.PersistenceException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class Controller {
     /**
      * Mètode que s'ocupa d'executar el programa sencer
      */
-    public void run() {
+    public void run() throws PersistenceException {
         int opcio;
         do {
             ui.showMessage("");
@@ -50,7 +51,7 @@ public class Controller {
      * Mètode que entra a una de les opcions del programa depenent el paràmetre d'entrada
      * @param option Opció elegida del menu principal
      */
-    private void executeMenuPrincipal(int option) {
+    private void executeMenuPrincipal(int option) throws PersistenceException {
         ui.showMessage("");
         switch (option) {
             case 1:
@@ -82,7 +83,7 @@ public class Controller {
     /**
      * Executa l'opció 1 del programa. Crea un personatge nou.
      */
-    private void opcio1() {
+    private void opcio1() throws PersistenceException {
         String nom, player, classe;
         int nivell, cos, ment, esperit;
 
@@ -191,7 +192,7 @@ public class Controller {
     /**
      * Executa l'opció 2 del programa. Llista els personatges a partir d'un nom de jugador i dona l'opció d'esborrar un personatge.
      */
-    private void opcio2() {
+    private void opcio2() throws PersistenceException {
         String nomPersonatge;
 
         ui.showMessage("Tavern keeper: 'Lads! They want to see you!'");
@@ -211,7 +212,7 @@ public class Controller {
      *Mètode de l'opció 2 que demana a l'usuari el nom del jugador i de personatge que es vol elegir.
      * @return el nom del personatge elegit.
      */
-    private String o2AskforPersonatge() {
+    private String o2AskforPersonatge() throws PersistenceException {
         int totalNumPersonatge, numPersonatge;
         boolean back=true;
         String player, nomPersonatge=null;
@@ -253,7 +254,7 @@ public class Controller {
      * Mètode de l'opció 2 que mostra la informació d'un personatge.
      * @param nomPersonatge el nom del personatge que es vol mostrar la informació.
      */
-    private void o2ShowFullPJInfo(String nomPersonatge) {
+    private void o2ShowFullPJInfo(String nomPersonatge) throws PersistenceException {
         ui.showMessage("\nTavern keeper: 'Hey " + nomPersonatge + " get here; the boss wants to see you!'\n");
         ui.showMessage("*Name: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNom());
         ui.showMessage("*Player: " + personatgeManager.retornaPersonatgeComplert(nomPersonatge).getNomJugador());
@@ -270,7 +271,7 @@ public class Controller {
      * Mètode de l'opció 2 que decideix si es vol eliminar o no un personatge.
      * @param nomPersonatge personatge que es vol eliminar o no.
      */
-    private void o2DecideToDelete(String nomPersonatge) {
+    private void o2DecideToDelete(String nomPersonatge) throws PersistenceException {
         String nomPersonatgeDelete;
 
         do {
@@ -294,7 +295,7 @@ public class Controller {
     /**
      * Executa l'opció 3 del programa. Crear una aventura nova.
      */
-    private void opcio3() {
+    private void opcio3() throws PersistenceException {
         Boolean continua;
         String nomAventura = o3AskNameAventura();
         int numCombats = o3AskNumCombats();
@@ -314,15 +315,9 @@ public class Controller {
                 int opcioMonstres = o3ElegirOpcioEncounter();
 
                 switch (opcioMonstres) {
-                    case 1:
-                        o3AddMonstreAventura(aventura, i);
-                        break;
-                    case 2:
-                        o3DeleteMonstreAventura(aventura,i);
-                        break;
-                    case 3:
-                        continua = true;
-                        break;
+                    case 1 -> o3AddMonstreAventura(aventura, i);
+                    case 2 -> o3DeleteMonstreAventura(aventura, i);
+                    case 3 -> continua = true;
                 }
             }
         }
@@ -379,7 +374,7 @@ public class Controller {
      * @param aventura la classe aventura en la que s'afegiran els monstres
      * @param i nombre del combat en el qual s'afegiran els monstres.
      */
-    private void o3AddMonstreAventura(Aventura aventura, int i){
+    private void o3AddMonstreAventura(Aventura aventura, int i) throws PersistenceException {
         ui.showMonsterList(monstreManager.llistarMonstres());
         int totalNumMonstres = monstreManager.llistarMonstres().size();
         int numMonstre = ui.askForInteger("-> Choose a monster to add [1.." + totalNumMonstres + "]: ");
@@ -405,7 +400,7 @@ public class Controller {
      * @param aventura aventura en la que s'eliminaran els monstres
      * @param i nombre de combat de l'aventura
      */
-    private void o3DeleteMonstreAventura(Aventura aventura, int i){
+    private void o3DeleteMonstreAventura(Aventura aventura, int i) throws PersistenceException {
         if (!aventura.getCombats().get(i).getMonstre().isEmpty()) {
             int monsterDelete = ui.askForInteger("-> Which monster do you want to delete: ");
             while (monsterDelete < 1 || monsterDelete > aventuraManager.generarLlistaMonstres(aventura.getCombats().get(i)).size()) {
@@ -423,7 +418,7 @@ public class Controller {
     /**
      * Executa l'opció 4 del programa. Començar una aventura.
      */
-    private void opcio4() {
+    private void opcio4() throws PersistenceException {
         int numAventuras, numOfCharacters;
         int i;
         boolean dead = false;
@@ -489,7 +484,7 @@ public class Controller {
      * Mètode de l'opció 4 que demana a l'usuari quina aventura es vol jugar.
      * @return el nombre de l'aventura que elegeix l'usuari.
      */
-    private int o4ChooseAventura(){
+    private int o4ChooseAventura() throws PersistenceException {
         ui.showMessage("'Where do you fancy going?'\n");
         ui.showMessage("Available adventures:");
         ui.showMonsterList(aventuraManager.llistarAventuras());
@@ -522,7 +517,7 @@ public class Controller {
      * @param currentAventura l'aventura que es jugarà
      * @param numOfCharacters el nombre total de personatges que jugaran l'aventura
      */
-    private void o4ChooseCharacters(Aventura currentAventura, int numOfCharacters){
+    private void o4ChooseCharacters(Aventura currentAventura, int numOfCharacters) throws PersistenceException {
         int countPJ = 0;
         ui.showMessage("'Who among these lads shall join you?'\n");
         do{

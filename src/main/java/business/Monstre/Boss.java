@@ -82,15 +82,15 @@ public class Boss extends Monstre{
             mal = mal * 2;
         }
 
-        if (this.getTipusDeMal().equals(tipusDeMalAtac)) {
+        if (tipusDeMal.equals(tipusDeMalAtac)) {
             mal = mal/2;
         }
 
         int pdvPostAtac = getPdv() - mal;
-        setPdv(pdvPostAtac);
+        pdv = pdvPostAtac;
 
         if (getPdv() < 0) {
-            setPdv(0);
+            pdv = 0;
         }
     }
 }

@@ -47,7 +47,7 @@ public class Clergue extends Personatge{
      */
     @Override
     public void indicarTipusMal() {
-        this.setTipusDeMal("Psychical");
+        tipusDeMal = "Psychical";
     }
     /**
      * Mètode que calcula el mal que fa un clergue
@@ -80,7 +80,7 @@ public class Clergue extends Personatge{
         for (int k = 0; k<personatges.size(); k++) {
             personatges.get(k).setMent(getMent() + 1);
         }
-        frase.add(this.getNom() + " uses Prayer of good luck. Everyone's Mind increases in +1.");
+        frase.add(nom + " uses Prayer of good luck. Everyone's Mind increases in +1.");
     }
 
     /**
@@ -103,16 +103,16 @@ public class Clergue extends Personatge{
     public void curaDescansCurt(List<Personatge> personatges, List<String> frase) {
         String fraseaux = "";
         int cura = curarPersonatge();
-        if (this.getPdvActual() == this.getPdvMax()) {
+        if (pdvActual == pdvMax) {
             fraseaux = " But was already full hp.";
         }
-        int pdvPostCura = this.getPdvActual() + cura;
-        if (pdvPostCura > this.getPdvMax()) {
-            this.setPdvActual(getPdvMax());
+        int pdvPostCura = pdvActual + cura;
+        if (pdvPostCura > pdvMax) {
+            pdvActual = pdvMax;
         } else {
-            this.setPdvActual(pdvPostCura);
+            pdvActual = pdvPostCura;
         }
-        frase.add(this.getNom() + " uses Prayer of self healing. Heals " + cura + " hit points." + fraseaux);
+        frase.add(nom + " uses Prayer of self healing. Heals " + cura + " hit points." + fraseaux);
     }
 
     /**
@@ -137,7 +137,7 @@ public class Clergue extends Personatge{
                 } else {
                     personatges.get(i).setPdvActual(pdvPostCura);
                 }
-                frase = "\n" + this.getNom() + " uses Prayer of healing. Heals " + cura + " hit points to " + personatges.get(i).getNom() + ".";
+                frase = "\n" + nom + " uses Prayer of healing. Heals " + cura + " hit points to " + personatges.get(i).getNom() + ".";
                 healingDone = true;
             }
         }
@@ -146,7 +146,7 @@ public class Clergue extends Personatge{
             int dau = (int) (Math.random() * (10)) + 1;
             frase = "\n" + getNom() + " attacks " + monstres.get(posMenorMonstre).getNom() + " with Not on my watch.";
 
-            monstres.get(posMenorMonstre).monstreRebMal(mal, dau, this.getTipusDeMal());
+            monstres.get(posMenorMonstre).monstreRebMal(mal, dau, tipusDeMal);
 
             if (dau == 1) {
                 frase = frase + "\nFails and deals 0 " + getTipusDeMal() + " damage.";
@@ -174,11 +174,11 @@ public class Clergue extends Personatge{
     public String evolucionarPersonatge(List<Personatge> personatges, int posPersonatge) {
         Personatge evolucio;
         String frase = null;
-        if (this.getNivell() >= 5) {
-            evolucio = new Paladi(this.getNom(), this.getNomJugador(), this.getNivell(), this.getCos(), this.getMent(), this.getEsperit(), "Paladin", this.getExperiencia(), this.getPdvMax(), this.getPdvActual(), this.getIniciativa(), this.getTipusDeMal());
+        if (nivell >= 5) {
+            evolucio = new Paladi(nom, nomJugador, nivell, cos, ment, esperit, "Paladin", experiencia, pdvMax, pdvActual, iniciativa, tipusDeMal);
             personatges.add(posPersonatge + 1, evolucio);
             personatges.remove(posPersonatge);
-            frase = this.getNom() + " evolves to Paladin!";
+            frase = nom + " evolves to Paladin!";
         }
         return frase;
     }

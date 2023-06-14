@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class MonstresJsonDAO implements MonstresDAO{
     private final String FILE_PATH = "data/monsters.json";
-    private FileReader fr;
+    private final FileReader fr;
 
     /**
      * Mètode constructor de la classe
@@ -31,12 +31,12 @@ public class MonstresJsonDAO implements MonstresDAO{
      * Mètode que llegeix i retorna els monstres que es troben al fitxer Json
      * @return llista de classe Monstre dels monstres
      */
-    public List<Monstre> readMonstres() {
+    public List<Monstre> readMonstres() throws PersistenceException {
         FileReader reader;
         try {
             reader = new FileReader(FILE_PATH);
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new PersistenceException("Error: The monsters.json file can't be accessed.", e);
         }
         Gson gson = new Gson();
 
