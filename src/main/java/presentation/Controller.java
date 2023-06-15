@@ -36,6 +36,7 @@ public class Controller {
 
     /**
      * Mètode que s'ocupa d'executar el programa sencer
+     * @throws PersistenceException
      */
     public void run() throws PersistenceException {
         int opcio;

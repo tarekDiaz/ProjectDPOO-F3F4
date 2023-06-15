@@ -94,94 +94,185 @@ public abstract class Personatge {
         this.classe = classe;
     }
 
+    /**
+     * Getter que retorna el nom d'un personatge
+     * @return Nom d'un personatge
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Getter que retorna el nom del jugador d'un personatge
+     * @return Nom del jugador d'un personatge
+     */
     public String getNomJugador() {
         return nomJugador;
     }
 
+    /**
+     * Getter que retorna el nivell d'un personatge
+     * @return Nivell d'un personatge
+     */
     public int getNivell() {
         return nivell;
     }
 
+    /**
+     * Getter que retorna el tipus d'estadística "cos" d'un personatge
+     * @return Cos d'un personatge
+     */
     public int getCos() {
         return cos;
     }
 
+    /**
+     * Getter que retorna el tipus d'estadística "ment" d'un personatge
+     * @return Ment d'un personatge
+     */
     public int getMent() {
         return ment;
     }
 
+    /**
+     * Getter que retorna el tipus d'estadística "esperit" d'un personatge
+     * @return Esperit d'un personatge
+     */
     public int getEsperit() {
         return esperit;
     }
 
+    /**
+     * Getter que retorna la classe d'un personatge
+     * @return Classe d'un personatge
+     */
     public String getClasse() {
         return classe;
     }
 
+    /**
+     * Getter que retorna l'experiencia d'un personatge
+     * @return Experiencia d'un personatge
+     */
     public int getExperiencia() {
         return experiencia;
     }
 
+    /**
+     * Getter que retorna la vida maxima d'un personatge
+     * @return Vida maxima d'un personatge
+     */
     public int getPdvMax() {
         return pdvMax;
     }
 
+    /**
+     * Getter que retorna la vida actual d'un personatge
+     * @return Vida actual d'un personatge
+     */
     public int getPdvActual() {
         return pdvActual;
     }
 
+    /**
+     * Getter que retorna la iniciativa d'un personatge. Aquest determina l'ordre d'atac en combat.
+     * @return Iniciativa d'un personatge
+     */
     public int getIniciativa() {
         return iniciativa;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public void setNivell(int nivell) {
-        this.nivell = nivell;
-    }
-
-    public void setCos(int cos) {
-        this.cos = cos;
-    }
-
-    public void setMent(int ment) {
-        this.ment = ment;
-    }
-
-    public void setEsperit(int esperit) {
-        this.esperit = esperit;
-    }
-
-    public void setClasse(String classe) {
-        this.classe = classe;
-    }
-
-    public void setExperiencia(int experiencia) {
-        this.experiencia = experiencia;
-    }
-
-    public void setPdvMax(int pdvMax) {
-        this.pdvMax = pdvMax;
-    }
-
-    public void setPdvActual(int pdvActual) {
-        this.pdvActual = pdvActual;
-    }
-
-    public void setIniciativa(int iniciativa) {
-        this.iniciativa = iniciativa;
-    }
-
+    /**
+     * Getter que retorna el tipus de mal d'un personatge
+     * @return Tipus de mal d'un personatge
+     */
     public String getTipusDeMal() {
         return tipusDeMal;
     }
 
+    /**
+     * Setter que estableix el nom d'un personatge
+     * @param nom Nom que tindrà el personatge
+     */
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    /***
+     * Setter que estableix el nivell d'un personatge
+     * @param nivell Nivell que tindrà el personatge
+     */
+    public void setNivell(int nivell) {
+        this.nivell = nivell;
+    }
+
+    /**
+     * Setter que estableix l'estadística "cos" d'un personatge
+     * @param cos Cos que tindrà el personatge
+     */
+    public void setCos(int cos) {
+        this.cos = cos;
+    }
+
+    /**
+     * Setter que estableix l'estadística "ment" d'un personatge
+     * @param ment Ment que tindrà el personatge
+     */
+    public void setMent(int ment) {
+        this.ment = ment;
+    }
+
+    /**
+     * Setter que estableix l'estadística "esperit" d'un personatge
+     * @param esperit Esperit que tindrà el personatge
+     */
+    public void setEsperit(int esperit) {
+        this.esperit = esperit;
+    }
+
+    /**
+     * Setter que estableix la classe d'un personatge
+     * @param classe Classe que tindrà el personatge
+     */
+    public void setClasse(String classe) {
+        this.classe = classe;
+    }
+
+    /**
+     * Setter que estableix l'experiencia d'un personatge
+     * @param experiencia Experiencia que tindrà el personatge
+     */
+    public void setExperiencia(int experiencia) {
+        this.experiencia = experiencia;
+    }
+
+    /**
+     * Setter que estableix els punts de vida maxims d'un personatge
+     * @param pdvMax Punts de vida maxims que tindrà el personatge
+     */
+    public void setPdvMax(int pdvMax) {
+        this.pdvMax = pdvMax;
+    }
+
+    /**
+     * Setter que estableix els punts de vida actuals d'un personatge
+     * @param pdvActual Punts de vida actuals que tindrà el personatge
+     */
+    public void setPdvActual(int pdvActual) {
+        this.pdvActual = pdvActual;
+    }
+
+    /**
+     * Setter que estableix la iniciativa d'un personatge
+     * @param iniciativa Iniciativa que tindrà el personatge
+     */
+    public void setIniciativa(int iniciativa) {
+        this.iniciativa = iniciativa;
+    }
+
+    /**
+     * Mètode que inicialitza el nivell, punts de vida maxims i la iniciativa d'un personatge.
+     */
     public void inicialitzaPersonatges () {
         nivell = (experiencia / 100) + 1;
         pdvMax = calcularPdvMax();

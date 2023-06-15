@@ -11,6 +11,7 @@ public interface MonstresDAO {
     /**
      * Mètode que llegeix i retorna els monstres que es troben a persistència
      * @return llista de classe Monstre dels monstres de persistència
+     * @throws PersistenceException
      */
     List<Monstre> readMonstres() throws PersistenceException;
 }

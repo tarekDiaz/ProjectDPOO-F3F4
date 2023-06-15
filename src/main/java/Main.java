@@ -13,7 +13,14 @@ import persistence.Personatges.PersonatgesDAO;
 import persistence.Personatges.PersonatgesJsonDAO;
 import presentation.*;
 
+/**
+ * Classe Main que inicialitza les diferents classes i executa el programa
+ */
 public class Main {
+    /**
+     * Mètode únic d'execució del Main
+     * @param args Args
+     */
     public static void main(String[] args) {
         PersonatgesDAO personatgesDAO;
         MonstresDAO monstresDAO;

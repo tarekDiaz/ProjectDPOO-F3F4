@@ -34,14 +34,6 @@ public class Mag extends Personatge{
     }
 
     /**
-     * Setter que posa valor a l'escut del mag
-     * @param escut valor de l'escut
-     */
-    public void setEscut(int escut) {
-        this.escut = escut;
-    }
-
-    /**
      * Mètode que posa el tipus de mal d'un mag a "Magical"
      */
     @Override

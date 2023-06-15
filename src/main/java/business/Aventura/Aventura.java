@@ -37,18 +37,34 @@ public class Aventura {
         combats.get(numCombat).addMonstre(monstre);
     }
 
+    /**
+     * Getter que retorna el nom de l'aventura
+     * @return Nom de l'aventura
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Getter que retorna la llista de combats de l'aventura
+     * @return Llista de combats de l'aventura
+     */
     public List<Combat> getCombats() {
         return combats;
     }
 
+    /**
+     * Getter que retorna la llista de personatges de l'aventura
+     * @return lista de personatges de l'aventura
+     */
     public List<Personatge> getPersonatges() {
         return personatges;
     }
 
+    /**
+     * Setter d'una llista de personatges de l'aventura. Utilitzat per establir quins personatges formaran part d'aquesta.
+     * @param personatges Llita de personatges que formaran part de l'aventura
+     */
     public void setPersonatges(List<Personatge> personatges) {
         this.personatges = personatges;
     }

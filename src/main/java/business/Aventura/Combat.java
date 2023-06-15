@@ -20,10 +20,18 @@ public class Combat {
         this.monstres = monstres;
     }
 
+    /**
+     * Getter que retorna la llista de monstres del combat
+     * @return Llista de monstres del combat
+     */
     public List<Monstre> getMonstre() {
         return monstres;
     }
 
+    /**
+     * Mètode per afegir monstres dins d'un combat
+     * @param monstre Monstre a afegir
+     */
     public void addMonstre(Monstre monstre){
         monstres.add(monstre);
     }

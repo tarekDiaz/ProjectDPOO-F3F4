@@ -45,41 +45,75 @@ public class Monstre {
         this.tipusDeMal = tipusDeMal;
     }
 
+    /**
+     * Getter que retorna el nom d'un monstre
+     * @return Nom d'un monstre
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Getter que retorna el nivell de dificultat d'un monstre
+     * @return Nivell de dificultat d'un monstre
+     */
     public String getNivellDificultat() {
         return nivellDificultat;
     }
 
+    /**
+     * Getter que retorna el tipus de mal d'un monstre
+     * @return Tipus de mal d'un monstre
+     */
     public String getTipusDeMal() {
         return tipusDeMal;
     }
 
+    /**
+     * Getter que retorna el número de vida total d'un monstre
+     * @return Número de vida total d'un monstre
+     */
     public int getPdv() {
         return pdv;
     }
 
-    public void setPdv(int pdv) {
-        this.pdv = pdv;
-    }
-
+    /**
+     * Getter que retorna la experiencia d'un monstre
+     * @return Experiencia d'un monstre
+     */
     public int getExperiencia() {
         return experiencia;
     }
 
-
+    /**
+     * Getter que retorna el número d'iniciativa d'un monstre. Aquest determina l'ordre d'atac en combat.
+     * @return Número d'iniciativa d'un monstre
+     */
     public int getIniciativa() {
         return iniciativa;
     }
 
+    /**
+     * Getter que retorna el tipus de dau d'un monstre
+     * @return Tipus de dau d'un monstre
+     */
+    public String getTipusDau(){return tipusDau;}
+
+    /**
+     * Setter que estableix el número de vida total d'un monstre.
+     * @param pdv Número de vida total d'un monstre.
+     */
+    public void setPdv(int pdv) {
+        this.pdv = pdv;
+    }
+
+    /**
+     * Setter que estableix la iniciativa d'un monstre
+     * @param iniciativa Iniciativa d'un monstre
+     */
     public void setIniciativa(int iniciativa) {
         this.iniciativa = iniciativa;
     }
-
-
-    public String getTipusDau(){return tipusDau;}
 
     /**
      * Mètode d'override a "equals" que comprova si dos monstres són iguals

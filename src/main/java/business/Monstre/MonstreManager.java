@@ -24,6 +24,7 @@ public class MonstreManager {
     /**
      * Mètode que crea una llista amb el nom i nivell de dificultat de tots els monstres
      * @return Retorna una llista de tipus String
+     * @throws PersistenceException
      */
     public List<String> llistarMonstres() throws PersistenceException {
         List<Monstre> monstres = monstresJsonDAO.readMonstres();
@@ -40,6 +41,7 @@ public class MonstreManager {
      * Mètode que retorna un Monstre
      * @param posicio Posició on es troba el monstre a persistència
      * @return Retorna el monstre
+     * @throws PersistenceException
      */
     public Monstre retornaMonstreComplert(int posicio) throws PersistenceException {
         List<Monstre> monstres = monstresJsonDAO.readMonstres();

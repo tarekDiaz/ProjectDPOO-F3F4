@@ -29,6 +29,7 @@ public class PersonatgeManager {
      * @param ment estadística ment del personatge
      * @param esperit estadística esperit del personatge
      * @param classe classe del personatge
+     * @throws PersistenceException
      */
     public void crearPersonatge (String nom, String player, int nivell, int cos, int ment, int esperit, String classe) throws PersistenceException {
         Personatge personatge = null;
@@ -57,6 +58,7 @@ public class PersonatgeManager {
     /**
      * Mètode que retorna una llista amb tots els personatges del Json
      * @return Retorna una llista amb tots els personatges del Json
+     * @throws PersistenceException
      */
     public List<Personatge> llegirPersonatges() throws PersistenceException {
         List<Personatge> personatgesList = personatgesJsonDAO.readPersonatge();
@@ -77,6 +79,7 @@ public class PersonatgeManager {
     /**
      * Mètode que envia el nom del personatge a la classe de persistència per borrar un personatge
      * @param nom nom del personatge a esborrar
+     * @throws PersistenceException
      */
     public void borrarPersonatge (String nom) throws PersistenceException {
         personatgesJsonDAO.borrar(nom);
@@ -225,6 +228,7 @@ public class PersonatgeManager {
      * Retorna un personatge del Json
      * @param nomPersonatge Nom del personatge a retornar
      * @return Personatge complert
+     * @throws PersistenceException
      */
     public Personatge retornaPersonatgeComplert(String nomPersonatge) throws PersistenceException {
         List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
@@ -241,6 +245,7 @@ public class PersonatgeManager {
     /**
      * Mètode que retorna una llista amb els noms de tots els personatges de persistència
      * @return Retorna una llista de noms
+     * @throws PersistenceException
      */
     public List<String> llistarPersonatges() throws PersistenceException {
         List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
@@ -256,6 +261,7 @@ public class PersonatgeManager {
      * Mètode que retorna una llista amb els noms dels personatges d'un jugador en concret
      * @param player Nom del jugador
      * @return Retorna una llista de noms
+     * @throws PersistenceException
      */
     public List<String> llistarPersonatgesPlayer(String player) throws PersistenceException {
         List<Personatge> personatges = personatgesJsonDAO.readPersonatge();
@@ -292,6 +298,7 @@ public class PersonatgeManager {
     /**
      * Mètode que revisa que el nombre de personatges a persistència sigui major o igual a tres
      * @return Retorna un boolean depenent de si el nombre de personatges es major o igual a tres o no
+     * @throws PersistenceException
      */
     public boolean checkPersonatgesSize () throws PersistenceException {
         boolean check = true;
