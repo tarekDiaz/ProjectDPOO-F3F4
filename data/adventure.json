@@ -364,5 +364,108 @@
         "monsters": []
       }
     ]
+  },
+  {
+    "nameAdventure": "kokol",
+    "combats": [
+      {
+        "monsters": [
+          {
+            "name": "Morgoth",
+            "challenge": "Boss",
+            "experience": 168,
+            "hitPoints": 100,
+            "initiative": 4,
+            "damageDice": "d20",
+            "damageType": "Psychical"
+          }
+        ]
+      },
+      {
+        "monsters": [
+          {
+            "name": "Snaga",
+            "challenge": "Minion",
+            "experience": 2,
+            "hitPoints": 4,
+            "initiative": 0,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Snaga",
+            "challenge": "Minion",
+            "experience": 2,
+            "hitPoints": 4,
+            "initiative": 0,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Snaga",
+            "challenge": "Minion",
+            "experience": 2,
+            "hitPoints": 4,
+            "initiative": 0,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Snaga",
+            "challenge": "Minion",
+            "experience": 2,
+            "hitPoints": 4,
+            "initiative": 0,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Snaga",
+            "challenge": "Minion",
+            "experience": 2,
+            "hitPoints": 4,
+            "initiative": 0,
+            "damageDice": "d4",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Werewolf",
+            "challenge": "Lieutenant",
+            "experience": 24,
+            "hitPoints": 25,
+            "initiative": 2,
+            "damageDice": "d10",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Werewolf",
+            "challenge": "Lieutenant",
+            "experience": 24,
+            "hitPoints": 25,
+            "initiative": 2,
+            "damageDice": "d10",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Werewolf",
+            "challenge": "Lieutenant",
+            "experience": 24,
+            "hitPoints": 25,
+            "initiative": 2,
+            "damageDice": "d10",
+            "damageType": "Physical"
+          },
+          {
+            "name": "Werewolf",
+            "challenge": "Lieutenant",
+            "experience": 24,
+            "hitPoints": 25,
+            "initiative": 2,
+            "damageDice": "d10",
+            "damageType": "Physical"
+          }
+        ]
+      }
+    ]
   }
 ]

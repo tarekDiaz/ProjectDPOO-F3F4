@@ -276,6 +276,7 @@ public abstract class Personatge {
     public void inicialitzaPersonatges () {
         nivell = (experiencia / 100) + 1;
         pdvMax = calcularPdvMax();
+        pdvActual = pdvMax;
         iniciativa = calcularIniciativa();
         indicarTipusMal();
     }
